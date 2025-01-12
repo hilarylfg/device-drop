@@ -1,0 +1,50 @@
+@use '../helpers/index' as *;
+
+.top-bar {
+    display: flex;
+    align-items: center;
+
+    .categories__list {
+        display: inline-flex;
+        background: var(--color-input-background);
+        gap: rem(8);
+        padding: rem(6);
+        border-radius: rem(15);
+
+        &__item {
+            display: flex;
+            align-items: center;
+            padding: rem(8) rem(12);
+            border-radius: rem(15);
+            cursor: pointer;
+            transition: all var(--transition-duration) ease-out;
+        }
+
+        &__item.active {
+            background: var(--color-accent);
+            color: var(--color-light);
+        }
+    }
+}
+
+.sort {
+    &__button {
+        display: flex;
+        align-items: center;
+        margin-left: auto;
+        padding: rem(6);
+
+        svg {
+            margin-right: rem(6);
+        }
+    }
+
+    &__list {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        &__item {
+        }
+    }
+}

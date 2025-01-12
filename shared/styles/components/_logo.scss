@@ -1,0 +1,23 @@
+@use '../helpers/index' as *;
+
+.logo__block {
+    display: flex;
+    align-items: center;
+
+    &:hover {
+        color: inherit;
+    }
+
+    .logo__title {
+        font-weight: 900;
+        font-size: rem(28);
+        line-height: 0.85;
+        letter-spacing: rem(2);
+    }
+
+    svg {
+        fill: none;
+        margin-right: 7px;
+        stroke: var(--color-accent);
+    }
+}

@@ -1,0 +1,28 @@
+@use '../helpers/index' as *;
+
+.search-input {
+    position: relative;
+    width: 100%;
+    height: rem(50);
+    background-color: var(--color-input-background);
+    border-radius: rem(15);
+
+    &__icon {
+        position: absolute;
+        top: 50%;
+        left: rem(20);
+        transform: translateY(-50%);
+        fill: none;
+        stroke: var(--color-placeholder);
+        transition: all var(--transition-duration) ease;
+    }
+
+    &__input {
+        height: 100%;
+        padding-left: rem(50);
+    }
+
+    &:focus-within &__icon {
+        stroke: var(--color-accent);
+    }
+}

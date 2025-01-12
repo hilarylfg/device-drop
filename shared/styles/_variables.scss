@@ -1,0 +1,23 @@
+@use 'helpers/index' as *;
+
+:root {
+  --color-light: #FFFFFF;
+
+  --color-input-background: #F9F9F9;
+
+  --color-dark: #141414;
+  --color-dark-10: #1A1A1A;
+  --color-dark-15: #262626;
+  --color-dark-20: #333333;
+  --color-dark-40: #666666;
+
+  --color-placeholder: #9ca3af;
+
+  --color-accent: #027bff;
+  --transition-duration: 0.2s;
+
+  --container-width: #{rem(1280)};
+  @include laptop {
+    --container-width: #{rem(1000)};
+  }
+}

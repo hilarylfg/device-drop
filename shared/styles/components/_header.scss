@@ -1,0 +1,20 @@
+@use '../helpers/index' as *;
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: rem(30);
+    margin: rem(20) 0;
+
+    .button-block {
+        display: flex;
+        gap: rem(10);
+
+        &__button {
+            svg.lucide-user {
+                margin-right: rem(5);
+            }
+        }
+    }
+}

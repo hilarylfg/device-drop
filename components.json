@@ -1,0 +1,11 @@
+{
+  "style": "default",
+  "rsc": true,
+  "tsx": true,
+  "aliases": {
+    "components": "@/shared/components",
+    "utils": "@/shared/lib/utils",
+    "hooks": "@/shared/hooks",
+    "styles": "@/shared/styles"
+  }
+}

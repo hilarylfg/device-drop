@@ -1,0 +1,24 @@
+@use '../helpers/index' as *;
+
+.input-ui {
+    display: flex;
+    width: 100%;
+    border-radius: rem(15);
+    border: 1px solid transparent;
+    background-color: transparent;
+    padding: rem(8) rem(16);
+    transition: all var(--transition-duration) ease-out;
+
+    &::placeholder {
+        color: var(--color-placeholder);
+    }
+
+    &:focus-visible {
+        border-color: var(--color-accent);
+    }
+
+    &:disabled {
+        cursor: not-allowed;
+        opacity: 0.5;
+    }
+}

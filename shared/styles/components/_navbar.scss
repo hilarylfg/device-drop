@@ -1,0 +1,25 @@
+@use '../helpers/index' as *;
+
+.navbar {
+    display: flex;
+    font-size: rem(14);
+    padding: rem(14) 0;
+
+    &__hr {
+        border: 0;
+        height: 1px;
+        background: var(--color-input-background);
+        width: 100%;
+        margin: 0;
+    }
+
+    &__link {
+        margin-right: 20px;
+        font-weight: 700;
+        transition: all var(--transition-duration) ease-out;
+
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+}

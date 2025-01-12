@@ -1,0 +1,47 @@
+@use 'helpers/index' as *;
+
+body {
+  font-size: rem(16);
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-nunito), sans-serif;
+  color: var(--color-dark-10);
+  background-color: var(--color-background);
+}
+
+main {
+  flex-grow: 1;
+}
+
+a {
+  color: inherit;
+
+  @include hover {
+    color: var(--color-accent);
+  }
+
+  &[class] {
+    text-decoration: none;
+  }
+}
+
+:focus-visible {
+  outline: rem(2) dashed var(--color-light);
+  outline-offset: rem(4);
+  transition-duration: 0s !important;
+}
+
+b.accent__text {
+  color: var(--color-accent);
+
+  &-bold {
+    font-weight: 900;
+  }
+}
+
+a,
+button {
+  &[aria-label] {
+    position: relative;
+  }
+}
