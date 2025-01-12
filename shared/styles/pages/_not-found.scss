@@ -1,0 +1,11 @@
+@use '../helpers/index' as *;
+
+.not-found__page {
+    padding: 18vh 0;
+    text-align: center;
+
+    svg {
+        fill: none;
+        stroke: var(--color-accent);
+    }
+}

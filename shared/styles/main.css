@@ -421,6 +421,15 @@ button[aria-label] {
   fill: none;
 }
 
+.not-found__page {
+  padding: 18vh 0;
+  text-align: center;
+}
+.not-found__page svg {
+  fill: none;
+  stroke: var(--color-accent);
+}
+
 .logo__block {
   display: flex;
   align-items: center;
