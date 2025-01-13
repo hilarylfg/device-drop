@@ -1,0 +1,15 @@
+@use '../helpers/index' as *;
+
+.checkbox-filter {
+    display: flex;
+    align-items: center;
+
+    &__label {
+        margin-left: rem(5);
+    }
+}
+
+.filters__block {
+    width: rem(210);
+    margin-right: rem(15);
+}

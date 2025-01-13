@@ -1,8 +1,18 @@
 @use '../helpers/index' as *;
 
+.bar__shadow {
+    position: sticky;
+    top: 0;
+    background-color: white;
+    padding: rem(20);
+    box-shadow: 0 rem(10) rem(15) rem(-3) rgb(0 0 0 / 0.05), 0 rem(4) rem(6) rem(-4) rgb(0 0 0 / 0.05);
+    z-index: 10;
+}
+
 .top-bar {
     display: flex;
     align-items: center;
+    position: sticky;
 
     .categories__list {
         display: inline-flex;

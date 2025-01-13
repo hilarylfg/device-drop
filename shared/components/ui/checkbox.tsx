@@ -20,7 +20,7 @@ const Checkbox = React.forwardRef<
         <CheckboxPrimitive.Indicator
             className={cn("checkbox-ui__indicator")}
         >
-            <Check size={16}/>
+            <Check size={16} strokeWidth={3}/>
         </CheckboxPrimitive.Indicator>
     </CheckboxPrimitive.Root>
 ))
