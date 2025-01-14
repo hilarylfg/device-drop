@@ -1,14 +1,20 @@
 import {cn} from "@/shared/lib/utils";
-import {CheckboxFilter} from "@/shared/components";
 import React from "react";
+import {GroupCheckboxFilter} from "@/shared/components";
 
 export function Filters() {
     return (
-        <div className={cn('filters__block')}>
-            <CheckboxFilter value={'das'} text={'гаджимурад'}/>
-            <CheckboxFilter value={'das'} text={'балван'}/>
-            <CheckboxFilter value={'das'} text={'полный'}/>
-
+        <div className={cn('filters-block')}>
+            <h2 className="filters-block__titile">Фильтрация</h2>
+            <GroupCheckboxFilter items={[
+                {text: "Есть в наличии", value: "available"},
+                {text: "Есть скидка", value: "sale"},
+            ]}/>
+            <GroupCheckboxFilter title="Цвет" items={[
+                {text: "Белый", value: "color-white"},
+                {text: "Черный", value: "color-black"},
+                {text: "Серый", value: "color-gray"},
+            ]}/>
         </div>
     )
 }

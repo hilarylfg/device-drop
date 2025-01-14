@@ -17,7 +17,7 @@ export function CheckboxFilter({
                                    onCheckedChange,
                                    checked,
                                    name,
-                               } : CheckboxFilterProps) {
+                               }: CheckboxFilterProps) {
     return (
         <div className="checkbox-filter">
             <Checkbox
@@ -27,6 +27,19 @@ export function CheckboxFilter({
                 className="checkbox-filter__checkbox"
                 id={`checkbox-${String(name)}-${String(value)}`}
             />
+            {
+                value.startsWith('color') &&
+                (
+                    <div className="checkbox-filter__color">
+                        <div style={{
+                                 backgroundColor: value.slice(value.indexOf('-') + 1),
+                                 width: '16px',
+                                 height: '16px',
+                                 borderRadius: '5px'
+                             }}></div>
+                    </div>
+                )
+            }
             <label
                 htmlFor={`checkbox-${String(name)}-${String(value)}`}
                 className="checkbox-filter__label">
