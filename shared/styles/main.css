@@ -606,4 +606,67 @@ button[aria-label] {
   gap: 0.75rem;
 }
 
+.product-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 60px;
+  row-gap: 40px;
+}
+
+.product-card {
+  width: 19.375rem;
+}
+.product-card p {
+  font-size: 0.875rem;
+  color: var(--color-placeholder);
+  margin-bottom: 0.625rem;
+}
+.product-card__image {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 15.625rem;
+}
+.product-card__image__favorite {
+  position: absolute;
+  top: 15px;
+  right: 0;
+  fill: none;
+  color: lightgrey;
+  transition: all 0.1s ease-out;
+  cursor: pointer;
+}
+.product-card__image__favorite-active {
+  fill: var(--color-accent);
+  stroke: var(--color-accent);
+}
+.product-card__image__favorite:hover {
+  fill: var(--color-accent);
+  color: var(--color-accent);
+}
+.product-card__image img {
+  display: flex;
+  margin-inline: auto;
+  max-width: 17.5rem;
+  max-height: 15.625rem;
+}
+.product-card__footer {
+  display: flex;
+  align-items: center;
+}
+.product-card__footer__price {
+  font-size: 1.5rem;
+}
+.product-card__footer .button-ui {
+  margin-left: auto;
+  padding: 0.5rem;
+  height: fit-content;
+}
+.product-card__footer .button-ui svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-right: 5px;
+}
+
 /*# sourceMappingURL=main.css.map */

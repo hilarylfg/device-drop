@@ -1,5 +1,12 @@
-    export function ProductList() {
+import {ProductCard} from "@/shared/components";
+
+export function ProductList() {
     return (
-        <div>ProductList</div>
+        <div className="product-list">
+            <ProductCard/>
+            <ProductCard/>
+            <ProductCard/>
+            <ProductCard/>
+        </div>
     )
 }
