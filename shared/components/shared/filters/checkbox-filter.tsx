@@ -1,5 +1,6 @@
 import {Checkbox} from "@/shared/components";
 import {ReactNode} from "react";
+import {cn} from "@/shared/lib/utils";
 
 export interface CheckboxFilterProps {
     text: string;
@@ -30,14 +31,7 @@ export function CheckboxFilter({
             {
                 value.startsWith('color') &&
                 (
-                    <div className="checkbox-filter__color">
-                        <div style={{
-                                 backgroundColor: value.slice(value.indexOf('-') + 1),
-                                 width: '16px',
-                                 height: '16px',
-                                 borderRadius: '5px'
-                             }}></div>
-                    </div>
+                    <div className={cn("checkbox-filter__color", value.endsWith('white') ? 'checkbox-filter__color__white' : '')} style={{backgroundColor: value.slice(value.indexOf('-') + 1)}}></div>
                 )
             }
             <label

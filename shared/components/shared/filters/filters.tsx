@@ -14,6 +14,9 @@ export function Filters() {
                 {text: "Белый", value: "color-white"},
                 {text: "Черный", value: "color-black"},
                 {text: "Серый", value: "color-gray"},
+                {text: "Красный", value: "color-red"},
+                {text: "Коричневый", value: "color-brown"},
+                {text: "Синий", value: "color-blue"},
             ]}/>
         </div>
     )

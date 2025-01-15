@@ -12,7 +12,7 @@ const nunito = Nunito({
 });
 
 export const metadata: Metadata = {
-  title: "Game Drop| Главная",
+  title: "Game Drop | Главная",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode; }>) {

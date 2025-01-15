@@ -9,14 +9,17 @@
     }
 
     &__color {
-        width: rem(24);
-        height: rem(24);
+        width: rem(20);
+        height: rem(20);
         display: flex;
         align-items: center;
         justify-content: center;
-        border: 2px solid var(--color-accent);
-        border-radius: 5px;
-        margin: 0 0 0 rem(5);
+        border-radius: 6px;
+        margin: 0 rem(-2) 0 rem(5);
+
+        &__white {
+            border: 1px solid var(--color-hr-gray);
+        }
     }
 }
 
@@ -28,7 +31,7 @@
 
 .group-filter {
     padding: rem(25) 0;
-    border-bottom: rem(2) solid var(--color-input-background);
+    border-bottom: rem(1) solid var(--color-hr-gray);
 
     &:last-child {
         border: none;

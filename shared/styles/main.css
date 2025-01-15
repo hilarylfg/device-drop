@@ -175,7 +175,8 @@ svg * {
  */
 :root {
   --color-light: #FFFFFF;
-  --color-input-background: #F9F9F9;
+  --color-input-background: #F1F1F1;
+  --color-hr-gray: lightgray;
   --color-dark: #141414;
   --color-dark-10: #1A1A1A;
   --color-dark-15: #262626;
@@ -502,7 +503,7 @@ button[aria-label] {
 .navbar__hr {
   border: 0;
   height: 1px;
-  background: var(--color-input-background);
+  background: var(--color-hr-gray);
   width: 100%;
   margin: 0;
 }
@@ -572,14 +573,16 @@ button[aria-label] {
   margin-left: 0.5rem;
 }
 .checkbox-filter__color {
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 1.25rem;
+  height: 1.25rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid var(--color-accent);
-  border-radius: 5px;
-  margin: 0 0 0 0.3125rem;
+  border-radius: 6px;
+  margin: 0 -0.125rem 0 0.3125rem;
+}
+.checkbox-filter__color__white {
+  border: 1px solid var(--color-hr-gray);
 }
 
 .filters-block {
@@ -589,7 +592,7 @@ button[aria-label] {
 
 .group-filter {
   padding: 1.5625rem 0;
-  border-bottom: 0.125rem solid var(--color-input-background);
+  border-bottom: 0.0625rem solid var(--color-hr-gray);
 }
 .group-filter:last-child {
   border: none;
