@@ -22,9 +22,10 @@ export function GroupCheckboxFilter({title, items, limit = 5} : GroupCheckboxFil
         <div className="group-filter">
             {title && <h3 className="group-filter__title">{title}</h3>}
             {showAll && (
-                <div className="mb-5">
+                <div>
                     <Input
-                        className="bg-gray-50 border-none"
+                        className="group-filter__show-all__input"
+                        placeholder="Введите цвет"
                     />
                 </div>
             )}
@@ -38,8 +39,8 @@ export function GroupCheckboxFilter({title, items, limit = 5} : GroupCheckboxFil
                 ))}
             </div>
             {items.length > limit && (
-                <div className={showAll ? 'border-t border-t-neutral-100 mt-4' : ''}>
-                    <button onClick={() => setShowAll(!showAll)} className="text-primary mt-3">
+                <div>
+                    <button onClick={() => setShowAll(!showAll)} className="group-filter__show-all">
                         {showAll ? 'Скрыть' : '+ Показать все'}
                     </button>
                 </div>

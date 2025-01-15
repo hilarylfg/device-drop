@@ -502,7 +502,7 @@ button[aria-label] {
 }
 .navbar__hr {
   border: 0;
-  height: 1px;
+  height: 0.5px;
   background: var(--color-hr-gray);
   width: 100%;
   margin: 0;
@@ -604,6 +604,24 @@ button[aria-label] {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+}
+
+.group-filter__show-all {
+  margin-top: 0.5rem;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: var(--color-accent);
+}
+.group-filter__show-all__input {
+  padding: 6px 14px;
+  height: fit-content;
+  border: 2px solid var(--color-hr-gray);
+  margin-bottom: 0.5rem;
+  transition: all var(--transition-duration) ease-out;
+}
+.group-filter__show-all__input:hover {
+  border: 2px solid var(--color-accent);
 }
 
 .product-list {

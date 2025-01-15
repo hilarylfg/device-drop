@@ -47,3 +47,23 @@
         gap: rem(12);
     }
 }
+
+.group-filter__show-all {
+    margin-top: rem(8);
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    color: var(--color-accent);
+
+    &__input {
+        padding: 6px 14px;
+        height: fit-content;
+        border: 2px solid var(--color-hr-gray);
+        margin-bottom: rem(8);
+        transition: all var(--transition-duration) ease-out;
+
+        &:hover {
+            border: 2px solid var(--color-accent);
+        }
+    }
+}

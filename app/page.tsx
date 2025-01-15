@@ -1,4 +1,4 @@
-import {CheckboxFilter, Container, Filters, ProductList, TopBar} from "@/shared/components";
+import {Container, Filters, ProductList, TopBar} from "@/shared/components";
 import React from "react";
 
 
