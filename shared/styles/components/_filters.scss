@@ -23,12 +23,6 @@
     }
 }
 
-.filters-block {
-    width: rem(210);
-    margin-right: rem(15);
-
-}
-
 .group-filter {
     padding: rem(25) 0;
     border-bottom: rem(1) solid var(--color-hr-gray);
@@ -39,6 +33,10 @@
 
     &__title {
         margin-bottom: rem(10);
+    }
+
+    &__slider {
+        margin-top: rem(16);
     }
 
     &__checkbox-list {
@@ -66,4 +64,11 @@
             border: 2px solid var(--color-accent);
         }
     }
+}
+
+.filters-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: rem(210);
+    margin-right: rem(45);
 }

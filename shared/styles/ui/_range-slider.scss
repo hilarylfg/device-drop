@@ -1,0 +1,54 @@
+.range-slider-ui {
+    position: relative;
+    display: flex;
+    width: 100%;
+    margin-inline: auto;
+    touch-action: none;
+    user-select: none;
+    margin-bottom: 1.5rem;
+    align-items: center;
+
+    &-track {
+        position: relative;
+        height: 0.25rem;
+        width: 100%;
+        flex-grow: 1;
+        overflow: hidden;
+        border-radius: 15px;
+        background: var(--color-hr-gray);
+    }
+
+    &-range {
+        position: absolute;
+        height: 100%;
+        background: var(--color-accent);
+    }
+
+    &-thumb {
+        display: block;
+        height: 1rem;
+        width: 1rem;
+        border-radius: 15px;
+        border: 1px solid var(--color-hr-gray);
+        background-color: var(--color-light);
+        box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+        transition: background-color 0.2s, border-color 0.2s;
+
+        &:focus-visible {
+            outline: none;
+            box-shadow: 0 0 0 2px var(--ring);
+        }
+
+        &:disabled {
+            pointer-events: none;
+            opacity: 0.5;
+        }
+    }
+
+    &-value {
+        position: absolute;
+        text-align: center;
+        top: 10px;
+        font-size: 0.875rem;
+    }
+}

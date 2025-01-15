@@ -3,7 +3,7 @@
 .checkbox-ui {
     height: rem(24);
     width: rem(24);
-    background-color: #f3f4f6;
+    background-color: var(--color-input-background);
     border: none;
     border-radius: rem(8);
     display: flex;
