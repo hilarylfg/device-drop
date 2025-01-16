@@ -714,7 +714,6 @@ button[aria-label] {
   stroke: var(--color-accent);
 }
 .product-card__image__favorite:hover {
-  fill: var(--color-accent);
   color: var(--color-accent);
 }
 .product-card__image img {

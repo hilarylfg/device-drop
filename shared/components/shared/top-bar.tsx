@@ -4,10 +4,13 @@ import {cn} from "@/shared/lib/utils";
 import {useCategoryStore} from "@/shared/stores/category";
 import {Container, Popover, PopoverContent, PopoverTrigger} from "@/shared/components";
 import {ArrowUpDown} from "lucide-react";
+import {Category} from "@prisma/client";
 
-const cats = ['Клавиатуры', 'Мышки', 'Наушники', 'Коврики', 'Микрофоны', 'Аксессуары'];
+interface TopBarProps {
+    items: Category[]
+}
 
-export function TopBar() {
+export function TopBar({items} : TopBarProps) {
     const activeId = useCategoryStore((state) => state.activeId);
     const setActiveId = useCategoryStore((state) => state.setActiveId);
 
@@ -15,14 +18,14 @@ export function TopBar() {
         <div className="bar__shadow">
             <Container className="top-bar">
                 <div className="categories__list">
-                    {cats.map((cat, index) => (
+                    {items.map(({ name }, index) => (
                         <a
                             key={index}
                             className={cn({active: activeId === index}, 'categories__list__item')}
                             onClick={() => setActiveId(index)}
                             href={"#"}
                         >
-                            {cat}
+                            {name}
                         </a>
                     ))}
                 </div>
