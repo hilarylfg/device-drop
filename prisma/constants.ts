@@ -18,9 +18,6 @@ export const categories = [
         name: 'Мониторы',
     },
     {
-        name: 'Рукава'
-    },
-    {
         name: 'Аксессуары',
     },
 ];
