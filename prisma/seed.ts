@@ -10,14 +10,12 @@ const generateProductVariant = ({
                                     price,
                                     stock,
                                     imageUrl,
-                                    characteristics,
                                 }: {
     productId: number;
     color: string;
     price: number;
     stock: number;
     imageUrl: string;
-    characteristics: Prisma.JsonValue;
 }) => {
     return {
         productId,
@@ -25,7 +23,6 @@ const generateProductVariant = ({
         price,
         stock,
         imageUrl,
-        characteristics,
     } as Prisma.ProductVariantUncheckedCreateInput;
 };
 
@@ -63,6 +60,14 @@ async function up() {
             description: 'High-quality mechanical keyboard with RGB lighting',
             brand: 'BrandX',
             categoryId: 1, // Assuming 1 is the ID for 'Клавиатуры'
+            characteristics: {
+                dpi: 16000,
+                sensorType: 'Optical',
+                buttons: 6,
+                connectionType: 'Wireless',
+                gripType: 'Palm',
+                backlight: true,
+            },
         },
     });
 
@@ -72,6 +77,13 @@ async function up() {
             description: 'Ergonomic gaming mouse with adjustable DPI',
             brand: 'BrandY',
             categoryId: 2, // Assuming 2 is the ID for 'Мышки'
+            characteristics: {
+                switchType: 'Cherry MX Red',
+                keyCount: 104,
+                backlight: true,
+                layout: 'ANSI',
+                nKeyRollover: true,
+            },
         },
     });
 
@@ -83,13 +95,6 @@ async function up() {
                 price: 12000,
                 stock: 50,
                 imageUrl: 'https://example.com/keyboard-black.jpg',
-                characteristics: {
-                    switchType: 'Cherry MX Red',
-                    keyCount: 104,
-                    backlight: true,
-                    layout: 'ANSI',
-                    nKeyRollover: true,
-                },
             }),
             generateProductVariant({
                 productId: mouse.id,
@@ -97,14 +102,6 @@ async function up() {
                 price: 8000,
                 stock: 30,
                 imageUrl: 'https://example.com/mouse-white.jpg',
-                characteristics: {
-                    dpi: 16000,
-                    sensorType: 'Optical',
-                    buttons: 6,
-                    connectionType: 'Wireless',
-                    gripType: 'Palm',
-                    backlight: true,
-                },
             }),
         ],
     });

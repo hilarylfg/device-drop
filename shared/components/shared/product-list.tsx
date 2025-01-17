@@ -1,12 +1,30 @@
 import {ProductCard} from "@/shared/components";
+import React from "react";
+import {ProductWithRelations} from "@/@types/prisma";
 
-export function ProductList() {
+interface ProductListProps {
+    title: string
+    products: ProductWithRelations[]
+    categoryId: number
+}
+
+export function ProductList({title, products, categoryId}: ProductListProps) {
+    products.map((product) => console.log(product.variants))
+
     return (
-        <div className="product-list">
-            <ProductCard/>
-            <ProductCard/>
-            <ProductCard/>
-            <ProductCard/>
+        <div>
+            <h1 className="product-list__title" id={`category-${categoryId}`}>{title}</h1>
+            <div className="product-list">
+                {products.map((product) => (
+                    <ProductCard
+                        key={product.id}
+                        name={product.name}
+                        imageUrl={product.variants?.[0]?.imageUrl}
+                        price={product.variants?.[0]?.price}
+                        description={product.description}
+                    />
+                ))}
+            </div>
         </div>
     )
 }

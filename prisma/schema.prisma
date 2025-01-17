@@ -36,9 +36,17 @@ model Category {
 model Product {
   id Int @id @default(autoincrement())
 
-  name        String
-  description String
-  brand       String
+  name            String
+  description     String
+  brand           String
+  characteristics Json // Возможные характеристики:
+  // Общие: weight, dimensions, warranty, material
+  // Мыши: dpi, sensorType, buttons, connectionType, gripType, backlight
+  // Клавиатуры: switchType, keyCount, backlight, layout, nKeyRollover
+  // Коврики: surfaceType, size, thickness, baseMaterial
+  // Наушники: driverSize, frequencyRange, microphone, connectionType, impedance
+  // Мониторы: screenSize, resolution, refreshRate, responseTime, panelType, hdrSupport
+  // Игровые кресла: maxWeight, upholsteryMaterial, armrestAdjustment, backrestTilt
 
   variants ProductVariant[]
 
@@ -52,18 +60,10 @@ model Product {
 model ProductVariant {
   id Int @id @default(autoincrement())
 
-  color           String
-  price           Int
-  stock           Int
-  imageUrl        String
-  characteristics Json // Возможные характеристики:
-  // Общие: weight, dimensions, warranty, material
-  // Мыши: dpi, sensorType, buttons, connectionType, gripType, backlight
-  // Клавиатуры: switchType, keyCount, backlight, layout, nKeyRollover
-  // Коврики: surfaceType, size, thickness, baseMaterial
-  // Наушники: driverSize, frequencyRange, microphone, connectionType, impedance
-  // Мониторы: screenSize, resolution, refreshRate, responseTime, panelType, hdrSupport
-  // Игровые кресла: maxWeight, upholsteryMaterial, armrestAdjustment, backrestTilt
+  color    String
+  price    Int
+  stock    Int
+  imageUrl String
 
   product   Product @relation(fields: [productId], references: [id])
   productId Int

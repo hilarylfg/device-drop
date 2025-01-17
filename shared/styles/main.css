@@ -485,6 +485,11 @@ button[aria-label] {
   margin-top: 1.875rem;
   display: flex;
 }
+.catalog-block__list {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
 
 .logo__block {
   display: flex;

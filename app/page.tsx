@@ -1,29 +1,46 @@
-import {Container, Filters, ProductList, TopBar} from "@/shared/components";
-import React from "react";
-import {prisma} from "@/prisma/prisma-client";
+    import {Container, Filters, ProductList, TopBar} from "@/shared/components";
+    import React from "react";
+    import {prisma} from "@/prisma/prisma-client";
 
+    export default async function Home() {
+        const categories = await prisma.category.findMany({
+            include: {
+                products: {
+                    include: {
+                        variants: true,
+                    },
+                },
+            },
+        });
 
-export default async function Home() {
-    const categories = await prisma.category.findMany({
-        include: {
-            products: true
-        }
-    });
+        console.log(categories)
 
-    return (
-      <>
-          <Container>
-              <h1>Все девайсы: <b className="accent__text">172</b> товара</h1>
-          </Container>
+        return (
+          <>
+              <Container>
+                  <h1>Все девайсы: <b className="accent__text">172</b> товара</h1>
+              </Container>
 
-          <TopBar items={categories} />
+              <TopBar items={categories} />
 
-          <Container>
-              <div className="catalog-block">
-                  <Filters/>
-                  <ProductList/>
-              </div>
-          </Container>
-      </>
-  );
-}
+              <Container>
+                  <div className="catalog-block">
+                      <Filters/>
+                      <div className="catalog-block__list">
+                          {categories.map(
+                              (category) =>
+                                  category.products.length > 0 && (
+                                      <ProductList
+                                          key={category.id}
+                                          title={category.name}
+                                          categoryId={category.id}
+                                          products={category.products}
+                                      />
+                                  ),
+                          )}
+                      </div>
+                  </div>
+              </Container>
+          </>
+      );
+    }
