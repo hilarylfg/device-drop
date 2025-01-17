@@ -1,7 +1,7 @@
 @use '../helpers/index' as *;
 
 .catalog-block {
-    margin-top: rem(30);
+    margin: rem(30) 0;
     display: flex;
 
     &__list {

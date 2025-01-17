@@ -20,10 +20,10 @@ export function ProductCard({price, description, name, imageUrl} : ProductCardPr
             <div className="product-card__image">
                 <Heart onClick={() => setIsFavorite(!isFavorite)}
                        className={cn(isFavorite && 'product-card__image__favorite-active', 'product-card__image__favorite')}/>
-                <img src={`./${imageUrl}`} alt=""/>
+                <img src={`/products/${imageUrl}`} alt=""/>
             </div>
             <h2 className="product-card__title">{name}</h2>
-            <p>{description}</p>
+            <p className="product-card__description">{description}</p>
             <div className="product-card__footer">
                 <h3 className="product-card__footer__price">{price?.toLocaleString("ru-RU") + " ₽"}</h3>
                 <Button><PackagePlus/>Добавить</Button>

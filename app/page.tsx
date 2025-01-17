@@ -18,7 +18,7 @@
         return (
           <>
               <Container>
-                  <h1>Все девайсы: <b className="accent__text">172</b> товара</h1>
+                  <h1>Все девайсы: <b className="accent__text">{categories.reduce((total, category) => total + category.products.length, 0)}</b> товара</h1>
               </Container>
 
               <TopBar items={categories} />
