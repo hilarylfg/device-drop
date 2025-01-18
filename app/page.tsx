@@ -16,31 +16,33 @@
         console.log(categories)
 
         return (
-          <>
-              <Container>
-                  <h1>Все девайсы: <b className="accent__text">{categories.reduce((total, category) => total + category.products.length, 0)}</b> товара</h1>
-              </Container>
+            <>
+                <Container>
+                    <h1>Все девайсы: <b
+                        className="accent__text">{categories.reduce((total, category) => total + category.products.length, 0)}</b> товара
+                    </h1>
+                </Container>
 
-              <TopBar items={categories} />
+                <TopBar items={categories}/>
 
-              <Container>
-                  <div className="catalog-block">
-                      <Filters/>
-                      <div className="catalog-block__list">
-                          {categories.map(
-                              (category) =>
-                                  category.products.length > 0 && (
-                                      <ProductList
-                                          key={category.id}
-                                          title={category.name}
-                                          categoryId={category.id}
-                                          products={category.products}
-                                      />
-                                  ),
-                          )}
-                      </div>
-                  </div>
-              </Container>
-          </>
-      );
+                <Container>
+                    <div className="catalog-block">
+                        <Filters/>
+                        <div className="catalog-block__list">
+                            {categories.map(
+                                (category) =>
+                                    category.products.length > 0 && (
+                                        <ProductList
+                                            key={category.id}
+                                            title={category.name}
+                                            categoryId={category.id}
+                                            products={category.products}
+                                        />
+                                    ),
+                            )}
+                        </div>
+                    </div>
+                </Container>
+            </>
+        );
     }

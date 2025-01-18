@@ -488,7 +488,7 @@ button[aria-label] {
 .catalog-block__list {
   display: flex;
   flex-direction: column;
-  gap: 2.5rem;
+  gap: 3.75rem;
 }
 
 .logo__block {

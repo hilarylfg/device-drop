@@ -41,11 +41,11 @@ model Product {
   brand           String
   characteristics Json // Возможные характеристики:
   // Общие: weight, dimensions, warranty, material
-  // Мыши: dpi, sensorType, buttons, connectionType, gripType, backlight
-  // Клавиатуры: switchType, keyCount, backlight, layout, nKeyRollover
+  // Мыши: sensor, switchType, battery, connectionType, pollingRate, mcu
+  // Клавиатуры: swithes, switchType, keyCount, percentFormat, connectionType
   // Коврики: surfaceType, size, thickness, baseMaterial
   // Наушники: driverSize, frequencyRange, microphone, connectionType, impedance
-  // Мониторы: screenSize, resolution, refreshRate, responseTime, panelType, hdrSupport
+  // Мониторы: screenSize, martrixType, resolution, refreshRate, responseTime
   // Игровые кресла: maxWeight, upholsteryMaterial, armrestAdjustment, backrestTilt
 
   variants ProductVariant[]
