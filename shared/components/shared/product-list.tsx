@@ -9,8 +9,6 @@ interface ProductListProps {
 }
 
 export function ProductList({title, products, categoryId}: ProductListProps) {
-    products.map((product) => console.log(product.variants))
-
     return (
         <div>
             <h1 className="product-list__title" id={`category-${categoryId}`}>{title}</h1>
