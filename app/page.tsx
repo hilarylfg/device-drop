@@ -33,6 +33,7 @@ export default async function Home() {
                                     <ProductList
                                         key={category.id}
                                         title={category.name}
+                                        categoryLink={category.link}
                                         categoryId={category.id}
                                         products={category.products}
                                     />

@@ -27,6 +27,7 @@ model User {
 model Category {
   id       Int       @id @default(autoincrement())
   name     String    @unique
+  link     String    @unique
   products Product[]
 
   createdAt DateTime @default(now())
