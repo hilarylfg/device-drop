@@ -1,3 +1,4 @@
+
 import {Container, Filters, ProductList, TopBar} from "@/shared/components";
 import React from "react";
 import {prisma} from "@/prisma/prisma-client";

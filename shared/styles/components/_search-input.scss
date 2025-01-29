@@ -22,6 +22,12 @@
         padding-left: rem(50);
     }
 
+    &__item {
+        img {
+            max-width: rem(60);
+        }
+    }
+
     &:focus-within &__icon {
         stroke: var(--color-accent);
     }

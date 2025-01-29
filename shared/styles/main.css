@@ -530,6 +530,9 @@ button[aria-label] {
   height: 100%;
   padding-left: 3.125rem;
 }
+.search-input__item img {
+  max-width: 3.75rem;
+}
 .search-input:focus-within .search-input__icon {
   stroke: var(--color-accent);
 }

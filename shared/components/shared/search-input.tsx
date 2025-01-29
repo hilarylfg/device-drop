@@ -23,7 +23,8 @@ export function SearchInput() {
         async () => {
             try {
                 const response = await Api.products.search(searchQuery);
-                setProducts(response.map((product) => ({ ...product, variants: [] })));
+                console.log(response);
+                    setProducts(response.map((product) => ({ ...product, variants: product.variants })));
             } catch (error) {
                 console.log(error);
             }
@@ -31,8 +32,6 @@ export function SearchInput() {
         250,
         [searchQuery],
     );
-
-    products.map((product) => console.log(product));
 
     return (
         <div className="search-input">
@@ -54,9 +53,9 @@ export function SearchInput() {
                     {products.map((product) => (
                         <Link
                             key={product.id}
-                            className="flex items-center gap-3 w-full px-3 py-2 hover:bg-primary/10"
+                            className="search-input__item"
                             href={`/product/${product.id}`}>
-                            <img className="rounded-sm h-8 w-8" src={product.variants?.[0]?.imageUrl} alt={product.name} />
+                            <img className="" src={`/products/${product.variants?.[0]?.imageUrl}`} alt={product.name} />
                             <span>{product.name}</span>
                         </Link>
                     ))}
