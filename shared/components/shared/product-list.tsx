@@ -33,6 +33,7 @@ export function ProductList({title, products, categoryLink, categoryId}: Product
                 {products.map((product) => (
                     <ProductCard
                         key={product.id}
+                        id={product.id}
                         name={product.name}
                         imageUrl={product.variants?.[0]?.imageUrl}
                         price={product.variants?.[0]?.price}

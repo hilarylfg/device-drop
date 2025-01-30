@@ -1,0 +1,82 @@
+@use '../helpers/index' as *;
+
+.product-card {
+    width: rem(310);
+    display: flex;
+    flex-direction: column;
+
+    p {
+        font-size: rem(14);
+        color: var(--color-placeholder);
+        margin-bottom: rem(10);
+        transition: all 0.1s ease;
+    }
+
+    &__title:hover {
+        color: var(--color-accent);
+    }
+
+    &__text {
+        flex-direction: column;
+    }
+
+    &__image {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: rem(250);
+
+        &__favorite {
+            position: absolute;
+            top: 15px;
+            right: 0;
+            fill: none;
+            color: lightgrey;
+            transition: all 0.1s ease-out;
+            cursor: pointer;
+
+            &-active {
+                fill: var(--color-accent);
+                stroke: var(--color-accent);
+            }
+
+            &:hover {
+                color: var(--color-accent);
+            }
+        }
+
+        img {
+            display: flex;
+            margin-inline: auto;
+            max-width: rem(280);
+            max-height: rem(250);
+        }
+    }
+
+    &__footer {
+        display: flex;
+        align-items: center;
+        margin-top: auto;
+
+        &__price {
+            font-size: rem(24);
+        }
+
+        .button-ui {
+            margin-left: auto;
+            padding: rem(8);
+            height: fit-content;
+
+            svg {
+                width: rem(20);
+                height: rem(20);
+                margin-right: 5px;
+            }
+        }
+    }
+
+    &__href {
+        width: fit-content;
+    }
+}

@@ -1,3 +1,7 @@
-import { Product, ProductVariant } from '@prisma/client';
+import {Prisma} from '@prisma/client'
 
-export type ProductWithRelations = Product & { variants: ProductVariant[]};
+export type ProductWithRelations = Prisma.ProductGetPayload<{
+    include: {
+        variants: true
+    }
+}>
