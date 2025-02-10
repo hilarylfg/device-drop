@@ -1,7 +1,6 @@
 import {cn} from "@/shared/lib/utils";
 import React from "react";
-import {Button, GroupCheckboxFilter} from "@/shared/components";
-import {RangeSlider} from "@/shared/components/ui/range-slider";
+import {Button, GroupCheckboxFilter, RangeSlider} from "@/shared/components";
 
 export function Filters() {
     return (

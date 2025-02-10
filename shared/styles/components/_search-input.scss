@@ -68,9 +68,10 @@
         padding: rem(15);
         height: rem(55);
         outline: none;
+        transition: all 0.2ms ease-out;
 
         &:hover {
-            background-color: rgba(255, 105, 180, 0.1);
+            background-color: rgba(2, 123, 255, 0.1);
         }
 
         &__content {

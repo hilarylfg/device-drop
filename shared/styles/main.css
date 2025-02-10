@@ -472,6 +472,24 @@ button[aria-label] {
   font-size: 0.875rem;
 }
 
+.progress-ui {
+  position: relative;
+  height: 0.5rem;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 15px;
+  background: rgb(220, 220, 220);
+}
+.progress-ui-indicator {
+  height: 100%;
+  width: 100%;
+  flex: 1 1 0;
+  background-color: var(--color-accent);
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
 .not-found__page {
   padding: 18vh 0;
   text-align: center;
@@ -573,9 +591,10 @@ button[aria-label] {
   padding: 0.9375rem;
   height: 3.4375rem;
   outline: none;
+  transition: all 0.2ms ease-out;
 }
 .search-input__list__item:hover {
-  background-color: rgba(255, 105, 180, 0.1);
+  background-color: rgba(2, 123, 255, 0.1);
 }
 .search-input__list__item__content {
   display: flex;
@@ -838,16 +857,23 @@ button[aria-label] {
   gap: 0.625rem;
 }
 .product-page__description__colors .color {
-  width: 1.5625rem;
-  height: 1.5625rem;
+  width: 1.75rem;
+  height: 1.75rem;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 6px;
-  margin: 0 -0.125rem 0 0.3125rem;
+  cursor: pointer;
+  transition: all 0.1ms ease-out;
+}
+.product-page__description__colors .color:hover {
+  transform: scale(1.05);
 }
 .product-page__description__colors .color__white {
   border: 1px solid var(--color-hr-gray);
+}
+.product-page__description__colors .selected {
+  border: 3px solid var(--color-accent);
 }
 .product-page__price {
   display: flex;
@@ -855,12 +881,15 @@ button[aria-label] {
   background: var(--color-input-background);
   border-radius: 0.9375rem;
   width: 15rem;
-  height: 11.25rem;
+  height: 10.625rem;
   padding: 1.25rem;
 }
 .product-page__price__title {
   font-size: 1.75rem;
   font-weight: 700;
+}
+.product-page__price__progress {
+  width: 80px;
 }
 .product-page__price__stock {
   font-size: 1rem;
@@ -868,6 +897,11 @@ button[aria-label] {
 }
 .product-page__price__stock--red {
   color: red;
+}
+.product-page__price__stock-block {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .product-page__price__button {
   margin-top: auto;

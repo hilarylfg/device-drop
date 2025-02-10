@@ -26,17 +26,26 @@
             gap: rem(10);
 
             .color {
-                width: rem(25);
-                height: rem(25);
+                width: rem(28);
+                height: rem(28);
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 border-radius: 6px;
-                margin: 0 rem(-2) 0 rem(5);
+                cursor: pointer;
+                transition: all 0.1ms ease-out;
+
+                &:hover {
+                    transform: scale(1.05);
+                }
 
                 &__white {
                     border: 1px solid var(--color-hr-gray);
                 }
+            }
+
+            .selected {
+                border: 3px solid var(--color-accent);
             }
         }
     }
@@ -47,12 +56,16 @@
         background: var(--color-input-background);
         border-radius: rem(15);
         width: rem(240);
-        height: rem(180);
+        height: rem(170);
         padding: rem(20);
 
         &__title {
             font-size: rem(28);
             font-weight: 700;
+        }
+
+        &__progress {
+            width: 80px;
         }
 
         &__stock {
@@ -61,6 +74,12 @@
 
             &--red {
                 color: red;
+            }
+
+            &-block {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
             }
         }
 
