@@ -5,3 +5,10 @@ export type ProductWithRelations = Prisma.ProductGetPayload<{
         variants: true
     }
 }>
+
+export type ProductWithAllRelations = Prisma.ProductGetPayload<{
+    include: {
+        category: true,
+        variants: true,
+    },
+}>

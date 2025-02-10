@@ -1,0 +1,16 @@
+@use '../helpers/index' as *;
+
+.product-page {
+    &__image {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: rem(600);
+        height: rem(400);
+
+        img {
+            max-width: rem(600);
+            max-height: rem(400);
+        }
+    }
+}

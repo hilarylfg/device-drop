@@ -2,7 +2,7 @@
 
 import {CheckboxFilter, Input} from "@/shared/components";
 import {CheckboxFilterProps} from "./checkbox-filter";
-import {useState} from "react";
+import {ChangeEvent, useState} from "react";
 
 type Item = CheckboxFilterProps;
 
@@ -14,8 +14,14 @@ interface GroupCheckboxFilterProps {
 
 export function GroupCheckboxFilter({title, items, limit = 5} : GroupCheckboxFilterProps) {
     const [showAll, setShowAll] = useState(false);
+    const [searchValue, setSearchValue] = useState('');
+
+    const onChangeSearchInput = (e: ChangeEvent<HTMLInputElement>) => {
+        setSearchValue(e.target.value);
+    };
+
     const list = showAll
-        ? items.filter((item) => item.text.toLowerCase())
+        ? items.filter((item) => item.text.toLowerCase().includes(searchValue.toLocaleLowerCase()))
         : (items).slice(0, limit);
 
     return (
@@ -24,6 +30,7 @@ export function GroupCheckboxFilter({title, items, limit = 5} : GroupCheckboxFil
             {showAll && (
                 <div>
                     <Input
+                        onChange={onChangeSearchInput}
                         className="group-filter__show-all__input"
                         placeholder="Введите цвет"
                     />

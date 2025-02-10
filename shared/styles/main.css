@@ -816,4 +816,16 @@ button[aria-label] {
   width: fit-content;
 }
 
+.product-page__image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 37.5rem;
+  height: 25rem;
+}
+.product-page__image img {
+  max-width: 37.5rem;
+  max-height: 25rem;
+}
+
 /*# sourceMappingURL=main.css.map */

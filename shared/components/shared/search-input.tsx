@@ -38,9 +38,15 @@ export function SearchInput(className: SearchInputProps) {
                 console.log(error);
             }
         },
-        100,
+        150,
         [searchQuery],
     );
+
+    const onClickItem = () => {
+        setFocused(false);
+        setSearchQuery('');
+        setProducts([]);
+    };
 
     return (
         <>
@@ -64,6 +70,7 @@ export function SearchInput(className: SearchInputProps) {
                         )}>
                         {products.map((product) => (
                             <Link
+                                onClick={onClickItem}
                                 key={product.id}
                                 className="search-input__list__item"
                                 href={`/product/${product.id}`}>
