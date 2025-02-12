@@ -15,13 +15,13 @@ export function ProductForm({ product }: ProductFormProps) {
 
     return (
         <div className="product-page">
-            <p>
+            <p className="product-page__links">
                 <a className="product-page__link" href="/">
                     Главная
                 </a>
                 {" "}/{" "}
                 <a
-                    className="product-page__link"
+                    className="product-page__links__link"
                     href={`/?section=${product.category.link}`}
                 >
                     {product.category.name}
@@ -79,9 +79,9 @@ export function ProductForm({ product }: ProductFormProps) {
                             Добавить
                         </Button>
                     </div>
-                    <SimilarProducts productId={product.id} />
                 </div>
             </div>
+            <SimilarProducts productId={product.id} />
         </div>
     );
 }

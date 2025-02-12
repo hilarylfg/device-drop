@@ -416,18 +416,6 @@ export async function seedProducts() {
             },
         },
     });
-    const accessory3 = await prisma.product.create({
-        data: {
-            name: 'Corsair ST100 RGB Headset Stand',
-            description: 'Подставка для наушников с RGB-подсветкой и USB-хабом.',
-            brand: 'Corsair',
-            categoryId: 6,
-            characteristics: {
-                type: 'Подставка для наушников',
-                features: ['RGB-подсветка', 'USB-хаб'],
-            },
-        },
-    });
 
     // Создание вариантов продуктов
     await prisma.productVariant.createMany({
@@ -438,21 +426,21 @@ export async function seedProducts() {
                 color: 'White',
                 price: 4990,
                 stock: 40,
-                imageUrl: 'aula_f75_1.jpg',
+                imageUrl: 'aula_f75_1.webp',
             }),
             generateProductVariant({
                 productId: keyboard1.id,
                 color: 'Beige',
                 price: 5490,
                 stock: 10,
-                imageUrl: 'aula_f75_2.jpg',
+                imageUrl: 'aula_f75_2.webp',
             }),
             generateProductVariant({
                 productId: keyboard1.id,
                 color: 'Black',
                 price: 4790,
                 stock: 0,
-                imageUrl: 'aula_f75_3.jpg',
+                imageUrl: 'aula_f75_3.webp',
             }),
             generateProductVariant({
                 productId: keyboard2.id,
@@ -466,28 +454,28 @@ export async function seedProducts() {
                 color: 'Grey',
                 price: 8990,
                 stock: 30,
-                imageUrl: 'keychron_k6_1.jpg',
+                imageUrl: 'keychron_k6_1.webp',
             }),
             generateProductVariant({
                 productId: keyboard6.id,
                 color: 'Black',
                 price: 6490,
                 stock: 20,
-                imageUrl: 'mad68_r_1.jpg',
+                imageUrl: 'mad68_r_1.webp',
             }),
             generateProductVariant({
                 productId: keyboard3.id,
                 color: 'Black',
                 price: 14990,
                 stock: 15,
-                imageUrl: 'razer_huntsman_mini_1.jpg',
+                imageUrl: 'razer_huntsman_mini_1.webp',
             }),
             generateProductVariant({
                 productId: keyboard4.id,
                 color: 'Black',
                 price: 15990,
                 stock: 10,
-                imageUrl: 'logitech_g_pro_x_keyboard_1.jpg',
+                imageUrl: 'logitech_g_pro_x_keyboard_1.webp',
             }),
 
             // Варианты для мышей
@@ -510,21 +498,21 @@ export async function seedProducts() {
                 color: 'Black',
                 price: 15990,
                 stock: 15,
-                imageUrl: 'logitech_g_pro_x_superlight_1.jpg',
+                imageUrl: 'logitech_g_pro_x_superlight_1.webp',
             }),
             generateProductVariant({
                 productId: mouse3.id,
                 color: 'White',
                 price: 17990,
                 stock: 10,
-                imageUrl: 'razer_deathadder_v3_pro_1.jpg',
+                imageUrl: 'razer_deathadder_v3_pro_1.webp',
             }),
             generateProductVariant({
                 productId: mouse4.id,
                 color: 'Black',
                 price: 5490,
                 stock: 20,
-                imageUrl: 'vgn_f1_moba_1.jpg',
+                imageUrl: 'vgn_f1_moba_1.webp',
             }),
             generateProductVariant({
                 productId: mouse5.id,
@@ -540,7 +528,7 @@ export async function seedProducts() {
                 color: 'Black',
                 price: 19990,
                 stock: 20,
-                imageUrl: 'steelseries_arctis_pro_1.png',
+                imageUrl: 'steelseries_arctis_pro_1.webp',
             }),
             generateProductVariant({
                 productId: headphones2.id,
@@ -570,28 +558,28 @@ export async function seedProducts() {
                 color: 'Black',
                 price: 2990,
                 stock: 50,
-                imageUrl: 'steelseries_qck_heavy_1.jpg',
+                imageUrl: 'steelseries_qck_heavy_1.webp',
             }),
             generateProductVariant({
                 productId: mousePad2.id,
                 color: 'Black',
                 price: 3490,
                 stock: 40,
-                imageUrl: 'razer_gigantus_v2_1.png',
+                imageUrl: 'razer_gigantus_v2_1.webp',
             }),
             generateProductVariant({
                 productId: mousePad3.id,
                 color: 'Black',
                 price: 4990,
                 stock: 30,
-                imageUrl: 'logitech_g840_1.jpg',
+                imageUrl: 'logitech_g840_1.webp',
             }),
             generateProductVariant({
                 productId: mousePad4.id,
                 color: 'Black',
                 price: 3990,
                 stock: 35,
-                imageUrl: 'corsair_mm350_1.jpg',
+                imageUrl: 'corsair_mm350_1.webp',
             }),
 
             // Варианты для микрофонов
@@ -600,28 +588,28 @@ export async function seedProducts() {
                 color: 'Black',
                 price: 12990,
                 stock: 20,
-                imageUrl: 'blue_yeti_1.png',
+                imageUrl: 'blue_yeti_1.webp',
             }),
             generateProductVariant({
                 productId: microphone2.id,
                 color: 'Black',
                 price: 8990,
                 stock: 25,
-                imageUrl: 'razer_seiren_x_1.jpg',
+                imageUrl: 'razer_seiren_x_1.webp',
             }),
             generateProductVariant({
                 productId: microphone3.id,
                 color: 'Black',
                 price: 14990,
                 stock: 15,
-                imageUrl: 'hyperx_quadcast_1.jpg',
+                imageUrl: 'hyperx_quadcast_1.webp',
             }),
             generateProductVariant({
                 productId: microphone4.id,
                 color: 'Black',
                 price: 9990,
                 stock: 30,
-                imageUrl: 'audio_technica_at2020_1.jpg',
+                imageUrl: 'audio_technica_at2020_1.webp',
             }),
 
             // Варианты для аксессуаров
@@ -630,21 +618,14 @@ export async function seedProducts() {
                 color: 'Black',
                 price: 2990,
                 stock: 50,
-                imageUrl: 'razer_mouse_bungee_v3_1.png',
+                imageUrl: 'razer_mouse_bungee_v3_1.webp',
             }),
             generateProductVariant({
                 productId: accessory2.id,
                 color: 'Black',
                 price: 14990,
                 stock: 10,
-                imageUrl: 'logitech_g_powerplay_1.jpg',
-            }),
-            generateProductVariant({
-                productId: accessory3.id,
-                color: 'Black',
-                price: 6990,
-                stock: 20,
-                imageUrl: 'corsair_st100_rgb_headset_stand_1.avif',
+                imageUrl: 'logitech_g_powerplay_1.webp',
             }),
         ],
     });

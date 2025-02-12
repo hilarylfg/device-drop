@@ -51,12 +51,12 @@ export async function GET(request: Request, { params }: { params: { id: string }
             include: {
                 variants: { orderBy: { price: 'asc' }, take: 1 },
             },
-            take: 3,
+            take: 4,
         });
 
         const similarCount = similarProducts.length;
 
-        if (similarCount < 3) {
+        if (similarCount < 4) {
             const additionalProducts = await prisma.product.findMany({
                 where: {
                     id: { not: productId },
@@ -65,7 +65,7 @@ export async function GET(request: Request, { params }: { params: { id: string }
                 include: {
                     variants: { orderBy: { price: 'asc' }, take: 1 },
                 },
-                take: 3 - similarCount,
+                take: 4 - similarCount,
             });
 
             const uniqueProductIds = new Set(similarProducts.map(product => product.id));
@@ -74,8 +74,8 @@ export async function GET(request: Request, { params }: { params: { id: string }
 
             similarProducts = [...similarProducts, ...filteredAdditionalProducts];
 
-            if (similarProducts.length < 3) {
-                const additionalNeeded = 3 - similarProducts.length;
+            if (similarProducts.length < 4) {
+                const additionalNeeded = 4 - similarProducts.length;
                 const extraProducts = await prisma.product.findMany({
                     where: {
                         id: { notIn: similarProducts.map(product => product.id) },
