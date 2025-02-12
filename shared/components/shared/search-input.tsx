@@ -27,7 +27,6 @@ export function SearchInput(className: SearchInputProps) {
         async () => {
             try {
                 const response = await Api.products.search(searchQuery);
-                console.log(response);
                 setProducts(
                     response.map((product) => ({
                         ...product,

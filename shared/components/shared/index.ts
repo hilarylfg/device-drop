@@ -10,3 +10,4 @@ export {CheckboxFilter} from "./filters/checkbox-filter";
 export {GroupCheckboxFilter} from "./filters/group-checkbox-filter";
 export {ProductCard} from "./product-card";
 export {ProductForm} from "./product-form";
+export {SimilarProducts} from "./similar-products";

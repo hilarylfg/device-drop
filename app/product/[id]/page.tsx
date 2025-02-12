@@ -16,8 +16,6 @@ export default async function Product({ params }: { params: { id: string } }) {
         return notFound();
     }
 
-    console.log(product)
-
     return (
         <>
             <Container>

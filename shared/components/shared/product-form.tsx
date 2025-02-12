@@ -3,7 +3,7 @@
 import {useState} from "react";
 import { ProductWithAllRelations } from "@/@types/prisma";
 import { cn } from "@/shared/lib/utils";
-import { Button, Progress } from "@/shared/components";
+import {Button, Progress, SimilarProducts} from "@/shared/components";
 import { PackagePlus } from "lucide-react";
 
 interface ProductFormProps {
@@ -56,26 +56,30 @@ export function ProductForm({ product }: ProductFormProps) {
                     <p className="product-page__description__text">
                         {product.description}
                     </p>
+
                 </div>
-                <div className="product-page__price">
-                    <h2 className="product-page__price__title">
-                        {selectedVariant.price.toLocaleString("ru-RU") + " ₽"}
-                    </h2>
-                    <div className="product-page__price__stock-block">
-                        <p
-                            className={cn(
-                                "product-page__price__stock",
-                                !selectedVariant.stock && "product-page__price__stock--red"
-                            )}
-                        >
-                            {selectedVariant.stock ? "В наличии" : "Нет в наличии"}
-                        </p>
-                        <Progress className="product-page__price__progress" value={selectedVariant.stock}/>
+                <div className="product-page__sidebar">
+                    <div className="product-page__price">
+                        <h2 className="product-page__price__title">
+                            {selectedVariant.price.toLocaleString("ru-RU") + " ₽"}
+                        </h2>
+                        <div className="product-page__price__stock-block">
+                            <p
+                                className={cn(
+                                    "product-page__price__stock",
+                                    !selectedVariant.stock && "product-page__price__stock--red"
+                                )}
+                            >
+                                {selectedVariant.stock ? "В наличии" : "Нет в наличии"}
+                            </p>
+                            <Progress className="product-page__price__progress" value={selectedVariant.stock}/>
+                        </div>
+                        <Button className="product-page__price__button" disabled={selectedVariant.stock < 1}>
+                            <PackagePlus />
+                            Добавить
+                        </Button>
                     </div>
-                    <Button className="product-page__price__button" disabled={selectedVariant.stock < 1}>
-                        <PackagePlus />
-                        Добавить
-                    </Button>
+                    <SimilarProducts productId={product.id} />
                 </div>
             </div>
         </div>
