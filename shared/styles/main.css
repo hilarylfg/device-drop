@@ -825,7 +825,14 @@ button[aria-label] {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 15.625rem;
+  height: 16.25rem;
+  padding: 0.625rem 0;
+  background: var(--color-input-background);
+  border-radius: 0.9375rem;
+  margin-bottom: 0.625rem;
+}
+.product-card__image img {
+  max-width: 240px;
 }
 .product-card__image--skeleton {
   display: flex;
@@ -840,7 +847,7 @@ button[aria-label] {
 .product-card__image__favorite {
   position: absolute;
   top: 15px;
-  right: 0;
+  right: 15px;
   fill: none;
   color: lightgrey;
   transition: all 0.1s ease-out;
@@ -856,8 +863,8 @@ button[aria-label] {
 .product-card__image img {
   display: flex;
   margin-inline: auto;
-  max-width: 17.5rem;
-  max-height: 15.625rem;
+  max-width: 15.9375rem;
+  max-height: 13.75rem;
 }
 .product-card__footer {
   display: flex;
