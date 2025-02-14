@@ -1,46 +1,42 @@
-"use client";
+    "use client";
 
-import {ProductCard} from "@/shared/components";
-import {useEffect, useRef} from "react";
-import {ProductWithRelations} from "@/@types/prisma";
-import {useIntersection} from "react-use";
-import {useCategoryStore} from "@/shared/stores/category";
+    import {ProductGroupList} from "@/shared/components";
+    import {useEffect, useState} from "react";
+    import {Api} from "@/shared/services/api-client";
+    import {CategoriesWithAllRelations} from "@/@types/prisma";
+    import {ProductGroupListSkeleton} from "./product-group-list";
 
-interface ProductListProps {
-    title: string
-    products: ProductWithRelations[]
-    categoryLink: string
-    categoryId: number;
-}
+    export function ProductList() {
+        const [categories, setCategories] = useState<CategoriesWithAllRelations[]>([]);
+        const [isLoading, setIsLoading] = useState(true);
 
-export function ProductList({title, products, categoryLink, categoryId}: ProductListProps) {
-    const setActiveCategoryId = useCategoryStore((state) => state.setActiveId);
-    const intersectionRef = useRef(null);
-    const intersection = useIntersection(intersectionRef, {
-        threshold: 0.4,
-    });
+        useEffect(() => {
+            (async () => {
+                try {
+                    setIsLoading(true);
+                    const response = await Api.categories.withProducts();
+                    setCategories(response);
+                } catch (e) {
+                    console.error("Error: ", e);
+                } finally {
+                    setIsLoading(false);
+                }
+            })();
+        }, []);
 
-    useEffect(() => {
-        if (intersection?.isIntersecting) {
-            setActiveCategoryId(categoryId - 1);
-        }
-    }, [categoryId, intersection?.isIntersecting, title]);
-
-    return (
-        <div id={title} ref={intersectionRef}>
-            <h1 className="product-list__title" id={categoryLink}>{title}</h1>
-            <div className="product-list">
-                {products.map((product) => (
-                    <ProductCard
-                        key={product.id}
-                        id={product.id}
-                        name={product.name}
-                        imageUrl={product.variants?.[0]?.imageUrl}
-                        price={product.variants?.[0]?.price}
-                        description={product.description}
-                    />
-                ))}
+        return (
+            <div className="catalog-block__list">
+                {isLoading ? <ProductGroupListSkeleton/> : categories.map((category) =>
+                        category.products.length > 0 && (
+                            <ProductGroupList
+                                key={category.id}
+                                title={category.name}
+                                categoryLink={category.link}
+                                categoryId={category.id}
+                                products={category.products}
+                            />
+                        ),
+                )}
             </div>
-        </div>
-    )
-}
+        )
+    }

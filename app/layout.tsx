@@ -3,7 +3,7 @@ import {ReactNode} from "react";
 import "@/shared/styles/main.css"
 import {Nunito} from 'next/font/google';
 import {cn} from "@/shared/lib/utils";
-import {Header} from "@/shared/components";
+import {Footer, Header} from "@/shared/components";
 
 const nunito = Nunito({
   subsets: ['cyrillic'],
@@ -21,6 +21,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode;
       <body className={cn(nunito.variable)}>
       <Header/>
       {children}
+      <Footer/>
       </body>
       </html>
   );

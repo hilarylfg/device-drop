@@ -1,73 +1,14 @@
-"use client";
-
-import {cn} from "@/shared/lib/utils";
-import {useCategoryStore} from "@/shared/stores/category";
-import {Container, Popover, PopoverContent, PopoverTrigger} from "@/shared/components";
+import {CategoryNavbar, Container, Popover, PopoverContent, PopoverTrigger} from "@/shared/components";
 import {ArrowUpDown} from "lucide-react";
-import {Category} from "@prisma/client";
-import {useEffect} from "react";
-import {scroller} from "react-scroll";
-import {usePathname, useRouter, useSearchParams} from "next/navigation";
+import {prisma} from "@/prisma/prisma-client";
 
-interface TopBarProps {
-    items: Category[]
-}
-
-export function TopBar({items} : TopBarProps) {
-    const activeId = useCategoryStore((state) => state.activeId);
-    const setActiveId = useCategoryStore((state) => state.setActiveId);
-
-    const router = useRouter();
-    const pathname = usePathname();
-    const searchParams = useSearchParams();
-
-    useEffect(() => {
-        const section = searchParams.get("section");
-        if (section) {
-            scroller.scrollTo(section, {
-                duration: 800,
-                delay: 0,
-                smooth: "easeInOutQuart",
-                offset: -100,
-            });
-        }
-    }, [searchParams]);
-
-    const handleScroll = (section: string) => {
-        scroller.scrollTo(section, {
-            duration: 800,
-            delay: 0,
-            smooth: "easeInOutQuart",
-            offset: -100,
-        });
-    };
-
-    const handleClick = (link: string) => {
-        if (pathname !== "/") {
-            router.push(`/?section=${link}`);
-        } else {
-            handleScroll(link);
-        }
-    };
+export async function TopBar() {
+    const items = await prisma.category.findMany();
 
     return (
         <div className="bar__shadow">
             <Container className="top-bar">
-                <div className="categories__list">
-                    {items.map(({ name, link }, index) => (
-                        <a
-                            key={index}
-                            className={cn({active: activeId === index}, 'categories__list__item')}
-                            onClick={() =>
-                            {
-                                setActiveId(index)
-                                handleClick(link)
-                        }}
-                        >
-                            {name}
-                        </a>
-                    ))}
-                </div>
+                <CategoryNavbar items={items}/>
                 <Popover>
                     <PopoverTrigger asChild>
                         <div className="sort__button">

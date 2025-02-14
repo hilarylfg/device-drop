@@ -1,0 +1,12 @@
+@use '../helpers/index' as *;
+
+.title-length-products {
+    display: flex;
+    align-items: center;
+    gap: rem(10);
+
+    &--skeleton {
+        width: rem(38);
+        height: rem(40);
+    }
+}

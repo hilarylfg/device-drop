@@ -777,8 +777,19 @@ button[aria-label] {
   column-gap: 42px;
   row-gap: 40px;
 }
+.product-list__title--skeleton {
+  width: 190px;
+  height: 45px;
+  margin-bottom: 13px;
+}
 
 .product-card {
+  width: 19.375rem;
+  display: flex;
+  flex-direction: column;
+}
+.product-card--skeleton {
+  height: 28.125rem;
   width: 19.375rem;
   display: flex;
   flex-direction: column;
@@ -789,11 +800,25 @@ button[aria-label] {
   margin-bottom: 0.625rem;
   transition: all 0.1s ease;
 }
+.product-card__title--skeleton {
+  width: 7.5rem;
+  height: 2.25rem;
+}
 .product-card__title:hover {
   color: var(--color-accent);
 }
 .product-card__text {
   flex-direction: column;
+}
+.product-card__description--skeleton {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4375rem;
+}
+.product-card__description--skeleton--content {
+  width: 100%;
+  height: 0.75rem;
 }
 .product-card__image {
   position: relative;
@@ -801,6 +826,16 @@ button[aria-label] {
   align-items: center;
   justify-content: center;
   height: 15.625rem;
+}
+.product-card__image--skeleton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 15rem;
+}
+.product-card__image--skeleton--content {
+  width: 17.5rem;
+  height: 11.25rem;
 }
 .product-card__image__favorite {
   position: absolute;
@@ -831,6 +866,15 @@ button[aria-label] {
 }
 .product-card__footer__price {
   font-size: 1.5rem;
+}
+.product-card__footer__price--skeleton {
+  width: 5.3125rem;
+  height: 2.25rem;
+}
+.product-card__footer__button--skeleton {
+  width: 7.25rem;
+  height: 2.6rem;
+  margin-left: auto;
 }
 .product-card__footer .button-ui {
   margin-left: auto;
@@ -940,10 +984,11 @@ button[aria-label] {
   align-items: center;
   width: 37.5rem;
   height: 25rem;
+  padding: 1.25rem;
 }
 .product-page__image img {
-  max-width: 37.5rem;
-  max-height: 25rem;
+  max-width: 35rem;
+  max-height: 22.5rem;
 }
 
 .similar__block {
@@ -965,6 +1010,7 @@ button[aria-label] {
   border-radius: 0.9375rem;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 .similar__list__item-keyboard {
   width: 19.25rem;
@@ -1041,6 +1087,16 @@ button[aria-label] {
   width: 100%;
   height: 5.3125rem;
   margin-bottom: 0.9375rem;
+}
+
+.title-length-products {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+.title-length-products--skeleton {
+  width: 2.375rem;
+  height: 2.5rem;
 }
 
 /*# sourceMappingURL=main.css.map */

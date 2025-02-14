@@ -5,4 +5,12 @@
     grid-template-columns: repeat(3, 1fr);
     column-gap: 42px;
     row-gap: 40px;
+
+    &__title {
+        &--skeleton {
+            width: 190px;
+            height: 45px;
+            margin-bottom: 13px;
+        }
+    }
 }

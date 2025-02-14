@@ -12,3 +12,13 @@ export type ProductWithAllRelations = Prisma.ProductGetPayload<{
         variants: true,
     },
 }>
+
+export type CategoriesWithAllRelations = Prisma.CategoryGetPayload<{
+    include: {
+        products: {
+            include: {
+                variants: true,
+            },
+        },
+    },
+}>

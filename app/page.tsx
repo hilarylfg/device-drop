@@ -1,44 +1,18 @@
-import {Container, Filters, ProductList, TopBar} from "@/shared/components";
-import {prisma} from "@/prisma/prisma-client";
+import {Container, Filters, ProductList, TitleLengthProducts, TopBar} from "@/shared/components";
 
-export default async function Home() {
-    const categories = await prisma.category.findMany({
-        include: {
-            products: {
-                include: {
-                    variants: true,
-                },
-            },
-        },
-    });
-
+export default function Home() {
     return (
         <>
             <Container>
-                <h1>Все девайсы: <b
-                    className="accent__text">{categories.reduce((total, category) => total + category.products.length, 0)}</b> товара
-                </h1>
+                <TitleLengthProducts/>
             </Container>
 
-            <TopBar items={categories}/>
+            <TopBar/>
 
             <Container>
                 <div className="catalog-block">
                     <Filters/>
-                    <div className="catalog-block__list">
-                        {categories.map(
-                            (category) =>
-                                category.products.length > 0 && (
-                                    <ProductList
-                                        key={category.id}
-                                        title={category.name}
-                                        categoryLink={category.link}
-                                        categoryId={category.id}
-                                        products={category.products}
-                                    />
-                                ),
-                        )}
-                    </div>
+                    <ProductList/>
                 </div>
             </Container>
         </>

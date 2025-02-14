@@ -115,10 +115,11 @@
         align-items: center;
         width: rem(600);
         height: rem(400);
+        padding: rem(20);
 
         img {
-            max-width: rem(600);
-            max-height: rem(400);
+            max-width: rem(560);
+            max-height: rem(360);
         }
     }
 }
