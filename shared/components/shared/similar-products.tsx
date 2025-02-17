@@ -36,16 +36,15 @@ export const SimilarProducts = ({ productId }: SimilarProductsProps) => {
                 {isLoading
                     ? <SimilarProductsSkeleton />
                     : products.map((product) => (
-                        <Link
+                        <div
                             key={product.id}
-                            href={`/product/${product.id}`}
                             className={cn(
                                 product.categoryId === 1
                                     ? "similar__list__item-keyboard"
                                     : "similar__list__item"
                             )}
                         >
-                            <div className={cn(
+                            <Link href={`/product/${product.id}`} className={cn(
                                 product.categoryId === 1
                                     ? "similar__list__image-keyboard"
                                     : "similar__list__image"
@@ -54,18 +53,18 @@ export const SimilarProducts = ({ productId }: SimilarProductsProps) => {
                                     src={`/products/${product.variants[0].imageUrl}`}
                                     alt={product.name}
                                 />
-                            </div>
+                            </Link>
                             <div className={cn(
                                 product.categoryId === 1
                                     ? "similar__list__info-keyboard"
                                     : "similar__list__info"
                             )}>
-                                <h3 className="similar__list__info__title">{product.name}</h3>
+                                <Link className="" href={`/product/${product.id}`}><h3 className="similar__list__info__title">{product.name}</h3></Link>
                                 <p className={cn(product.categoryId === 1 ? "similar__list__info__price-keyboard" : "similar__list__info__price")}>
                                     {product.variants[0].price?.toLocaleString("ru-RU") + " ₽"}
                                 </p>
                             </div>
-                        </Link>
+                        </div>
                     ))
                 }
             </div>

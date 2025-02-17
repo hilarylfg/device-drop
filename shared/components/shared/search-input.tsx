@@ -71,14 +71,13 @@ export function SearchInput(className: SearchInputProps) {
                         {focused}
                     )}>
                     {isLoading ?
-                        Array.from({length: 5}).map((_, index) => (
+                        Array(5).fill(0).map((_, index) => (
                             <div key={index} className="search-input__list__item">
                                 <div className="search-input__list__item__content__image">
                                     <Skeleton className="search-input__list__item__content__image--skeleton"/>
                                 </div>
                                 <Skeleton className="search-input__list__item__content__title--skeleton"/>
-                            </div>
-                        )) :
+                            </div>)) :
                         products.length > 0 ? products.map((product) => (
                             <Link
                                 onClick={onClickItem}

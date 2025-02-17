@@ -53,7 +53,7 @@ export function ProductGroupListSkeleton() {
         <div>
             <Skeleton className="product-list__title--skeleton"/>
             <div className="product-list">
-                {skeletonItems.map((index) => {
+                {skeletonItems.map((_, index) => {
                     return (
                         <ProductCardSkeleton key={index}/>
                     );
