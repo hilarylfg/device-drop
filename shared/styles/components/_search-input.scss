@@ -64,10 +64,12 @@
 
     &__item {
         display: flex;
+        align-items: center;
         width: 100%;
-        padding: rem(15);
-        height: rem(55);
+        padding: rem(10);
+        height: rem(60);
         outline: none;
+        box-sizing: border-box;
         transition: all 0.2ms ease-out;
 
         &:hover {
@@ -79,10 +81,31 @@
             align-items: center;
             gap: rem(8);
 
+            &__title {
+                &--skeleton {
+                    display: flex;
+                    align-items: center;
+                    width: 150px;
+                    height: 25px;
+                }
+            }
+
             &__image {
                 display: flex;
                 justify-content: center;
                 width: 90px;
+
+                &--skeleton {
+                    display: flex;
+                    justify-content: center;
+                    width: 70px;
+                    height: 50px;
+                }
+
+                svg {
+                    fill: none;
+                    stroke: var(--color-accent);
+                }
             }
         }
 

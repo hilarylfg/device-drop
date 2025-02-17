@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/prisma/prisma-client";
 
-export async function GET(request: Request, { params }: { params: { id: string } }) {
+export async function GET(request : Request, { params }: { params: Promise<{ id: string }>}) {
     try {
         const { id } = await params;
         const productId = Number(id);
@@ -70,7 +70,9 @@ export async function GET(request: Request, { params }: { params: { id: string }
 
             const uniqueProductIds = new Set(similarProducts.map(product => product.id));
 
-            const filteredAdditionalProducts = additionalProducts.filter(product => !uniqueProductIds.has(product.id));
+            const filteredAdditionalProducts = additionalProducts.filter(
+                product => !uniqueProductIds.has(product.id)
+            );
 
             similarProducts = [...similarProducts, ...filteredAdditionalProducts];
 

@@ -598,10 +598,12 @@ button[aria-label] {
 }
 .search-input__list__item {
   display: flex;
+  align-items: center;
   width: 100%;
-  padding: 0.9375rem;
-  height: 3.4375rem;
+  padding: 0.625rem;
+  height: 3.75rem;
   outline: none;
+  box-sizing: border-box;
   transition: all 0.2ms ease-out;
 }
 .search-input__list__item:hover {
@@ -612,10 +614,26 @@ button[aria-label] {
   align-items: center;
   gap: 0.5rem;
 }
+.search-input__list__item__content__title--skeleton {
+  display: flex;
+  align-items: center;
+  width: 150px;
+  height: 25px;
+}
 .search-input__list__item__content__image {
   display: flex;
   justify-content: center;
   width: 90px;
+}
+.search-input__list__item__content__image--skeleton {
+  display: flex;
+  justify-content: center;
+  width: 70px;
+  height: 50px;
+}
+.search-input__list__item__content__image svg {
+  fill: none;
+  stroke: var(--color-accent);
 }
 .search-input__list__item img {
   max-width: 5.625rem;
@@ -1075,7 +1093,7 @@ button[aria-label] {
 }
 .similar__list__image img {
   max-width: 5rem;
-  max-height: none;
+  max-height: 11.25rem;
 }
 .similar__list__image--skeleton {
   width: 5rem;
