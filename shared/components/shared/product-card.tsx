@@ -56,7 +56,7 @@ export function ProductCardSkeleton() {
             </div>
             <Skeleton className="product-card__title--skeleton"/>
             <div className="product-card__description--skeleton">
-                {Array.from({ length: 5 }).map((_, index) => (
+                {Array(5).fill(0).map((_, index) => (
                     <Skeleton key={index} className="product-card__description--skeleton--content"/>
                 ))}
             </div>

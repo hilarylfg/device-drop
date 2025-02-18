@@ -13,7 +13,7 @@ interface SearchInputProps {
     className?: string
 }
 
-export function SearchInput(className: SearchInputProps) {
+export function SearchInput({className}: SearchInputProps) {
     const [searchQuery, setSearchQuery] = useState('');
     const [focused, setFocused] = useState(false);
     const [products, setProducts] = useState<ProductWithRelations[]>([]);
@@ -26,6 +26,11 @@ export function SearchInput(className: SearchInputProps) {
 
     useDebounce(
         async () => {
+            if (searchQuery.trim() === '') {
+                setProducts([]);
+                return;
+            }
+
             try {
                 setIsLoading(true)
                 const response = await Api.products.search(searchQuery);
