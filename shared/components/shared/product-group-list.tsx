@@ -48,7 +48,6 @@ export function ProductGroupList({title, products, categoryLink, categoryId}: Pr
 
 export function ProductGroupListSkeleton() {
     const skeletonItems = Array(6).fill(0);
-
     return (
         <div>
             <Skeleton className="product-list__title--skeleton"/>

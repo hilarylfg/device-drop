@@ -50,9 +50,7 @@
 
     &__image {
         position: relative;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        align-content: center;
         height: rem(260);
         padding: rem(10) 0;
         background: var(--color-input-background);

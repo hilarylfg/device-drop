@@ -15,3 +15,6 @@ export {SimilarProducts} from "./similar-products";
 export {Footer} from "./footer";
 export {CategoryNavbar} from "./category-navbar";
 export {TitleLengthProducts} from "./title-length-products";
+
+export * from "./forms";
+export * from "./filters";
