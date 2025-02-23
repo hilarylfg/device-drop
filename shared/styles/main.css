@@ -103,16 +103,8 @@ button {
   color: inherit;
 }
 
-html {
-  /**
-    Пригодится в большинстве ситуаций
-    (когда, например, нужно будет "прижать" футер к низу сайта)
-   */
-  height: 100%;
-  /**
-    Убираем скачок интерфейса по горизонтали
-    при появлении / исчезновении скроллбара
-   */
+body,
+body[data-scroll-locked] {
   scrollbar-gutter: stable;
 }
 
@@ -501,6 +493,145 @@ button[aria-label] {
   background-color: rgba(26, 26, 26, 0.1);
 }
 
+.dialog-ui-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+.dialog-ui-overlay[data-state=open] {
+  animation: fade-in 200ms ease-out;
+}
+.dialog-ui-overlay[data-state=closed] {
+  animation: fade-out 200ms ease-in;
+}
+
+.dialog-ui-content {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  z-index: 50;
+  display: grid;
+  width: 100%;
+  max-width: 32rem;
+  transform: translateX(-50%) translateY(-50%);
+  gap: 1rem;
+  border: 1px solid #e5e7eb;
+  background-color: white;
+  padding: 1.5rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  transition-duration: 200ms;
+}
+@media (min-width: 640px) {
+  .dialog-ui-content {
+    border-radius: 0.5rem;
+  }
+}
+.dialog-ui-content[data-state=open] {
+  animation: content-open 200ms ease-out;
+}
+.dialog-ui-content[data-state=closed] {
+  animation: content-close 200ms ease-in;
+}
+
+.dialog-ui-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  text-align: center;
+}
+@media (min-width: 640px) {
+  .dialog-ui-header {
+    text-align: left;
+  }
+}
+
+.dialog-ui-footer {
+  display: flex;
+  flex-direction: column-reverse;
+}
+@media (min-width: 640px) {
+  .dialog-ui-footer {
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 0.5rem;
+  }
+}
+
+.dialog-ui-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.025em;
+}
+
+.dialog-ui-description {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.dialog-ui-close {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  border-radius: 0.125rem;
+  opacity: 0.7;
+  transition: opacity 200ms;
+}
+.dialog-ui-close:hover {
+  opacity: 1;
+}
+.dialog-ui-close:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--color-accent), 0 0 0 4px var(--color-light);
+}
+.dialog-ui-close:disabled {
+  pointer-events: none;
+}
+
+.dialog-ui-trigger {
+  width: fit-content;
+  padding: 0;
+  border: none;
+  background: none;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@keyframes content-open {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-50%) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-50%) scale(1);
+  }
+}
+@keyframes content-close {
+  from {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-50%) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-50%) scale(0.95);
+  }
+}
 .not-found__page {
   padding: 18vh 0;
   text-align: center;
@@ -1124,7 +1255,7 @@ button[aria-label] {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 420px;
+  height: 100%;
 }
 
 /*# sourceMappingURL=main.css.map */
