@@ -15,6 +15,9 @@ export {SimilarProducts} from "./similar-products";
 export {Footer} from "./footer";
 export {CategoryNavbar} from "./category-navbar";
 export {TitleLengthProducts} from "./title-length-products";
+export {ProfileButton} from "./profile-button";
+export {GoogleIcon} from "./icons";
+export {GithubIcon} from "./icons";
 
 export * from "./forms";
 export * from "./filters";

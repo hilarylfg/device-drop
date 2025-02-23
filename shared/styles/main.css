@@ -170,7 +170,7 @@ svg * {
   --color-input-background: #F1F1F1;
   --color-hr-gray: lightgray;
   --color-dark: #141414;
-  --color-dark-10: #1A1A1A;
+  --color-dark-10: 2;
   --color-dark-15: #262626;
   --color-dark-20: #333333;
   --color-dark-40: #666666;
@@ -298,6 +298,7 @@ button[aria-label] {
   border-radius: 0.9375rem;
   background-color: var(--color-input-background);
   padding: 0.5rem 1rem;
+  margin-top: 4px;
 }
 .popover-ui[data-state=open] {
   animation: fadeIn 0.1s ease, zoomIn 0.1s ease;
@@ -500,10 +501,10 @@ button[aria-label] {
   background-color: rgba(0, 0, 0, 0.8);
 }
 .dialog-ui-overlay[data-state=open] {
-  animation: fade-in 200ms ease-out;
+  animation: fade-in 100ms ease-out;
 }
 .dialog-ui-overlay[data-state=closed] {
-  animation: fade-out 200ms ease-in;
+  animation: fade-out 100ms ease-in;
 }
 
 .dialog-ui-content {
@@ -520,18 +521,14 @@ button[aria-label] {
   background-color: white;
   padding: 1.5rem;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  transition-duration: 200ms;
-}
-@media (min-width: 640px) {
-  .dialog-ui-content {
-    border-radius: 0.5rem;
-  }
+  transition-duration: 100ms;
+  border-radius: 0.9375rem;
 }
 .dialog-ui-content[data-state=open] {
-  animation: content-open 200ms ease-out;
+  animation: content-open 100ms ease-out;
 }
 .dialog-ui-content[data-state=closed] {
-  animation: content-close 200ms ease-in;
+  animation: content-close 100ms ease-in;
 }
 
 .dialog-ui-header {
@@ -576,7 +573,7 @@ button[aria-label] {
   top: 1rem;
   border-radius: 0.125rem;
   opacity: 0.7;
-  transition: opacity 200ms;
+  transition: opacity 100ms;
 }
 .dialog-ui-close:hover {
   opacity: 1;
@@ -692,6 +689,9 @@ button[aria-label] {
   padding-left: 3.125rem;
   outline: none;
 }
+.search-input__input:focus-visible {
+  border: 1px solid transparent;
+}
 .search-input:focus-within {
   background-color: var(--color-light);
 }
@@ -782,7 +782,7 @@ button[aria-label] {
   display: flex;
   gap: 0.625rem;
 }
-.header .button-block__button svg.lucide-user {
+.header .button-block__button svg.lucide-circle-user, .header .button-block__button svg.lucide-log-in {
   margin-right: 0.3125rem;
 }
 
@@ -856,6 +856,7 @@ button[aria-label] {
   flex-direction: column;
   gap: 10px;
 }
+
 .checkbox-filter {
   display: flex;
   align-items: center;
@@ -1251,11 +1252,88 @@ button[aria-label] {
   height: 2.5rem;
 }
 
-.auth-form {
+.auth-modal {
+  width: 480px;
+  padding: 48px;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  font-size: 1.25rem;
+}
+.auth-modal hr {
+  width: 100%;
+  height: 2px;
+  background: var(--color-hr-gray);
+}
+.auth-modal__switch__button {
+  font-size: 1rem;
+  text-align: center;
+}
+.auth-modal__switch__button a {
+  transition: all var(--transition-duration) ease-out;
+  cursor: pointer;
+  border-bottom: 2px solid currentColor;
+}
+.auth-modal__switch__button a:hover {
+  color: var(--color-accent);
+}
+.auth-modal__buttons-block {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.auth-modal__buttons-block svg {
+  transition: all var(--transition-duration) ease-out;
+  margin-right: 8px;
+}
+.auth-modal .dialog-close {
+  display: none;
+}
+
+.auth-modal__buttons-block__button svg {
+  fill: var(--color-accent);
+  stroke: none;
+}
+.auth-modal__buttons-block__button:hover svg {
+  fill: var(--color-light);
+}
+
+.auth-popover__list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.auth-popover__list__item, .auth-popover__list a {
+  display: flex;
   align-items: center;
-  height: 100%;
+  cursor: pointer;
+  transition: all var(--transition-duration) ease-out;
+}
+.auth-popover__list__item svg, .auth-popover__list a svg {
+  margin-right: 10px;
+  fill: none;
+}
+.auth-popover__list__item:hover, .auth-popover__list a:hover {
+  color: var(--color-accent);
+}
+
+.button-block__button--skeleton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.9375rem;
+  height: 3.125rem;
+  padding: 0.75rem 1.125rem;
+  background: transparent;
+  border: 1px solid var(--color-accent);
+}
+.button-block__button--skeleton--content {
+  width: 50px;
+  height: 22px;
+}
+.button-block__button--skeleton--content__img {
+  width: 22px;
+  height: 22px;
+  margin-right: 5px;
 }
 
 /*# sourceMappingURL=main.css.map */

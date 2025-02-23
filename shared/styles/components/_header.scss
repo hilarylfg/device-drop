@@ -12,7 +12,7 @@
         gap: rem(10);
 
         &__button {
-            svg.lucide-user {
+            svg.lucide-circle-user, svg.lucide-log-in {
                 margin-right: rem(5);
             }
         }

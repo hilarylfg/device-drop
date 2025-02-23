@@ -1,3 +1,5 @@
+@use '../helpers/index' as *;
+
 .dialog-ui-overlay {
     position: fixed;
     inset: 0;
@@ -27,10 +29,7 @@
     padding: 1.5rem;
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
     transition-duration: 100ms;
-
-    @media (min-width: 640px) {
-        border-radius: 0.5rem;
-    }
+    border-radius: rem(15);
 
     &[data-state="open"] {
         animation: content-open 100ms ease-out;

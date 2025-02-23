@@ -5,6 +5,7 @@
     border-radius: rem(15);
     background-color: var(--color-input-background);
     padding: rem(8) rem(16);
+    margin-top: 4px;
 
     &[data-state="open"] {
         animation: fadeIn 0.1s ease, zoomIn 0.1s ease;

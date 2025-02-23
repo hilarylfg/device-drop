@@ -1,0 +1,45 @@
+@use '../helpers/index' as *;
+
+.auth-popover__list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    &__item, a {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        transition: all var(--transition-duration) ease-out;
+
+        svg {
+            margin-right: 10px;
+            fill: none;
+        }
+
+        &:hover {
+            color: var(--color-accent);
+        }
+    }
+}
+
+.button-block__button--skeleton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: rem(15);
+    height: rem(50);
+    padding: rem(12) rem(18);
+    background: transparent;
+    border: 1px solid var(--color-accent);
+
+    &--content {
+        width: 50px;
+        height: 22px;
+
+        &__img {
+            width: 22px;
+            height: 22px;
+            margin-right: 5px;
+        }
+    }
+}
