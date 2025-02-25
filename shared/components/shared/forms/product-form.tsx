@@ -16,7 +16,7 @@ export function ProductForm({ product }: ProductFormProps) {
     return (
         <div className="product-page">
             <p className="product-page__links">
-                <a className="product-page__link" href="/">
+                <a className="product-page__link" href="/public">
                     Главная
                 </a>
                 {" "}/{" "}
@@ -32,6 +32,7 @@ export function ProductForm({ product }: ProductFormProps) {
                     <img
                         src={`/products/${selectedVariant.imageUrl}`}
                         alt={product.name}
+                        loading="lazy"
                     />
                 </div>
                 <div className="product-page__description">

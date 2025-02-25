@@ -52,6 +52,7 @@ export const SimilarProducts = ({ productId }: SimilarProductsProps) => {
                                 <img
                                     src={`/products/${product.variants[0].imageUrl}`}
                                     alt={product.name}
+                                    loading="lazy"
                                 />
                             </Link>
                             <div className={cn(

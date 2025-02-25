@@ -8,13 +8,21 @@
     font-size: rem(20);
 
     &__submit-button {
+        background: var(--color-accent);
+        color: var(--color-light);
 
+        &:hover {
+            background: var(--color-accent-hover);
+            border-color: var(--color-accent-hover);
+        }
     }
 
     hr {
+        border: 0;
+        height: 1px;
+        background: var(--color-dark);
         width: 100%;
-        height: 2px;
-        background: var(--color-hr-gray);
+        margin: 0;
     }
 
     &__switch__button {
@@ -24,7 +32,7 @@
         a {
             transition: all var(--transition-duration) ease-out;
             cursor: pointer;
-            border-bottom: 2px solid currentColor;
+            border-bottom: 2px solid var(--color-dark);
 
             &:hover {
                 color: var(--color-accent);

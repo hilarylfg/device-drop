@@ -31,7 +31,7 @@ export function ProductCard({ price, description, name, imageUrl, id }: ProductC
                     )}
                 />
                 <Link href={`/product/${id}`}>
-                    <img src={`/products/${imageUrl}`} alt="" />
+                    <img src={`/products/${imageUrl}`} alt="" loading="lazy" />
                 </Link>
             </div>
             <Link className="product-card__href" href={`/product/${id}`}>

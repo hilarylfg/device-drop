@@ -1,6 +1,6 @@
 'use client';
 
-import {Button, GithubIcon, GoogleIcon} from '@/shared/components';
+import {Button, GithubIcon, GoogleIcon, LoginForm} from '@/shared/components';
 import { Dialog, DialogContent } from '@/shared/components/ui/dialog';
 import { signIn } from 'next-auth/react';
 import React from 'react';
@@ -24,7 +24,7 @@ export function AuthModal({ open, onClose } : Props) {
     return (
         <Dialog open={open} onOpenChange={handleClose}>
             <DialogContent className="auth-modal">
-                52525252
+                {type !== 'login' ? <LoginForm/> : 'Войти'}
                 <Button onClick={onSwitchType} type="button" className="auth-modal__submit-button">
                     {type !== 'login' ? 'Регистрация' : 'Войти'}
                 </Button>
