@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Slot } from '@radix-ui/react-slot';
 import { cn } from '@/shared/lib/utils';
+import {Loader} from "lucide-react";
 
 export interface ButtonProps
     extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -9,7 +10,7 @@ export interface ButtonProps
 }
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-    ({ className, asChild = false, disabled, loading, ...props }, ref) => {
+    ({ className, asChild = false, disabled, loading, children,  ...props }, ref) => {
         const Comp = asChild ? Slot : 'button';
 
         return (
@@ -20,8 +21,9 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
                 )}
                 disabled={disabled || loading}
                 ref={ref}
-                {...props}
-            />
+                {...props}>
+                {!loading ? children : <Loader className="button-ui__spin-loader" />}
+            </Comp>
         );
     }
 );

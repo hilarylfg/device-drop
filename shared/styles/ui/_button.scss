@@ -14,6 +14,19 @@
     border-style: solid;
     border-color: var(--color-accent);
 
+    &__spin-loader {
+        animation: spin 2s linear infinite;
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    }
+
     svg {
         fill: none;
     }
@@ -26,5 +39,11 @@
     &:hover {
         background: var(--color-accent);
         color: var(--color-light);
+    }
+}
+
+@keyframes animate-spin {
+    to {
+        transform: rotate(360deg);
     }
 }

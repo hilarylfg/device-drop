@@ -290,6 +290,17 @@ button[aria-label] {
   border-style: solid;
   border-color: var(--color-accent);
 }
+.button-ui__spin-loader {
+  animation: spin 2s linear infinite;
+}
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
 .button-ui svg {
   fill: none;
 }
@@ -302,6 +313,11 @@ button[aria-label] {
   color: var(--color-light);
 }
 
+@keyframes animate-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
 .popover-ui {
   z-index: 50;
   border-radius: 0.9375rem;
