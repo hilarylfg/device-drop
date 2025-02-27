@@ -250,12 +250,6 @@ button[aria-label] {
   position: relative;
 }
 
-#_rht_toaster svg.lucide {
-  stroke: var(--color-accent);
-  fill: none;
-  width: 40px;
-}
-
 .input-ui {
   display: flex;
   width: 100%;
@@ -655,6 +649,17 @@ button[aria-label] {
     transform: translateX(-50%) translateY(-50%) scale(0.95);
   }
 }
+.toaster-ui {
+  font-size: 20px;
+}
+
+#_rht_toaster svg.lucide {
+  stroke: var(--color-accent);
+  fill: none;
+  width: 30px;
+  height: 30px;
+}
+
 .not-found__page {
   padding: 18vh 0;
   text-align: center;

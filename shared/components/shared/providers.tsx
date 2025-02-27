@@ -8,7 +8,7 @@ export const Providers: FC<PropsWithChildren> = ({ children }) => {
     return (
         <>
             <SessionProvider>{children}</SessionProvider>
-            <Toaster />
+            <Toaster toastOptions={{ style: { padding: "12px 15px" }, className: "toaster-ui", duration: 30000 }} />
         </>
     );
 };

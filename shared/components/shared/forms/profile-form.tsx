@@ -10,7 +10,7 @@ export function ProfileForm() {
         <Container>
             <h1>Профиль</h1>
             <p>{session?.user?.name}</p>
-            <p>{session?.user?.email}</p>
+            <p>{session?.user?.role}</p>
             <img src={session?.user?.image || ""} alt=""/>
         </Container>
     );
