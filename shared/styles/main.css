@@ -250,6 +250,12 @@ button[aria-label] {
   position: relative;
 }
 
+#_rht_toaster svg.lucide {
+  stroke: var(--color-accent);
+  fill: none;
+  width: 40px;
+}
+
 .input-ui {
   display: flex;
   width: 100%;
@@ -257,7 +263,7 @@ button[aria-label] {
   border: 1px solid transparent;
   background-color: transparent;
   padding: 0.5rem 1rem;
-  transition: all var(--transition-duration) ease-out;
+  transition: all var(--transition-duration) ease;
 }
 .input-ui::placeholder {
   color: var(--color-placeholder);
@@ -275,7 +281,7 @@ button[aria-label] {
   align-items: center;
   justify-content: center;
   border-radius: 0.9375rem;
-  transition: all ease-out var(--transition-duration);
+  transition: all ease var(--transition-duration);
   height: 3.125rem;
   padding: 0.75rem 1.125rem;
   background: transparent;
@@ -521,11 +527,12 @@ button[aria-label] {
   transform: translateX(-50%) translateY(-50%);
   gap: 1rem;
   border: 1px solid #e5e7eb;
-  background-color: white;
+  background-color: var(--color-light);
   padding: 1.5rem;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
   transition-duration: 100ms;
   border-radius: 0.9375rem;
+  overflow-y: auto;
 }
 .dialog-ui-content[data-state=open] {
   animation: content-open 100ms ease-out;
@@ -738,7 +745,7 @@ button[aria-label] {
   height: 3.75rem;
   outline: none;
   box-sizing: border-box;
-  transition: all 0.2ms ease-out;
+  transition: all 0.2ms ease;
 }
 .search-input__list__item:hover {
   background-color: rgba(2, 123, 255, 0.1);
@@ -804,7 +811,7 @@ button[aria-label] {
 .navbar__link {
   margin-right: 20px;
   font-weight: 700;
-  transition: all var(--transition-duration) ease-out;
+  transition: all var(--transition-duration) ease;
 }
 .navbar__link:last-child {
   margin-right: 0;
@@ -837,7 +844,7 @@ button[aria-label] {
   padding: 0.5rem 0.75rem;
   border-radius: 0.9375rem;
   cursor: pointer;
-  transition: all var(--transition-duration) ease-out;
+  transition: all var(--transition-duration) ease;
 }
 .top-bar .categories__list__item.active {
   background: var(--color-accent);
@@ -909,7 +916,7 @@ button[aria-label] {
   height: fit-content;
   border: 2px solid var(--color-hr-gray);
   margin-bottom: 0.5rem;
-  transition: all var(--transition-duration) ease-out;
+  transition: all var(--transition-duration) ease;
 }
 .group-filter__show-all__input:hover {
   border: 2px solid var(--color-accent);
@@ -995,11 +1002,14 @@ button[aria-label] {
 }
 .product-card__image__favorite {
   position: absolute;
+  padding: 10px;
+  margin: -5px -5px 0 0;
+  box-sizing: content-box;
   top: 15px;
   right: 15px;
   fill: none;
   color: lightgrey;
-  transition: all 0.1s ease-out;
+  transition: all 0.1s ease;
   cursor: pointer;
 }
 .product-card__image__favorite-active {
@@ -1050,7 +1060,7 @@ button[aria-label] {
   margin: 1.25rem 0;
 }
 .product-page__links__link {
-  transition: all 0.1ms ease-out;
+  transition: all 0.1ms ease;
 }
 .product-page__info {
   display: flex;
@@ -1081,7 +1091,7 @@ button[aria-label] {
   justify-content: center;
   border-radius: 6px;
   cursor: pointer;
-  transition: all 0.1ms ease-out;
+  transition: all 0.1ms ease;
 }
 .product-page__description__colors .color:hover {
   transform: scale(1.05);
@@ -1257,23 +1267,18 @@ button[aria-label] {
 
 .auth-modal {
   width: 480px;
-  padding: 48px;
+  padding: 36px 48px;
   display: flex;
   flex-direction: column;
   font-size: 1.25rem;
 }
-.auth-modal__submit-button {
-  background: var(--color-accent);
-  color: var(--color-light);
-}
-.auth-modal__submit-button:hover {
-  background: var(--color-accent-hover);
-  border-color: var(--color-accent-hover);
+.auth-modal__title {
+  font-size: 2rem;
 }
 .auth-modal hr {
   border: 0;
   height: 1px;
-  background: var(--color-dark);
+  background: var(--color-dark-40);
   width: 100%;
   margin: 0;
 }
@@ -1282,7 +1287,7 @@ button[aria-label] {
   text-align: center;
 }
 .auth-modal__switch__button a {
-  transition: all var(--transition-duration) ease-out;
+  transition: all var(--transition-duration) ease;
   cursor: pointer;
   border-bottom: 2px solid var(--color-dark);
 }
@@ -1295,7 +1300,7 @@ button[aria-label] {
   gap: 10px;
 }
 .auth-modal__buttons-block svg {
-  transition: all var(--transition-duration) ease-out;
+  transition: all var(--transition-duration) ease;
   margin-right: 8px;
 }
 .auth-modal .dialog-close {
@@ -1319,7 +1324,7 @@ button[aria-label] {
   display: flex;
   align-items: center;
   cursor: pointer;
-  transition: all var(--transition-duration) ease-out;
+  transition: all var(--transition-duration) ease;
 }
 .auth-popover__list__item svg, .auth-popover__list a svg {
   margin-right: 10px;
@@ -1347,6 +1352,85 @@ button[aria-label] {
   width: 22px;
   height: 22px;
   margin-right: 5px;
+}
+
+.error-text {
+  color: oklch(63.7% 0.237 25.331deg);
+}
+
+.clear-button {
+  background: none;
+  border: none;
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0.3;
+  cursor: pointer;
+}
+.clear-button:hover {
+  opacity: 1;
+}
+.clear-button svg {
+  display: block;
+}
+.clear-button .icon-x {
+  height: 1.25rem;
+  width: 1.25rem;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.login-form__header__title {
+  font-size: 2rem;
+}
+.login-form__header__subtitle {
+  font-size: 1rem;
+}
+.login-form__input-block {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.125rem;
+}
+.login-form__submit-button {
+  background: var(--color-accent);
+  color: var(--color-light);
+}
+.login-form__submit-button:hover {
+  background: var(--color-accent-hover);
+  border-color: var(--color-accent-hover);
+}
+
+.form-input__block {
+  position: relative;
+}
+.form-input__valid {
+  background: none;
+  border: none;
+  position: absolute;
+  right: 1.25rem;
+  top: 50%;
+  transform: translateY(-50%);
+  fill: none;
+  stroke: rgb(0, 185, 45);
+}
+.form-input__input {
+  background: var(--color-input-background);
+}
+.form-input__input--error {
+  background: rgba(251, 44, 54, 0.2);
+}
+.form-input__input--error:focus {
+  background: var(--color-input-background);
+}
+.form-input__error {
+  font-size: 0.875rem;
+}
+.form-input__error--hide {
+  height: 1.3125rem;
 }
 
 /*# sourceMappingURL=main.css.map */

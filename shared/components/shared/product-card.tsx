@@ -1,8 +1,8 @@
 "use client";
 
-import { Heart, PackagePlus } from "lucide-react";
-import { cn } from "@/shared/lib/utils";
-import { useState } from "react";
+import {Heart, PackagePlus} from "lucide-react";
+import {cn} from "@/shared/lib/utils";
+import {useState} from "react";
 import {Button, Skeleton} from "@/shared/components";
 import Link from "next/link";
 
@@ -14,26 +14,27 @@ interface ProductCardProps {
     imageUrl?: string;
 }
 
-export function ProductCard({ price, description, name, imageUrl, id }: ProductCardProps) {
+export function ProductCard({price, description, name, imageUrl, id}: ProductCardProps) {
     const [isFavorite, setIsFavorite] = useState(false);
 
     return (
         <div className="product-card">
-            <div className="product-card__image">
-                <Heart
-                    onClick={(e) => {
-                        e.preventDefault();
-                        setIsFavorite(!isFavorite);
-                    }}
-                    className={cn(
-                        isFavorite && "product-card__image__favorite-active",
-                        "product-card__image__favorite"
-                    )}
-                />
-                <Link href={`/product/${id}`}>
-                    <img src={`/products/${imageUrl}`} alt="" loading="lazy" />
-                </Link>
-            </div>
+            <Link href={`/product/${id}`}>
+                <div className="product-card__image">
+                    <Heart
+                        onClick={(e) => {
+                            e.preventDefault();
+                            setIsFavorite(!isFavorite);
+                        }}
+                        className={cn(
+                            isFavorite && "product-card__image__favorite-active",
+                            "product-card__image__favorite"
+                        )}
+                    />
+
+                    <img src={`/products/${imageUrl}`} alt="" loading="lazy"/>
+                </div>
+            </Link>
             <Link className="product-card__href" href={`/product/${id}`}>
                 <h2 className="product-card__title">{name}</h2>
             </Link>

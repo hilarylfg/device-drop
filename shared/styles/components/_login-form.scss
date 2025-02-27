@@ -1,0 +1,33 @@
+@use '../helpers/index' as *;
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+
+    &__header {
+        &__title {
+            font-size: rem(32);
+        }
+
+        &__subtitle {
+            font-size: rem(16);
+        }
+    }
+
+    &__input-block {
+        display: flex;
+        flex-direction: column;
+        font-size: rem(18);
+    }
+
+    &__submit-button {
+        background: var(--color-accent);
+        color: var(--color-light);
+
+        &:hover {
+            background: var(--color-accent-hover);
+            border-color: var(--color-accent-hover);
+        }
+    }
+}

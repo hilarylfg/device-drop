@@ -7,7 +7,7 @@
     border: 1px solid transparent;
     background-color: transparent;
     padding: rem(8) rem(16);
-    transition: all var(--transition-duration) ease-out;
+    transition: all var(--transition-duration) ease;
 
     &::placeholder {
         color: var(--color-placeholder);

@@ -56,7 +56,7 @@
         height: fit-content;
         border: 2px solid var(--color-hr-gray);
         margin-bottom: rem(8);
-        transition: all var(--transition-duration) ease-out;
+        transition: all var(--transition-duration) ease;
 
         &:hover {
             border: 2px solid var(--color-accent);

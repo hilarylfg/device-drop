@@ -75,11 +75,14 @@
 
         &__favorite {
             position: absolute;
+            padding: 10px;
+            margin: -5px -5px 0 0;
+            box-sizing: content-box;
             top: 15px;
             right: 15px;
             fill: none;
             color: lightgrey;
-            transition: all 0.1s ease-out;
+            transition: all 0.1s ease;
             cursor: pointer;
 
             &-active {

@@ -1,0 +1,38 @@
+@use '../helpers/index' as *;
+
+.form-input {
+    &__block {
+        position: relative;
+    }
+
+    &__valid {
+        background: none;
+        border: none;
+        position: absolute;
+        right: rem(20);
+        top: 50%;
+        transform: translateY(-50%);
+        fill: none;
+        stroke: rgb(0, 185, 45);
+    }
+
+    &__input {
+        background: var(--color-input-background);
+
+        &--error {
+            background: rgba(251, 44, 54, 0.2);
+
+            &:focus {
+                background: var(--color-input-background);
+            }
+        }
+    }
+
+    &__error {
+        font-size: rem(14);
+
+        &--hide {
+            height: rem(21);
+        }
+    }
+}

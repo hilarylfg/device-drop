@@ -1,8 +1,11 @@
 import { AuthOptions } from 'next-auth';
 import GitHubProvider from 'next-auth/providers/github';
 import GoogleProvider from 'next-auth/providers/google';
+import CredentialsProvider from 'next-auth/providers/credentials';
 
 import { UserRole } from '@prisma/client';
+import { prisma } from '@/prisma/prisma-client';
+import {compare} from "bcrypt";
 
 export const authConfig: AuthOptions = {
     providers: [
@@ -23,6 +26,47 @@ export const authConfig: AuthOptions = {
                 };
             },
         }),
+        CredentialsProvider({
+            name: 'Credentials',
+            credentials: {
+                email: { label: 'Email', type: 'text' },
+                password: { label: 'Password', type: 'password' },
+            },
+            async authorize(credentials) {
+                if (!credentials) {
+                    return null;
+                }
+
+                const values = {
+                    email: credentials.email,
+                };
+
+                const findUser = await prisma.user.findFirst({
+                    where: values,
+                });
+
+                if (!findUser) {
+                    return null;
+                }
+
+                const isPasswordValid = await compare(credentials.password, findUser.password);
+
+                if (!isPasswordValid) {
+                    return null;
+                }
+
+                if (!findUser.verified) {
+                    return null;
+                }
+
+                return {
+                    id: findUser.id,
+                    email: findUser.email,
+                    name: findUser.fullName,
+                    role: findUser.role,
+                };
+            },
+        }),
     ],
     secret: process.env.NEXTAUTH_SECRET,
     session: {
@@ -31,7 +75,7 @@ export const authConfig: AuthOptions = {
     callbacks: {
         async jwt({ token, user }) {
             if (user) {
-                token = { ...token, ...user };
+                token = { ...token, ...user, id: user.id.toString() };
             }
             return token;
         },

@@ -44,3 +44,9 @@ button {
     position: relative;
   }
 }
+
+#_rht_toaster svg.lucide {
+  stroke: var(--color-accent);
+  fill: none;
+  width: 40px;
+}

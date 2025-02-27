@@ -17,6 +17,8 @@ export {TitleLengthProducts} from "./title-length-products";
 export {ProfileButton} from "./profile-button";
 export {Providers} from "./providers";
 export {ErrorText} from "./error-text";
+export {RequiredSymbol} from "./required-symbol";
+export {ClearButton} from "./clear-button";
 export {GoogleIcon} from "./icons";
 export {GithubIcon} from "./icons";
 

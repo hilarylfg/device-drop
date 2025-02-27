@@ -5,7 +5,7 @@
         margin: rem(20) 0;
 
         &__link {
-            transition: all 0.1ms ease-out;
+            transition: all 0.1ms ease;
         }
     }
 
@@ -41,7 +41,7 @@
                 justify-content: center;
                 border-radius: 6px;
                 cursor: pointer;
-                transition: all 0.1ms ease-out;
+                transition: all 0.1ms ease;
 
                 &:hover {
                     transform: scale(1.05);

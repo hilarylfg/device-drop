@@ -6,6 +6,6 @@ interface Props {
     className?: string;
 }
 
-export const ErrorText: React.FC<Props> = ({ text, className }) => {
+export function ErrorText({ text, className } : Props) {
     return <p className={cn('error-text', className)}>{text}</p>;
-};
+}

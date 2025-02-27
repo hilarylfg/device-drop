@@ -1,8 +1,11 @@
 'use client';
 
-import {InputHTMLAttributes} from 'react';
+import {InputHTMLAttributes, useRef, useState} from 'react';
 import { useFormContext } from 'react-hook-form';
 import { Input } from '@/shared/components/ui';
+import {ClearButton, ErrorText, RequiredSymbol} from '@/shared/components';
+import {cn} from "@/shared/lib/utils";
+import { Check } from 'lucide-react';
 
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
     name: string;
@@ -12,6 +15,10 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 export function FormInput({ className, name, label, required, ...props } : Props) {
+    const [isValid, setIsValid] = useState(false);
+    const [isFocused, setIsFocused] = useState(false);
+    const inputRef = useRef<HTMLInputElement>(null);
+
     const {
         register,
         formState: { errors },
@@ -22,25 +29,44 @@ export function FormInput({ className, name, label, required, ...props } : Props
     const value = watch(name);
     const errorText = errors[name]?.message as string;
 
-    const onClickClear = () => {
+    const handleClearClick = () => {
         setValue(name, '', { shouldValidate: true });
+        setIsValid(false);
+        inputRef.current?.focus();
+    };
+
+    const handleBlur = () => {
+        setIsFocused(false);
+        setIsValid(!!value && !errorText);
+    };
+
+    const handleFocus = () => {
+        setIsFocused(true);
+        setIsValid(false);
     };
 
     return (
         <div className={className}>
             {label && (
-                <p className="font-medium mb-2">
+                <p className="">
                     {label} {required && <RequiredSymbol />}
                 </p>
             )}
 
-            <div className="relative">
-                <Input className="h-12 text-md" {...register(name)} {...props} />
-
-                {value && <ClearButton onClick={onClickClear} />}
+            <div className="form-input__block">
+                <Input className={cn(errorText ? "form-input__input--error" : "form-input__input")} onFocus={handleFocus} {...register(name, {onBlur: handleBlur})} {...props} />
+                {value && (
+                    isFocused ? (
+                        <ClearButton onClick={handleClearClick} />
+                    ) : isValid && !errorText ? (
+                        <Check className="form-input__valid" size={16}/>
+                    ) : (
+                        <ClearButton onClick={handleClearClick} />
+                    )
+                )}
             </div>
 
-            {errorText && <ErrorText text={errorText} className="mt-2" />}
+            <ErrorText text={errorText} className={cn(errorText ? 'form-input__error' : 'form-input__error--hide')}/>
         </div>
     );
-};
+}

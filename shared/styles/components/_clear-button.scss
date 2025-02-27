@@ -1,0 +1,23 @@
+.clear-button {
+    background: none;
+    border: none;
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.3;
+    cursor: pointer;
+
+    &:hover {
+        opacity: 1;
+    }
+
+    svg {
+        display: block;
+    }
+
+    .icon-x {
+        height: 1.25rem;
+        width: 1.25rem;
+    }
+}
