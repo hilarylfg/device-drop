@@ -1,6 +1,7 @@
 import {CategoryNavbar, Container, Popover, PopoverContent, PopoverTrigger} from "@/shared/components";
 import {ArrowUpDown} from "lucide-react";
 import {prisma} from "@/prisma/prisma-client";
+import {Suspense} from "react";
 
 export async function TopBar() {
     const items = await prisma.category.findMany();
@@ -8,7 +9,9 @@ export async function TopBar() {
     return (
         <div className="bar__shadow">
             <Container className="top-bar">
-                <CategoryNavbar items={items}/>
+                <Suspense>
+                    <CategoryNavbar items={items}/>
+                </Suspense>
                 <Popover>
                     <PopoverTrigger asChild>
                         <div className="sort__button">
@@ -34,7 +37,7 @@ export async function TopBar() {
                         </ul>
                     </PopoverContent>
                 </Popover>
-        </Container>
+            </Container>
         </div>
     );
 }

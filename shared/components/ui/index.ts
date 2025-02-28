@@ -5,6 +5,7 @@ export {Checkbox} from "./checkbox";
 export {Progress} from "./progress";
 export {RangeSlider} from "./range-slider";
 export {Skeleton} from "./skeleton";
+export {Toaster} from "./sonner";
 export {
     Dialog,
     DialogPortal,
