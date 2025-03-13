@@ -1,6 +1,6 @@
 'use client';
 
-import {InputHTMLAttributes, useRef, useState} from 'react';
+import {InputHTMLAttributes, useEffect, useRef, useState} from 'react';
 import { useFormContext } from 'react-hook-form';
 import { Input } from '@/shared/components/ui';
 import {ClearButton, ErrorText, RequiredSymbol} from '@/shared/components';
@@ -28,6 +28,12 @@ export function FormInput({ className, name, label, required, ...props } : Props
 
     const value = watch(name);
     const errorText = errors[name]?.message as string;
+
+    useEffect(() => {
+        if (!isFocused) {
+            setIsValid(!!value && !errorText);
+        }
+    }, [value, errorText, isFocused]);
 
     const handleClearClick = () => {
         setValue(name, '', { shouldValidate: true });
