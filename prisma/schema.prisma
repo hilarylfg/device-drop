@@ -1,6 +1,14 @@
+// Возможные характеристики:
+// Общие: weight, dimensions, warranty, material
+// Мыши: sensor, switchType, battery, connectionType, pollingRate, mcu
+// Клавиатуры: swithes, switchType, keyCount, percentFormat, connectionType
+// Коврики: surfaceType, size, thickness, baseMaterial
+// Наушники: driverSize, frequencyRange, microphone, connectionType, impedance
+// Мониторы: screenSize, martrixType, resolution, refreshRate, responseTime
+// Игровые кресла: maxWeight, upholsteryMaterial, armrestAdjustment, backrestTilt
+
 generator client {
   provider = "prisma-client-js"
-  output   = "./generated/client"
 }
 
 datasource db {
@@ -12,11 +20,11 @@ datasource db {
 model User {
   id Int @id @default(autoincrement())
 
-  fullName String
-  email    String    @unique
-  password String
-  role     UserRole  @default(USER)
-  verified DateTime?
+  firstName String
+  email     String    @unique
+  password  String
+  role      UserRole  @default(USER)
+  verified  DateTime?
 
   cart   Cart?
   orders Order[]
@@ -41,14 +49,7 @@ model Product {
   name            String
   description     String
   brand           String
-  characteristics Json // Возможные характеристики:
-  // Общие: weight, dimensions, warranty, material
-  // Мыши: sensor, switchType, battery, connectionType, pollingRate, mcu
-  // Клавиатуры: swithes, switchType, keyCount, percentFormat, connectionType
-  // Коврики: surfaceType, size, thickness, baseMaterial
-  // Наушники: driverSize, frequencyRange, microphone, connectionType, impedance
-  // Мониторы: screenSize, martrixType, resolution, refreshRate, responseTime
-  // Игровые кресла: maxWeight, upholsteryMaterial, armrestAdjustment, backrestTilt
+  characteristics Json
 
   variants ProductVariant[]
 

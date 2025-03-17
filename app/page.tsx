@@ -1,4 +1,4 @@
-import {Container, Filters, ProductList, TitleLengthProducts, TopBar} from "@/shared/components";
+import {Container, Filters, ProductList,   TitleLengthProducts, TopBar} from "@/shared/components";
 
 export default function Home() {
     return (

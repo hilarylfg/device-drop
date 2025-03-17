@@ -26,6 +26,10 @@ export function ProductForm({ product }: ProductFormProps) {
                 >
                     {product.category.name}
                 </a>
+                {" "}/{" "}
+                <span className="product-page__links__product">
+                    {product.name}
+                </span>
             </p>
             <div className="product-page__info">
                 <div className="product-page__image">

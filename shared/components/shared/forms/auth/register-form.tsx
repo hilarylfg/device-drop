@@ -54,7 +54,7 @@ export function RegisterForm({onClose}: Props) {
                 </div>
 
                 <FormInput className="login-form__input-block" name="email" label="E-Mail" required />
-                <FormInput className="login-form__input-block" name="fullName" label="Полное имя" required />
+                <FormInput className="login-form__input-block" name="name" label="Имя" required />
                 <FormInput className="login-form__input-block" name="password" label="Пароль" type="password" required />
                 <FormInput className="login-form__input-block" name="confirmPassword" label="Подтвердите пароль" type="password" required />
 

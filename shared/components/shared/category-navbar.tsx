@@ -8,11 +8,12 @@ import {scroller} from "react-scroll";
 import {Category} from "@prisma/client";
 
 interface CategoryNavbarProps {
+    className?: string
     items: Category[];
 }
 
 
-export function CategoryNavbar({items}: CategoryNavbarProps) {
+export function CategoryNavbar({items, className}: CategoryNavbarProps) {
     const activeId = useCategoryStore((state) => state.activeId);
     const setActiveId = useCategoryStore((state) => state.setActiveId);
 
@@ -50,7 +51,7 @@ export function CategoryNavbar({items}: CategoryNavbarProps) {
     };
 
     return (
-        <div className="categories__list">
+        <div className={cn("categories__list", className)}>
             {items.map(({name, link}, index) => (
                 <a
                     key={index}

@@ -5,3 +5,6 @@ import {CategoriesWithAllRelations} from "@/@types/prisma";
 export const withProducts = async (): Promise<CategoriesWithAllRelations[]> => {
     return (await axiosInstance.get<CategoriesWithAllRelations[]>(ApiRoutes.CATEGORIES_WITH_PRODUCTS)).data;
 }
+export const getCategories = async (): Promise<CategoriesWithAllRelations[]> => {
+    return (await axiosInstance.get<CategoriesWithAllRelations[]>(ApiRoutes.GET_CATEGORIES)).data;
+}

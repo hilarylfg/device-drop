@@ -1,25 +1,39 @@
 @use '../helpers/index' as *;
 
+.logo {
+    position: absolute;
+    top: 50%;
+    transform: translate(-100%, -50%);
+    opacity: 0;
+    transition: all 0.2s ease;
+}
+
+.bar__shadow.sticky .logo {
+    transform: translate(0, -50%);
+    opacity: 1;
+}
+
 .bar__shadow {
     position: sticky;
     top: 0;
     background-color: white;
     padding: rem(20);
     box-shadow: 0 rem(10) rem(15) rem(-3) rgb(0 0 0 / 0.05), 0 rem(4) rem(6) rem(-4) rgb(0 0 0 / 0.05);
+    transition: all 0.3s ease;
     z-index: 10;
 }
 
 .top-bar {
     display: flex;
     align-items: center;
-    position: sticky;
-
+    position: relative;
     .categories__list {
         display: inline-flex;
         background: var(--color-input-background);
         gap: rem(8);
         padding: rem(6);
         border-radius: rem(15);
+        transition: margin-left 0.2s ease;
 
         &__item {
             display: flex;
@@ -34,6 +48,10 @@
             background: var(--color-accent);
             color: var(--color-light);
         }
+    }
+
+    .categories__list.sticky {
+        margin-left: 180px;
     }
 }
 

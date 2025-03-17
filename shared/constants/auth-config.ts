@@ -3,9 +3,9 @@ import GitHubProvider from 'next-auth/providers/github';
 import GoogleProvider from 'next-auth/providers/google';
 import CredentialsProvider from 'next-auth/providers/credentials';
 
-import { UserRole } from '@prisma/client';
 import { prisma } from '@/prisma/prisma-client';
 import {compare} from "bcrypt";
+import {UserRole} from "@prisma/client";
 
 export const authConfig: AuthOptions = {
     providers: [
@@ -62,7 +62,7 @@ export const authConfig: AuthOptions = {
                 return {
                     id: findUser.id,
                     email: findUser.email,
-                    name: findUser.fullName,
+                    name: findUser.firstName,
                     role: findUser.role,
                 };
             },

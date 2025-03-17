@@ -7,7 +7,7 @@
     import {ProductGroupListSkeleton} from "./product-group-list";
 
     export function ProductList() {
-        const [categories, setCategories] = useState<CategoriesWithAllRelations[]>([]);
+        const [products, setProducts] = useState<CategoriesWithAllRelations[]>([]);
         const [isLoading, setIsLoading] = useState(true);
 
         useEffect(() => {
@@ -15,7 +15,7 @@
                 try {
                     setIsLoading(true);
                     const response = await Api.categories.withProducts();
-                    setCategories(response);
+                    setProducts(response);
                 } catch (e) {
                     console.error("Error: ", e);
                 } finally {
@@ -26,14 +26,14 @@
 
         return (
             <div className="catalog-block__list">
-                {isLoading ? <ProductGroupListSkeleton/> : categories.map((category) =>
-                        category.products.length > 0 && (
+                {isLoading ? <ProductGroupListSkeleton/> : products.map((product) =>
+                    product.products.length > 0 && (
                             <ProductGroupList
-                                key={category.id}
-                                title={category.name}
-                                categoryLink={category.link}
-                                categoryId={category.id}
-                                products={category.products}
+                                key={product.id}
+                                title={product.name}
+                                categoryLink={product.link}
+                                categoryId={product.id}
+                                products={product.products}
                             />
                         ),
                 )}
