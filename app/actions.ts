@@ -1,3 +1,5 @@
+"use server";
+
 import {prisma} from "@/prisma/prisma-client";
 import { Prisma } from "@prisma/client";
 import {sendEmail} from "@/shared/lib/send-email";
@@ -35,12 +37,12 @@ export async function registerUser(body: Prisma.UserCreateInput) {
                 userId: createdUser.id,
             },
         });
-
         await sendEmail(
             createdUser.email,
             'DeviceDrop / 📝 Подтверждение регистрации',
             '<h2> 52525252525 </h2>'
         );
+        console.log(code, ' - 999999');
     } catch (err) {
         console.log('Error [CREATE_USER]', err);
         throw err;

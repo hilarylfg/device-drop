@@ -24,7 +24,7 @@ export function AuthModal({ open, onClose } : Props) {
     return (
         <Dialog open={open} onOpenChange={handleClose}>
             <DialogContent className="auth-modal">
-                <DialogTitle className="auth-modal__title">{type === 'login' ? 'Войти в аккаунт' : 'Регистрация'}</DialogTitle>
+                <DialogTitle className="auth-modal__title">{type === 'login' ? 'Вход в аккаунт' : 'Регистрация'}</DialogTitle>
                 {type === 'login' ? <LoginForm onClose={onClose}/> : <RegisterForm onClose={onClose}/>}
                 <hr />
                 <div className="auth-modal__buttons-block">

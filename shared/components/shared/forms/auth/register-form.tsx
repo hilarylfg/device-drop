@@ -48,21 +48,20 @@ export function RegisterForm({ onClose }: Props) {
         <FormProvider {...form}>
             <form className="register-form" onSubmit={form.handleSubmit(onSubmit)}>
                 <div className="register-form__header">
-                    <h2 className="register-form__header__title">Регистрация</h2>
                     <p className="register-form__header__subtitle">
                         Создайте аккаунт, заполнив данные ниже
                     </p>
                 </div>
 
                 <FormInput
-                    className="register-form__input-block"
+                    className="auth-form__input-block"
                     name="email"
                     label="E-Mail"
                     type="email"
                     required
                 />
                 <FormInput
-                    className="register-form__input-block"
+                    className="auth-form__input-block"
                     name="firstName"
                     label="Имя"
                     required

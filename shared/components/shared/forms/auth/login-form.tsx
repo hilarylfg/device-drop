@@ -48,15 +48,15 @@ export function LoginForm({onClose}: Props) {
 
     return (
         <FormProvider {...form}>
-            <form className="login-form" onSubmit={form.handleSubmit(onSubmit)}>
-                <div className="login-form__header">
-                    <p className="login-form__header__subtitle">Введите свою почту, чтобы войти в свой аккаунт</p>
+            <form className="auth-form" onSubmit={form.handleSubmit(onSubmit)}>
+                <div className="auth-form__header">
+                    <p className="auth-form__header__subtitle">Введите свою почту, чтобы войти в свой аккаунт</p>
                 </div>
 
-                <FormInput className="login-form__input-block" name="email" label="E-Mail" required/>
-                <FormInput className="login-form__input-block" name="password" label="Пароль" type="password" required/>
+                <FormInput className="auth-form__input-block" name="email" label="E-Mail" required/>
+                <FormInput className="auth-formm__input-block" name="password" label="Пароль" type="password" required/>
 
-                <Button loading={form.formState.isSubmitting} className="login-form__submit-button" type="submit">
+                <Button loading={form.formState.isSubmitting} className="auth-form__submit-button" type="submit">
                     Войти
                 </Button>
             </form>
