@@ -1,65 +1,93 @@
 import React from 'react';
-import {FormProvider, useForm} from 'react-hook-form';
-import {Button} from '@/shared/components/ui';
-import { TFormLoginValues, formLoginSchema } from '../schemas';
+import { FormProvider, useForm } from 'react-hook-form';
+import { Button } from '@/shared/components/ui'; // Предполагается, что у вас есть UI-компоненты
+import { TFormRegisterValues, formRegisterSchema } from './schemas';
 import { zodResolver } from '@hookform/resolvers/zod';
 import toast from 'react-hot-toast';
-import {signIn} from 'next-auth/react';
-import {FormInput} from "@/shared/components";
-import {CircleCheck, CircleAlert} from "lucide-react";
+import { FormInput } from '@/shared/components';
+import { CircleCheck, CircleAlert } from 'lucide-react';
+import { registerUser } from '@/app/actions';
 
 interface Props {
     onClose?: VoidFunction;
 }
 
-export function RegisterForm({onClose}: Props) {
-    const form = useForm<TFormLoginValues>({
-        resolver: zodResolver(formLoginSchema),
+export function RegisterForm({ onClose }: Props) {
+    const form = useForm<TFormRegisterValues>({
+        resolver: zodResolver(formRegisterSchema),
         defaultValues: {
             email: '',
+            firstName: '',
             password: '',
+            confirmPassword: '',
         },
         mode: 'onBlur',
     });
 
-    const onSubmit = async (data: TFormLoginValues) => {
+    const onSubmit = async (data: TFormRegisterValues) => {
         try {
-            const resp = await signIn('credentials', {
-                ...data,
-                redirect: false,
+            await registerUser({
+                email: data.email,
+                firstName: data.firstName,
+                password: data.password,
             });
 
-            if (!resp?.ok) {
-                throw Error();
-            }
-
-            toast.success('Вы успешно вошли в аккаунт', {
-                icon: <CircleCheck/>,
+            toast.success('Регистрация успешна 📝. Подтвердите свою почту', {
+                icon: <CircleCheck className="text-green-500" />,
             });
-
             onClose?.();
-        } catch (error) {
-            console.error('Error [LOGIN]', error);
-            toast.error('Не удалось войти в аккаунт', {
-                icon: <CircleAlert/>,
+        } catch (e) {
+            const errorMessage = e instanceof Error ? e.message : 'Что-то пошло не так';
+            toast.error(errorMessage, {
+                icon: <CircleAlert className="text-red-500" />,
             });
         }
     };
 
     return (
         <FormProvider {...form}>
-            <form className="login-form" onSubmit={form.handleSubmit(onSubmit)}>
-                <div className="login-form__header">
-                    <p className="login-form__header__subtitle">Введите свою почту, чтобы войти в свой аккаунт</p>
+            <form className="register-form" onSubmit={form.handleSubmit(onSubmit)}>
+                <div className="register-form__header">
+                    <h2 className="register-form__header__title">Регистрация</h2>
+                    <p className="register-form__header__subtitle">
+                        Создайте аккаунт, заполнив данные ниже
+                    </p>
                 </div>
 
-                <FormInput className="login-form__input-block" name="email" label="E-Mail" required />
-                <FormInput className="login-form__input-block" name="name" label="Имя" required />
-                <FormInput className="login-form__input-block" name="password" label="Пароль" type="password" required />
-                <FormInput className="login-form__input-block" name="confirmPassword" label="Подтвердите пароль" type="password" required />
+                <FormInput
+                    className="register-form__input-block"
+                    name="email"
+                    label="E-Mail"
+                    type="email"
+                    required
+                />
+                <FormInput
+                    className="register-form__input-block"
+                    name="firstName"
+                    label="Имя"
+                    required
+                />
+                <FormInput
+                    className="register-form__input-block"
+                    name="password"
+                    label="Пароль"
+                    type="password"
+                    required
+                />
+                <FormInput
+                    className="register-form__input-block"
+                    name="confirmPassword"
+                    label="Подтвердите пароль"
+                    type="password"
+                    required
+                />
 
-                <Button loading={form.formState.isSubmitting} className="login-form__submit-button" type="submit">
-                    Войти
+                <Button
+                    loading={form.formState.isSubmitting}
+                    className="register-form__submit-button"
+                    type="submit"
+                >
+                    Зарегистрироваться
                 </Button>
             </form>
         </FormProvider>

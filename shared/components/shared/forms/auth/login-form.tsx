@@ -1,7 +1,7 @@
 import React from 'react';
 import {FormProvider, useForm} from 'react-hook-form';
 import {Button} from '@/shared/components/ui';
-import { TFormLoginValues, formLoginSchema } from '../schemas';
+import { TFormLoginValues, formLoginSchema } from './schemas';
 import { zodResolver } from '@hookform/resolvers/zod';
 import toast from 'react-hot-toast';
 import {signIn} from 'next-auth/react';
