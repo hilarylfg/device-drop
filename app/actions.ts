@@ -40,7 +40,7 @@ export async function registerUser(body: Prisma.UserCreateInput) {
         await sendEmail(
             createdUser.email,
             'DeviceDrop / 📝 Подтверждение регистрации',
-            '<h2> 52525252525 </h2>'
+            code
         );
         console.log(code, ' - 999999');
     } catch (err) {

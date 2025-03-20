@@ -46,9 +46,9 @@ export function RegisterForm({ onClose }: Props) {
 
     return (
         <FormProvider {...form}>
-            <form className="register-form" onSubmit={form.handleSubmit(onSubmit)}>
-                <div className="register-form__header">
-                    <p className="register-form__header__subtitle">
+            <form className="auth-form" onSubmit={form.handleSubmit(onSubmit)}>
+                <div className="auth-form__header">
+                    <p className="auth-form__header__subtitle">
                         Создайте аккаунт, заполнив данные ниже
                     </p>
                 </div>
@@ -67,14 +67,14 @@ export function RegisterForm({ onClose }: Props) {
                     required
                 />
                 <FormInput
-                    className="register-form__input-block"
+                    className="auth-form__input-block"
                     name="password"
                     label="Пароль"
                     type="password"
                     required
                 />
                 <FormInput
-                    className="register-form__input-block"
+                    className="auth-form__input-block"
                     name="confirmPassword"
                     label="Подтвердите пароль"
                     type="password"
@@ -83,7 +83,7 @@ export function RegisterForm({ onClose }: Props) {
 
                 <Button
                     loading={form.formState.isSubmitting}
-                    className="register-form__submit-button"
+                    className="auth-form__submit-button"
                     type="submit"
                 >
                     Зарегистрироваться
