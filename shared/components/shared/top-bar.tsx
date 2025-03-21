@@ -5,6 +5,7 @@ import {ArrowUpDown} from "lucide-react";
 import {Suspense, useEffect, useRef, useState} from "react";
 import {Api} from "@/shared/services/api-client";
 import {CategoriesWithAllRelations} from "@/@types/prisma";
+import { Link } from "react-scroll";
 
 export function TopBar() {
     const [categories, setCategories] = useState<CategoriesWithAllRelations[]>([]);
@@ -39,9 +40,9 @@ export function TopBar() {
     return (
         <div ref={headerRef} className={`bar__shadow ${isSticky ? 'sticky' : ''}`}>
             <Container className="top-bar">
-                <Logo className="logo"/>
+                <Link to="header" smooth={true} offset={-100} duration={500}><Logo className="logo"/></Link>
                 <Suspense>
-                    <CategoryNavbar className={isSticky ? 'sticky' : ''} items={categories}/>
+                    <CategoryNavbar className={isSticky ? 'sticky' : ''} items={categories} isLoading={isLoading}/>
                 </Suspense>
                 <Popover>
                     <PopoverTrigger asChild>

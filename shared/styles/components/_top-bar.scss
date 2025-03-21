@@ -42,6 +42,13 @@
             border-radius: rem(15);
             cursor: pointer;
             transition: all var(--transition-duration) ease;
+
+            &--skeleton {
+                width: 75px;
+                height: 20px;
+                margin: rem(10) rem(12);
+                border-radius: rem(15);
+            }
         }
 
         &__item.active {

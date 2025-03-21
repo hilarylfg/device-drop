@@ -1,17 +1,11 @@
 "use client";
 
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { FormProvider, useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import {SubmitHandler, useForm } from 'react-hook-form';
-import {Button, FormInput, Progress} from "@/shared/components";
-
-interface FormData {
-    name: string;
-    email: string;
-    experience: string;
-    skills: string;
-}
+import { Button, Progress } from "@/shared/components";
+import { FormInput } from "@/shared/components";
 
 const formSchema = z.object({
     name: z.string()
@@ -24,81 +18,77 @@ const formSchema = z.object({
     skills: z.string().min(1, 'Укажите ваши навыки'),
 });
 
+type TFormJobValues = z.infer<typeof formSchema>;
+
 export function MultiStepJobForm() {
-    const {
-        register,
-        handleSubmit,
-        watch,
-        trigger,
-        formState: { errors },
-        clearErrors,
-    } = useForm<FormData>({
+    const form = useForm<TFormJobValues>({
         resolver: zodResolver(formSchema),
+        defaultValues: {
+            name: '',
+            email: '',
+            experience: '',
+            skills: '',
+        },
         mode: 'onBlur',
     });
+
     const [step, setStep] = useState<number>(1);
+    const { handleSubmit, watch, trigger, formState: { isSubmitting } } = form;
 
     const nextStep = async () => {
-        const fieldsToValidate: (keyof FormData)[] = step === 1
+        const fieldsToValidate: (keyof TFormJobValues)[] = step === 1
             ? ['name', 'email']
             : ['experience', 'skills'];
 
         const isValid = await trigger(fieldsToValidate);
-
         if (isValid) {
-            clearErrors(fieldsToValidate);
             setStep((prev) => Math.min(prev + 1, 3));
         }
     };
 
     const prevStep = () => setStep((prev) => Math.max(prev - 1, 1));
 
-    const onSubmit: SubmitHandler<FormData> = (data) => {
+    const onSubmit = async (data: TFormJobValues) => {
         console.log('Заявка отправлена:', data);
         alert('Спасибо за заявку! Мы свяжемся с вами.');
     };
+
     const progress = Math.round(((step - 1) / 3) * 100);
-    const isStepValid = step === 1 ? !errors.name && !errors.email : !errors.experience && !errors.skills;
 
     const Step1 = () => (
-        <>
-            <label>
-                Имя:
-                <input type="text" {...register('name')} />
-                {errors.name && <span className="error">{errors.name.message}</span>}
-            </label>
-            <label>
-                Email:
-                <input type="email" {...register('email')} />
-                {errors.email && <span className="error">{errors.email.message}</span>}
-            </label>
-            <Button type="button" onClick={nextStep} disabled={!isStepValid}>Далее</Button>
-        </>
+        <div className="auth-form__input-block">
+            <FormInput name="name" label="Имя" required />
+            <FormInput name="email" label="Email" type="email" required />
+            <Button type="button" onClick={nextStep}>Далее</Button>
+        </div>
     );
 
     const Step2 = () => (
-        <>
-            <label>
-            Опыт работы:
-                <textarea {...register('experience')} placeholder="Расскажите о своём опыте" />
-                {errors.experience && <span className="error">{errors.experience.message}</span>}
-            </label>
-            <label>
-                Навыки:
-                <input type="text" {...register('skills')} placeholder="Например: продажи, контент" />
-                {errors.skills && <span className="error">{errors.skills.message}</span>}
-            </label>
+        <div className="auth-form__input-block">
+            <FormInput
+                name="experience"
+                label="Опыт работы"
+                required
+                type="textarea"
+                placeholder="Расскажите о своём опыте"
+            />
+            <FormInput
+                name="skills"
+                label="Навыки"
+                required
+                placeholder="Например: продажи, контент"
+            />
             <div className="button-group">
                 <Button type="button" onClick={prevStep}>Назад</Button>
-                <Button type="button" onClick={nextStep} disabled={!isStepValid}>Далее</Button>
+                <Button type="button" onClick={nextStep}>Далее</Button>
             </div>
-        </>
+        </div>
     );
 
     const Step3 = () => {
         const values = watch();
         return (
-            <>
+            <div className="auth-form__input-block">
                 <p>Проверьте данные:</p>
                 <p><strong>Имя:</strong> {values.name}</p>
                 <p><strong>Email:</strong> {values.email}</p>
@@ -106,25 +96,29 @@ export function MultiStepJobForm() {
                 <p><strong>Навыки:</strong> {values.skills}</p>
                 <div className="button-group">
                     <Button type="button" onClick={prevStep}>Назад</Button>
-                    <Button type="submit">Отправить</Button>
+                    <Button loading={isSubmitting} type="submit">Отправить</Button>
                 </div>
-            </>
+            </div>
         );
     };
 
     return (
-        <div className="multi-step-job-form">
-            <h2 className="">Заявка на работу в DeviceDrop</h2>
-            <div className="progress-bar">
-                <Progress value={progress} />
-                <span>{progress}%</span>
+        <FormProvider {...form}>
+            <div className="multi-step-job-form">
+                <div className="auth-form__header">
+                    <h2>Заявка на работу в DeviceDrop</h2>
+                </div>
+                <div className="progress-bar">
+                    <Progress value={progress} />
+                    <span>{progress}%</span>
+                </div>
+                <form className="auth-form" onSubmit={handleSubmit(onSubmit)}>
+                    {step === 1 && <Step1 />}
+                    {step === 2 && <Step2 />}
+                    {step === 3 && <Step3 />}
+                </form>
+                <p>Шаг {step} из 3</p>
             </div>
-            <form onSubmit={handleSubmit(onSubmit)} className="form-step">
-                {step === 1 && <Step1 />}
-                {step === 2 && <Step2 />}
-                {step === 3 && <Step3 />}
-            </form>
-            <p>Шаг {step} из 3</p>
-        </div>
+        </FormProvider>
     );
 }

@@ -4,7 +4,7 @@ import GoogleProvider from 'next-auth/providers/google';
 import CredentialsProvider from 'next-auth/providers/credentials';
 
 import { prisma } from '@/prisma/prisma-client';
-import {compare} from "bcrypt";
+import {compare, hashSync} from "bcrypt";
 import {UserRole} from "@prisma/client";
 
 export const authConfig: AuthOptions = {
@@ -73,6 +73,56 @@ export const authConfig: AuthOptions = {
         strategy: 'jwt',
     },
     callbacks: {
+        async signIn({ user, account }) {
+            try {
+                if (account?.provider === 'credentials') {
+                    return true;
+                }
+
+                if (!user.email) {
+                    return false;
+                }
+
+                const findUser = await prisma.user.findFirst({
+                    where: {
+                        OR: [
+                            { provider: account?.provider, providerId: account?.providerAccountId },
+                            { email: user.email },
+                        ],
+                    },
+                });
+
+                if (findUser) {
+                    await prisma.user.update({
+                        where: {
+                            id: findUser.id,
+                        },
+                        data: {
+                            provider: account?.provider,
+                            providerId: account?.providerAccountId,
+                        },
+                    });
+
+                    return true;
+                }
+
+                await prisma.user.create({
+                    data: {
+                        email: user.email,
+                        firstName: user.name || 'User #' + user.id,
+                        password: hashSync(user.id.toString(), 10),
+                        verified: new Date(),
+                        provider: account?.provider,
+                        providerId: account?.providerAccountId,
+                    },
+                });
+
+                return true;
+            } catch (error) {
+                console.error('Error [SIGNIN]', error);
+                return false;
+            }
+        },
         async jwt({ token, user }) {
             if (user) {
                 token = { ...token, ...user, id: user.id.toString() };

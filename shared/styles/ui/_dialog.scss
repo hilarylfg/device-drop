@@ -31,6 +31,7 @@
     transition-duration: 100ms;
     border-radius: rem(15);
     overflow-y: auto;
+    max-height: 90vh;
 
     &[data-state="open"] {
         animation: content-open 100ms ease-out;

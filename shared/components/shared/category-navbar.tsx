@@ -6,14 +6,16 @@ import {usePathname, useRouter, useSearchParams} from "next/navigation";
 import {useEffect} from "react";
 import {scroller} from "react-scroll";
 import {Category} from "@prisma/client";
+import {Skeleton} from "@/shared/components";
 
 interface CategoryNavbarProps {
     className?: string
     items: Category[];
+    isLoading: boolean;
 }
 
 
-export function CategoryNavbar({items, className}: CategoryNavbarProps) {
+export function CategoryNavbar({items, className, isLoading}: CategoryNavbarProps) {
     const activeId = useCategoryStore((state) => state.activeId);
     const setActiveId = useCategoryStore((state) => state.setActiveId);
 
@@ -38,7 +40,7 @@ export function CategoryNavbar({items, className}: CategoryNavbarProps) {
             duration: 800,
             delay: 0,
             smooth: "easeInOutQuart",
-            offset: -100,
+            offset: -105,
         });
     };
 
@@ -52,7 +54,7 @@ export function CategoryNavbar({items, className}: CategoryNavbarProps) {
 
     return (
         <div className={cn("categories__list", className)}>
-            {items.map(({name, link}, index) => (
+            {isLoading ? <CategoryNavbarSkeleton/> : items.map(({name, link}, index) => (
                 <a
                     key={index}
                     className={cn({active: activeId === index}, 'categories__list__item')}
@@ -65,5 +67,13 @@ export function CategoryNavbar({items, className}: CategoryNavbarProps) {
                 </a>
             ))}
         </div>
+    )
+}
+
+export function CategoryNavbarSkeleton() {
+    return (
+        Array(6).fill(0).map((_, index) => (
+            <Skeleton key={index} className="categories__list__item--skeleton"/>
+        ))
     )
 }

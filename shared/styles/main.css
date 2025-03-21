@@ -543,6 +543,7 @@ button[aria-label] {
   transition-duration: 100ms;
   border-radius: 0.9375rem;
   overflow-y: auto;
+  max-height: 90vh;
 }
 .dialog-ui-content[data-state=open] {
   animation: content-open 100ms ease-out;
@@ -650,7 +651,7 @@ button[aria-label] {
   }
 }
 .toaster-ui {
-  font-size: 20px;
+  font-size: 18px;
 }
 
 #_rht_toaster svg.lucide {
@@ -930,6 +931,12 @@ button[aria-label] {
   cursor: pointer;
   transition: all var(--transition-duration) ease;
 }
+.top-bar .categories__list__item--skeleton {
+  width: 75px;
+  height: 20px;
+  margin: 0.625rem 0.75rem;
+  border-radius: 0.9375rem;
+}
 .top-bar .categories__list__item.active {
   background: var(--color-accent);
   color: var(--color-light);
@@ -1021,6 +1028,9 @@ button[aria-label] {
   grid-template-columns: repeat(3, 1fr);
   column-gap: 42px;
   row-gap: 40px;
+}
+.product-list__title {
+  margin-bottom: 10px;
 }
 .product-list__title--skeleton {
   width: 190px;
@@ -1532,7 +1542,6 @@ button[aria-label] {
 }
 .multi-step-job-form h2 {
   text-align: center;
-  color: #00ffcc;
 }
 .multi-step-job-form .form-step {
   display: flex;
