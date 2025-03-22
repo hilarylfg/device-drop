@@ -16,7 +16,6 @@
 
         &__item {
             width: rem(308);
-            height: rem(200);
             background: var(--color-input-background);
             padding: rem(20);
             border-radius: rem(15);
@@ -26,7 +25,6 @@
 
             &-keyboard {
                 width: rem(308);
-                height: rem(200);
                 background: var(--color-input-background);
                 flex-direction: column;
                 justify-content: center;
@@ -76,6 +74,8 @@
                 }
 
                 &-keyboard {
+                    width: auto;
+
                     &--skeleton {
                         width: rem(90);
                         height: rem(30);

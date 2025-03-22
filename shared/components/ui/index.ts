@@ -18,3 +18,4 @@ export {
     DialogTitle,
     DialogDescription,
 } from "./dialog";
+export {InputOTP, InputOTPGroup, InputOTPSlot, InputOTPSeparator} from "./input-otp";

@@ -1,11 +1,13 @@
-import { AuthOptions } from 'next-auth';
+import NextAuth, { AuthOptions } from 'next-auth';
 import GitHubProvider from 'next-auth/providers/github';
 import GoogleProvider from 'next-auth/providers/google';
 import CredentialsProvider from 'next-auth/providers/credentials';
-
 import { prisma } from '@/prisma/prisma-client';
-import {compare, hashSync} from "bcrypt";
-import {UserRole} from "@prisma/client";
+import { compare, hashSync } from "bcrypt";
+import { UserRole } from "@prisma/client";
+import { verify } from 'jsonwebtoken';
+
+const JWT_SECRET = process.env.NEXTAUTH_SECRET || 'your-secret-key';
 
 export const authConfig: AuthOptions = {
     providers: [
@@ -18,7 +20,7 @@ export const authConfig: AuthOptions = {
             clientSecret: process.env.GITHUB_SECRET || '',
             profile(profile) {
                 return {
-                    id: profile.id,
+                    id: profile.id.toString(),
                     name: profile.name || profile.login,
                     email: profile.email,
                     image: profile.avatar_url,
@@ -29,38 +31,56 @@ export const authConfig: AuthOptions = {
         CredentialsProvider({
             name: 'Credentials',
             credentials: {
-                email: { label: 'Email', type: 'text' },
+                email: { label: 'Email', type: 'email' },
                 password: { label: 'Password', type: 'password' },
+                authToken: { label: 'Auth Token', type: 'text', optional: true }, // Добавляем authToken как опциональный
             },
             async authorize(credentials) {
-                if (!credentials) {
+                if (credentials?.authToken) {
+                    try {
+                        const decoded = verify(credentials.authToken, JWT_SECRET);
+                        if (typeof decoded !== 'object' || !decoded.id) {
+                            console.error('Invalid auth token structure');
+                            return null;
+                        }
+                        const user = await prisma.user.findUnique({
+                            where: { id: Number(decoded.id) },
+                        });
+                        if (!user || !user.verified) {
+                            console.error('User not found or not verified');
+                            return null;
+                        }
+                        return {
+                            id: decoded.id,
+                            email: decoded.email,
+                            name: decoded.firstName,
+                            role: decoded.role,
+                        };
+                    } catch (err) {
+                        console.error('Invalid auth token in authorize', err);
+                        return null;
+                    }
+                }
+
+                if (!credentials?.email || !credentials?.password) {
                     return null;
                 }
 
-                const values = {
-                    email: credentials.email,
-                };
-
                 const findUser = await prisma.user.findFirst({
-                    where: values,
+                    where: { email: credentials.email },
                 });
 
-                if (!findUser) {
+                if (!findUser || !findUser.verified) {
                     return null;
                 }
 
                 const isPasswordValid = await compare(credentials.password, findUser.password);
-
                 if (!isPasswordValid) {
                     return null;
                 }
 
-                if (!findUser.verified) {
-                    return null;
-                }
-
                 return {
-                    id: findUser.id,
+                    id: findUser.id.toString(),
                     email: findUser.email,
                     name: findUser.firstName,
                     role: findUser.role,
@@ -68,12 +88,17 @@ export const authConfig: AuthOptions = {
             },
         }),
     ],
-    secret: process.env.NEXTAUTH_SECRET,
+    secret: JWT_SECRET,
     session: {
         strategy: 'jwt',
     },
     callbacks: {
         async signIn({ user, account }) {
+            if (account?.provider === 'credentials' && typeof account.authToken === 'string') {
+                // Уже обработано в authorize, просто возвращаем true
+                return true;
+            }
+
             try {
                 if (account?.provider === 'credentials') {
                     return true;
@@ -94,15 +119,12 @@ export const authConfig: AuthOptions = {
 
                 if (findUser) {
                     await prisma.user.update({
-                        where: {
-                            id: findUser.id,
-                        },
+                        where: { id: findUser.id },
                         data: {
                             provider: account?.provider,
                             providerId: account?.providerAccountId,
                         },
                     });
-
                     return true;
                 }
 
@@ -116,7 +138,6 @@ export const authConfig: AuthOptions = {
                         providerId: account?.providerAccountId,
                     },
                 });
-
                 return true;
             } catch (error) {
                 console.error('Error [SIGNIN]', error);
@@ -125,12 +146,24 @@ export const authConfig: AuthOptions = {
         },
         async jwt({ token, user }) {
             if (user) {
-                token = { ...token, ...user, id: user.id.toString() };
+                token.id = user.id.toString();
+                token.email = user.email;
+                token.name = user.name;
+                token.role = user.role;
             }
             return token;
         },
-        async session({ session }) {
+        async session({ session, token }) {
+            if (token) {
+                session.user = {
+                    ...session.user,
+                    id: token.id,
+                    role: token.role,
+                };
+            }
             return session;
         },
     },
 };
+
+export default NextAuth(authConfig);

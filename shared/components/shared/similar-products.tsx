@@ -60,7 +60,13 @@ export const SimilarProducts = ({ productId }: SimilarProductsProps) => {
                                     ? "similar__list__info-keyboard"
                                     : "similar__list__info"
                             )}>
-                                <Link className="" href={`/product/${product.id}`}><h3 className="similar__list__info__title">{product.name}</h3></Link>
+                                <Link className="" href={`/product/${product.id}`}>
+                                    <h3 className={cn(
+                                        product.categoryId === 1
+                                            ? "similar__list__info__title-keyboard"
+                                            : "similar__list__info__title"
+                                    )}>{product.name}</h3>
+                                </Link>
                                 <p className={cn(product.categoryId === 1 ? "similar__list__info__price-keyboard" : "similar__list__info__price")}>
                                     {product.variants[0].price?.toLocaleString("ru-RU") + " ₽"}
                                 </p>

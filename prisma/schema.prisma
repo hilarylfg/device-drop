@@ -137,8 +137,10 @@ model VerificationCode {
   user   User @relation(fields: [userId], references: [id])
   userId Int  @unique
 
-  code String
+  code         String
+  sessionToken String
 
+  expiresAt DateTime
   createdAt DateTime @default(now())
 
   @@unique([userId, code])

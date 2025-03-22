@@ -19,5 +19,12 @@ export const formRegisterSchema = formLoginSchema
         path: ['confirmPassword'],
     });
 
+export const verifyFormSchema = z.object({
+    code: z.string().min(6, {
+        message: 'Код должен быть строкой из 6 символов',
+    }),
+})
+
 export type TFormLoginValues = z.infer<typeof formLoginSchema>;
 export type TFormRegisterValues = z.infer<typeof formRegisterSchema>;
+export type TFormVerifyValues = z.infer<typeof verifyFormSchema>;

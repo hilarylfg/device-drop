@@ -1,6 +1,6 @@
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
-import { Button } from '@/shared/components/ui'; // Предполагается, что у вас есть UI-компоненты
+import { Button } from '@/shared/components/ui';
 import { TFormRegisterValues, formRegisterSchema } from './schemas';
 import { zodResolver } from '@hookform/resolvers/zod';
 import toast from 'react-hot-toast';
@@ -9,10 +9,10 @@ import { CircleCheck, CircleAlert } from 'lucide-react';
 import { registerUser } from '@/app/actions';
 
 interface Props {
-    onClose?: VoidFunction;
+    onSuccess?: () => void;
 }
 
-export function RegisterForm({ onClose }: Props) {
+export function RegisterForm({ onSuccess }: Props) {
     const form = useForm<TFormRegisterValues>({
         resolver: zodResolver(formRegisterSchema),
         defaultValues: {
@@ -35,7 +35,8 @@ export function RegisterForm({ onClose }: Props) {
             toast.success('Регистрация успешна 📝. Подтвердите свою почту', {
                 icon: <CircleCheck className="text-green-500" />,
             });
-            onClose?.();
+
+            onSuccess?.();
         } catch (e) {
             const errorMessage = e instanceof Error ? e.message : 'Что-то пошло не так';
             toast.error(errorMessage, {
