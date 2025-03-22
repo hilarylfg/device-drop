@@ -146,17 +146,19 @@ label {
   cursor: pointer;
 }
 
-/**
-  Приводим к единому цвету svg-элементы
- */
-[fill] { fill: currentColor }
-[stroke] { stroke: currentColor }
+// Приводим к единому цвету SVG-элементы, кроме тех, что внутри .truckWrapper
+svg:not(.truckWrapper *) {
+  [fill] {
+    fill: currentColor;
+  }
+  [stroke] {
+    stroke: currentColor;
+  }
 
-/**
-  Чиним баг задержки смены цвета при взаимодействии с svg-элементами
- */
-svg * {
-  transition-property: fill, stroke;
+  // Чиним баг задержки смены цвета при взаимодействии с SVG-элементами
+  * {
+    transition-property: fill, stroke;
+  }
 }
 
 /**

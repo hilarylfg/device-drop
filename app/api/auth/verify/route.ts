@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { verifyCodeLogic } from '@/app/actions';
-import {signIn} from "next-auth/react";
 
 export async function GET(req: NextRequest) {
     try {
@@ -8,11 +7,10 @@ export async function GET(req: NextRequest) {
         const result = await verifyCodeLogic(code || '');
 
         if (result.success) {
-            await signIn('credentials', {
+            return NextResponse.json({
+                success: true,
                 authToken: result.authToken,
-                redirect: false,
             });
-            return NextResponse.redirect(new URL('/?verified', req.url));
         }
     } catch (error) {
         console.log('[VERIFY_GET] Server error', error);

@@ -143,21 +143,13 @@ label {
   cursor: pointer;
 }
 
-/**
-  Приводим к единому цвету svg-элементы
- */
-[fill] {
+svg:not(.truckWrapper *) [fill] {
   fill: currentColor;
 }
-
-[stroke] {
+svg:not(.truckWrapper *) [stroke] {
   stroke: currentColor;
 }
-
-/**
-  Чиним баг задержки смены цвета при взаимодействии с svg-элементами
- */
-svg * {
+svg:not(.truckWrapper *) * {
   transition-property: fill, stroke;
 }
 
@@ -675,6 +667,7 @@ button[aria-label] {
 }
 
 .input-otp-group {
+  margin-top: 15px;
   display: flex;
   align-items: center;
 }
@@ -780,6 +773,142 @@ button[aria-label] {
   margin-right: 10px;
 }
 
+.verify-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 69vh;
+}
+.verify-page__loader {
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.verify-page .truckWrapper {
+  width: 600px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  align-items: center;
+  justify-content: flex-end;
+  overflow-x: hidden;
+}
+.verify-page .truckBody {
+  width: 390px;
+  height: fit-content;
+  margin-bottom: 18px;
+  animation: motion 1s linear infinite;
+}
+.verify-page .truckBody .trucksvg.cab {
+  fill: #DFDFDF;
+  stroke: #282828;
+}
+.verify-page .truckBody .trucksvg.cargo-area {
+  fill: #F83D3D;
+  stroke: #282828;
+}
+.verify-page .truckBody .trucksvg.window {
+  fill: #7D7C7C;
+  stroke: #282828;
+}
+.verify-page .truckBody .trucksvg.wheel-hub {
+  fill: #282828;
+  stroke: #282828;
+}
+.verify-page .truckBody .trucksvg.headlight {
+  fill: #FFFCAB;
+  stroke: #282828;
+}
+.verify-page .truckBody .trucksvg.exhaust {
+  fill: #282828;
+  stroke: #282828;
+}
+.verify-page .truckBody .trucksvg.cab-detail {
+  fill: #DFDFDF;
+  stroke: #282828;
+}
+.verify-page .truckTires {
+  width: 390px;
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30px 0 45px;
+  position: absolute;
+  bottom: 0;
+}
+.verify-page .truckTires .tiresvg {
+  width: 60px;
+}
+.verify-page .truckTires .tiresvg.tire-outer {
+  color: #282828;
+  stroke: #282828;
+}
+.verify-page .truckTires .tiresvg.tire-inner {
+  color: #DFDFDF;
+}
+.verify-page .road {
+  width: 100%;
+  height: 1.5px;
+  background-color: #282828;
+  position: relative;
+  bottom: 0;
+  align-self: flex-end;
+  border-radius: 3px;
+}
+.verify-page .road::before {
+  content: "";
+  position: absolute;
+  width: 60px;
+  height: 100%;
+  background-color: #282828;
+  right: -150%;
+  border-radius: 9px;
+  animation: roadAnimation 1.4s linear infinite;
+  border-left: 30px solid white;
+}
+.verify-page .road::after {
+  content: "";
+  position: absolute;
+  width: 30px;
+  height: 100%;
+  background-color: #282828;
+  right: -195%;
+  border-radius: 9px;
+  animation: roadAnimation 1.4s linear infinite;
+  border-left: 12px solid white;
+}
+.verify-page .lampPost {
+  position: absolute;
+  bottom: 0;
+  right: -270%;
+  height: 270px;
+  animation: roadAnimation 3.8s linear infinite;
+}
+
+@keyframes motion {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(9px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+@keyframes roadAnimation {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-2450px);
+  }
+}
 .logo__block {
   display: flex;
   align-items: center;
@@ -917,6 +1046,9 @@ button[aria-label] {
 .header .button-block__button svg.lucide-circle-user, .header .button-block__button svg.lucide-log-in {
   margin-right: 0.3125rem;
 }
+.header a.logo-link {
+  transition: all 200ms ease;
+}
 
 .navbar {
   display: flex;
@@ -992,6 +1124,9 @@ button[aria-label] {
 .top-bar .categories__list__item.active {
   background: var(--color-accent);
   color: var(--color-light);
+}
+.top-bar a {
+  cursor: pointer;
 }
 .top-bar .categories__list.sticky {
   margin-left: 180px;
@@ -1547,9 +1682,6 @@ button[aria-label] {
   display: flex;
   flex-direction: column;
   font-size: 1.125rem;
-}
-.auth-form__input-code {
-  margin-top: 15px;
 }
 .auth-form__submit-button {
   background: var(--color-accent);

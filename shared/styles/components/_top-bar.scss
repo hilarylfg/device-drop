@@ -27,6 +27,7 @@
     display: flex;
     align-items: center;
     position: relative;
+
     .categories__list {
         display: inline-flex;
         background: var(--color-input-background);
@@ -55,6 +56,10 @@
             background: var(--color-accent);
             color: var(--color-light);
         }
+    }
+
+    a {
+        cursor: pointer;
     }
 
     .categories__list.sticky {

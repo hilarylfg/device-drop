@@ -3,8 +3,8 @@
 import {AuthModal, Button, Container, Logo, Navbar, ProfileButton, SearchInput} from "@/shared/components";
 import {Heart, ShoppingCart} from "lucide-react";
 import Link from "next/link";
-import {useRouter, useSearchParams } from "next/navigation";
-import {useEffect, useState } from "react";
+import {useRouter, useSearchParams} from "next/navigation";
+import {useEffect, useState} from "react";
 import toast from "react-hot-toast";
 
 export function Header() {
@@ -35,7 +35,9 @@ export function Header() {
             <Navbar/>
             <Container>
                 <header className="header" id="header">
-                    <Logo/>
+                    <Link className="logo-link" href="/">
+                        <Logo/>
+                    </Link>
                     <SearchInput/>
                     <div className="button-block">
                         <AuthModal open={openAuthModal} onClose={() => setOpenAuthModal(false)}/>

@@ -57,7 +57,8 @@ export async function registerUser(body: Prisma.UserCreateInput) {
         await sendEmail(
             createdUser.email,
             'DeviceDrop / 📝 Подтверждение регистрации',
-            `Ваш код: ${code}`
+            `Ваш код: ${code} \n` +
+            `http://localhost:3000/verify?code=${code}`
         );
     } catch (err) {
         console.log('Error [CREATE_USER]', err);
