@@ -1,0 +1,31 @@
+@use '../helpers/index' as *;
+
+.price-block {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    &__price {
+        font-size: rem(24);
+    }
+
+    &__sale {
+        font-size: 15px;
+        color: gray;
+        position: relative;
+    }
+
+    &__discount {
+        font-size: rem(12);
+        color: var(--color-light);
+
+        &-wrapper {
+            position: absolute;
+            top: -25px;
+            right: -70%;
+            background: #ff4444;
+            padding: 2px 4px;
+            border-radius: 10px 10px 10px 0;
+        }
+    }
+}

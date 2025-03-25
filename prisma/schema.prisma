@@ -1,12 +1,3 @@
-// Возможные характеристики:
-// Общие: weight, dimensions, warranty, material
-// Мыши: sensor, switchType, battery, connectionType, pollingRate, mcu
-// Клавиатуры: swithes, switchType, keyCount, percentFormat, connectionType
-// Коврики: surfaceType, size, thickness, baseMaterial
-// Наушники: driverSize, frequencyRange, microphone, connectionType, impedance
-// Мониторы: screenSize, martrixType, resolution, refreshRate, responseTime
-// Игровые кресла: maxWeight, upholsteryMaterial, armrestAdjustment, backrestTilt
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -50,10 +41,9 @@ model Category {
 model Product {
   id Int @id @default(autoincrement())
 
-  name            String
-  description     String
-  brand           String
-  characteristics Json
+  name        String
+  description String
+  brand       String
 
   variants ProductVariant[]
 
@@ -64,18 +54,35 @@ model Product {
   updatedAt DateTime @updatedAt
 }
 
+model Color {
+  id       Int              @id @default(autoincrement())
+  hex      String           @unique
+  nameRu   String
+  nameEn   String?
+  variants ProductVariant[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
 model ProductVariant {
   id Int @id @default(autoincrement())
 
-  color    String
-  price    Int
-  stock    Int
-  imageUrl String
+  color   Color @relation(fields: [colorId], references: [id])
+  colorId Int
+
+  price     Int
+  salePrice Int?
+  stock     Int
+  imageUrl  String
 
   product   Product @relation(fields: [productId], references: [id])
   productId Int
 
   cartItems CartItem[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Cart {

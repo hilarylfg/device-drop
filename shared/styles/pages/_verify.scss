@@ -4,7 +4,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 69vh;
+    min-height: 69vh;
 
     &__loader {
         width: fit-content;

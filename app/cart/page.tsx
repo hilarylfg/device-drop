@@ -2,10 +2,15 @@ import {Container} from "@/shared/components";
 
 export default function Cart() {
     return (
-        <main>
-            <Container>
-                Cart
-            </Container>
-        </main>
+        <Container>
+            <main className="cart-page">
+                <div>
+
+                </div>
+                <div>
+
+                </div>
+            </main>
+        </Container>
     );
 }

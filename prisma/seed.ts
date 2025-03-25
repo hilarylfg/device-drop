@@ -1,6 +1,6 @@
 import { prisma } from './prisma-client';
 import { seedUsers } from './users';
-import { seedCategories } from './categories';
+import {seedCategories, seedColors} from './categories-colors';
 import { seedProducts } from './products';
 
 async function down() {
@@ -10,12 +10,14 @@ async function down() {
     await prisma.$executeRaw`TRUNCATE TABLE "ProductVariant" RESTART IDENTITY CASCADE`;
     await prisma.$executeRaw`TRUNCATE TABLE "Cart" RESTART IDENTITY CASCADE`;
     await prisma.$executeRaw`TRUNCATE TABLE "CartItem" RESTART IDENTITY CASCADE`;
+    await prisma.$executeRaw`TRUNCATE TABLE "Color" RESTART IDENTITY CASCADE`;
 }
 
 async function main() {
     try {
         await down();
 
+        await seedColors()
         await seedUsers();
         await seedCategories();
         await seedProducts();

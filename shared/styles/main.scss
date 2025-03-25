@@ -18,6 +18,7 @@
 @use 'pages/home';
 @use 'pages/work';
 @use 'pages/verify';
+@use 'pages/cart';
 
 @use 'components/logo';
 @use 'components/search-input';
@@ -37,3 +38,4 @@
 @use 'components/forms/auth-form';
 @use 'components/form-input';
 @use 'components/forms/multi-step-job-form';
+@use 'components/price-block';

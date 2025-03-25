@@ -3,24 +3,30 @@
 import {Heart, PackagePlus} from "lucide-react";
 import {cn} from "@/shared/lib/utils";
 import {useState} from "react";
-import {Button, Skeleton} from "@/shared/components";
+import {Button, PriceBlock, Skeleton} from "@/shared/components";
 import Link from "next/link";
 
 interface ProductCardProps {
     id?: number;
     price?: number;
+    originalPrice?: number;
     description: string;
     name: string;
     imageUrl?: string;
 }
 
-export function ProductCard({price, description, name, imageUrl, id}: ProductCardProps) {
+export function ProductCard({price, originalPrice, description, name, imageUrl, id}: ProductCardProps) {
     const [isFavorite, setIsFavorite] = useState(false);
 
     return (
         <div className="product-card">
             <Link href={`/product/${id}`}>
                 <div className="product-card__image">
+                    {originalPrice && price !== undefined &&
+                        <div className="product-card__image__pin-sale">
+                            -{Math.round(((originalPrice - price) / originalPrice) * 100)}%
+                        </div>
+                    }
                     <Heart
                         onClick={(e) => {
                             e.preventDefault();
@@ -42,14 +48,14 @@ export function ProductCard({price, description, name, imageUrl, id}: ProductCar
                 <p className="product-card__description">{description}</p>
             </Link>
             <div className="product-card__footer">
-                <h3 className="product-card__footer__price">{price?.toLocaleString("ru-RU") + " ₽"}</h3>
+                <PriceBlock className="product-card__footer__price" price={price} originalPrice={originalPrice}/>
                 <Button><PackagePlus/>Добавить</Button>
             </div>
         </div>
     )
 }
 
-export function ProductCardSkeleton() {
+export function ProductCardSkeleton({isSimilar = false}: { isSimilar?: boolean }) {
     return (
         <div className="product-card--skeleton">
             <div className="product-card__image--skeleton">
@@ -57,7 +63,7 @@ export function ProductCardSkeleton() {
             </div>
             <Skeleton className="product-card__title--skeleton"/>
             <div className="product-card__description--skeleton">
-                {Array(5).fill(0).map((_, index) => (
+                {Array(isSimilar ? 6 : 5).fill(0).map((_, index) => (
                     <Skeleton key={index} className="product-card__description--skeleton--content"/>
                 ))}
             </div>

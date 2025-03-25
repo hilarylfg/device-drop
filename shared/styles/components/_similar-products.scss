@@ -12,109 +12,20 @@
 
     &__list {
         display: flex;
-        gap: rem(15);
+        justify-content: space-between;
+        gap: rem(40);
 
-        &__item {
-            width: rem(308);
-            background: var(--color-input-background);
-            padding: rem(20);
-            border-radius: rem(15);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            &-keyboard {
-                width: rem(308);
-                background: var(--color-input-background);
-                flex-direction: column;
-                justify-content: center;
-                padding: rem(20);
-                border-radius: rem(15);
-            }
-        }
-
-        &__info {
-            display: flex;
-            flex-direction: column;
-
-            &-keyboard {
-                margin-top: rem(8);
-                display: flex;
-                align-items: center;
+        .product-card {
+            .price-block__discount-wrapper {
+                display: none;
             }
 
-            &__price {
-                width: fit-content;
-                font-weight: 700;
-
-                &--skeleton {
-                    width: 56px;
-                    height: 24px;
-                }
-
-                &-keyboard {
-                    margin-left: auto;
-
-                    &--skeleton {
-                        margin-left: auto;
-                        width: 60px;
-                        height: 25px;
-                    }
-                }
+            h3 {
+                font-size: rem(22);
             }
 
-            &__title {
-                width: rem(140);
-                margin-bottom: rem(10);
-
-                &--skeleton {
-                    width: rem(140);
-                    height: rem(56);
-                    margin-bottom: rem(10);
-                }
-
-                &-keyboard {
-                    width: auto;
-
-                    &--skeleton {
-                        width: rem(90);
-                        height: rem(30);
-                    }
-                }
-            }
-        }
-
-        &__image {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-right: rem(30);
-            width: rem(80);
-
-            img {
-                max-width: rem(80);
-                max-height: rem(180);
-            }
-
-            &--skeleton {
-                width: rem(80);
-                height: rem(150);
-                margin-right: rem(10);
-            }
-
-            &-keyboard {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                margin-right: rem(10);
-                height: rem(120);
-
-                &--skeleton {
-                    margin-top: rem(5);
-                    width: 100%;
-                    height: rem(85);
-                    margin-bottom: rem(15);
-                }
+            h4 {
+                font-size: rem(13);
             }
         }
     }

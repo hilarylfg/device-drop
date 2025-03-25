@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/prisma/prisma-client";
 
-export async function GET(request : Request, { params }: { params: Promise<{ id: string }>}) {
+export async function GET(request: Request, { params }: { params: Promise<{ id: string }> }) {
     try {
         const { id } = await params;
         const productId = Number(id);
@@ -10,26 +10,20 @@ export async function GET(request : Request, { params }: { params: Promise<{ id:
             where: { id: productId },
             include: {
                 category: true,
-                variants: { orderBy: { price: 'asc' }, take: 1 },
+                variants: true,
             },
         });
 
         if (!currentProduct) {
-            return NextResponse.json(
-                { error: "Product not found" },
-                { status: 404 }
-            );
+            return NextResponse.json({ error: "Product not found" }, { status: 404 });
         }
 
         if (!currentProduct.variants.length) {
-            return NextResponse.json(
-                { error: "Product has no variants" },
-                { status: 400 }
-            );
+            return NextResponse.json({ error: "Product has no variants" }, { status: 400 });
         }
 
         const priceRange = 2000;
-        const basePrice = currentProduct.variants[0].price;
+        const basePrice = Math.min(...currentProduct.variants.map(v => v.salePrice ?? v.price));
 
         let similarProducts = await prisma.product.findMany({
             where: {
@@ -39,17 +33,20 @@ export async function GET(request : Request, { params }: { params: Promise<{ id:
                     {
                         variants: {
                             some: {
-                                price: {
-                                    gte: basePrice - priceRange,
-                                    lte: basePrice + priceRange,
-                                },
+                                OR: [
+                                    { salePrice: { gte: basePrice - priceRange, lte: basePrice + priceRange } },
+                                    {
+                                        salePrice: null,
+                                        price: { gte: basePrice - priceRange, lte: basePrice + priceRange },
+                                    },
+                                ],
                             },
                         },
                     },
                 ],
             },
             include: {
-                variants: { orderBy: { price: 'asc' }, take: 1 },
+                variants: true,
             },
             take: 4,
         });
@@ -63,13 +60,12 @@ export async function GET(request : Request, { params }: { params: Promise<{ id:
                     categoryId: currentProduct.categoryId,
                 },
                 include: {
-                    variants: { orderBy: { price: 'asc' }, take: 1 },
+                    variants: true,
                 },
                 take: 4 - similarCount,
             });
 
             const uniqueProductIds = new Set(similarProducts.map(product => product.id));
-
             const filteredAdditionalProducts = additionalProducts.filter(
                 product => !uniqueProductIds.has(product.id)
             );
@@ -84,7 +80,7 @@ export async function GET(request : Request, { params }: { params: Promise<{ id:
                         categoryId: currentProduct.categoryId,
                     },
                     include: {
-                        variants: { orderBy: { price: 'asc' }, take: 1 },
+                        variants: true,
                     },
                     take: additionalNeeded,
                 });
@@ -96,9 +92,6 @@ export async function GET(request : Request, { params }: { params: Promise<{ id:
         return NextResponse.json(similarProducts);
     } catch (error) {
         console.error("Error fetching similar products:", error);
-        return NextResponse.json(
-            { error: "Internal server error" },
-            { status: 500 }
-        );
+        return NextResponse.json({ error: "Internal server error" }, { status: 500 });
     }
 }

@@ -19,6 +19,7 @@ export {Providers} from "./providers";
 export {ErrorText} from "./error-text";
 export {RequiredSymbol} from "./required-symbol";
 export {ClearButton} from "./clear-button";
+export {PriceBlock} from "./price-block";
 export {GoogleIcon} from "./icons";
 export {GithubIcon} from "./icons";
 

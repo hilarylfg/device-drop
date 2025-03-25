@@ -9,7 +9,11 @@ export type ProductWithRelations = Prisma.ProductGetPayload<{
 export type ProductWithAllRelations = Prisma.ProductGetPayload<{
     include: {
         category: true,
-        variants: true,
+        variants: {
+            include: {
+                color: true
+            }
+        }
     },
 }>
 
