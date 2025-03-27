@@ -1,5 +1,5 @@
 import { prisma } from './prisma-client';
-import { hashSync } from 'bcrypt';
+import { hashSync } from 'bcryptjs';
 
 export async function seedUsers() {
     await prisma.user.createMany({

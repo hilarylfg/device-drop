@@ -1,7 +1,7 @@
 "use client";
 
 import {cn} from "@/shared/lib/utils";
-import {useCategoryStore} from "@/shared/stores/category";
+import {useCategoryStore} from "@/shared/stores";
 import {usePathname, useRouter, useSearchParams} from "next/navigation";
 import {useEffect} from "react";
 import {scroller} from "react-scroll";

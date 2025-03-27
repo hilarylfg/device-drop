@@ -2,8 +2,8 @@
 
 import {prisma} from "@/prisma/prisma-client";
 import { Prisma } from "@prisma/client";
-import {sendEmail} from "@/shared/lib/send-email";
-import {hashSync} from "bcrypt";
+import {sendEmail} from "@/shared/lib";
+import {hashSync} from "bcryptjs";
 import {cookies} from "next/headers";
 import {randomUUID} from "node:crypto";
 import { sign } from "jsonwebtoken";

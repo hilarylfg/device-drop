@@ -1,6 +1,6 @@
 import { ProfileForm } from "@/shared/components";
 import { redirect } from "next/navigation";
-import {getUserSession} from "@/shared/lib/get-user-session";
+import {getUserSession} from "@/shared/lib";
 
 export default async function ProfilePage() {
     const session = await getUserSession();

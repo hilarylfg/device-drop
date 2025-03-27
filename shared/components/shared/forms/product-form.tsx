@@ -2,7 +2,7 @@
 
 import {useState} from "react";
 import {ProductWithAllRelations} from "@/@types/prisma";
-import {cn, findCheapestVariant} from "@/shared/lib/utils";
+import {cn, findCheapestVariant} from "@/shared/lib";
 import {Button, PriceBlock, Progress, SimilarProducts} from "@/shared/components";
 import {PackagePlus} from "lucide-react";
 

@@ -2,15 +2,15 @@
 
 import {ProductCard, Skeleton} from "@/shared/components";
 import {useEffect, useMemo, useRef} from "react";
-import {ProductWithRelations} from "@/@types/prisma";
+import {ProductWithAllRelations} from "@/@types/prisma";
 import {useIntersection} from "react-use";
-import {useCategoryStore} from "@/shared/stores/category";
+import {useCategoryStore} from "@/shared/stores";
 import {ProductCardSkeleton} from "@/shared/components/shared/product-card";
 import { findCheapestVariant } from "@/shared/lib/utils";
 
 interface ProductGroupListProps {
     title?: string
-    products: ProductWithRelations[]
+    products: ProductWithAllRelations[]
     categoryLink: string
     categoryId: number;
 }

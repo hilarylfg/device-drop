@@ -2,8 +2,8 @@
 
 import {Api} from "@/shared/services/api-client";
 import {useEffect, useMemo, useState} from "react";
-import {ProductWithRelations} from "@/@types/prisma";
-import {findCheapestVariant} from "@/shared/lib/utils";
+import {ProductWithAllRelations} from "@/@types/prisma";
+import {findCheapestVariant} from "@/shared/lib";
 import {ProductCard} from "@/shared/components";
 import {ProductCardSkeleton} from "@/shared/components/shared/product-card";
 
@@ -12,7 +12,7 @@ interface SimilarProductsProps {
 }
 
 export const SimilarProducts = ({productId}: SimilarProductsProps) => {
-    const [products, setProducts] = useState<ProductWithRelations[]>([]);
+    const [products, setProducts] = useState<ProductWithAllRelations[]>([]);
     const [isLoading, setIsLoading] = useState(true);
 
     const productCardsData = useMemo(() => {
@@ -39,7 +39,7 @@ export const SimilarProducts = ({productId}: SimilarProductsProps) => {
             try {
                 setIsLoading(true);
                 const response = await Api.products.similar(productId);
-                setProducts(response as ProductWithRelations[]);
+                setProducts(response as ProductWithAllRelations[]);
             } catch (e) {
                 console.error("Error: ", e);
             } finally {

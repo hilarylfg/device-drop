@@ -22,6 +22,29 @@ async function main() {
         await seedCategories();
         await seedProducts();
 
+        await prisma.cart.createMany({
+            data: [
+                {
+                    userId: 1,
+                    totalAmount: 0,
+                    token: '11111',
+                },
+                {
+                    userId: 2,
+                    totalAmount: 0,
+                    token: '222222',
+                },
+            ],
+        });
+
+        await prisma.cartItem.create({
+            data: {
+                productVariantId: 1,
+                cartId: 1,
+                quantity: 2,
+            },
+        });
+
         console.log('Сидирование завершено успешно!');
     } catch (e) {
         console.error('Ошибка при сидировании:', e);

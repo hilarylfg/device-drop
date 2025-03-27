@@ -3,7 +3,7 @@ import GitHubProvider from 'next-auth/providers/github';
 import GoogleProvider from 'next-auth/providers/google';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { prisma } from '@/prisma/prisma-client';
-import { compare, hashSync } from "bcrypt";
+import { compare, hashSync } from "bcryptjs";
 import { UserRole } from "@prisma/client";
 import { verify } from 'jsonwebtoken';
 
@@ -95,7 +95,6 @@ export const authConfig: AuthOptions = {
     callbacks: {
         async signIn({ user, account }) {
             if (account?.provider === 'credentials' && typeof account.authToken === 'string') {
-                // Уже обработано в authorize, просто возвращаем true
                 return true;
             }
 
