@@ -8,7 +8,7 @@ export type CartStateItem = {
     imageUrl: string;
     price: number;
     colorId: number;
-    salePrice?: number;
+    salePrice?: number | null;
     disabled?: boolean;
 };
 
@@ -21,11 +21,11 @@ export const getCartDetails = (data: CartDTO): ReturnProps => {
     const items = data.items.map((item) => ({
         id: item.id,
         quantity: item.quantity,
-        name: item.productItem.product.name,
-        imageUrl: item.productItem.imageUrl,
+        name: item.productVariant.product.name,
+        imageUrl: item.productVariant.imageUrl,
         price: calcCartItemTotalPrice(item),
-        salePrice: item.productItem.salePrice || null,
-        colorId: item.productItem.colorId,
+        salePrice: item.productVariant.salePrice || null,
+        colorId: item.productVariant.colorId,
         disabled: false,
     })) as CartStateItem[];
 
