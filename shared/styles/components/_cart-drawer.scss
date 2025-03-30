@@ -1,0 +1,12 @@
+.cart-drawer {
+    &__not-found {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        svg {
+            color: var(--color-accent);
+        }
+    }
+}

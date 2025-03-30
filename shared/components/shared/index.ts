@@ -21,6 +21,9 @@ export {RequiredSymbol} from "./required-symbol";
 export {ClearButton} from "./clear-button";
 export {PriceBlock} from "./price-block";
 export {CartDrawer} from "./cart-drawer";
+export {CartDrawerItem} from "./cart-drawer-item";
+export {CountButton} from "./count-button/count-button";
+export {CountButtonIcons} from "./count-button/count-button-icons";
 export {GoogleIcon} from "./icons";
 export {GithubIcon} from "./icons";
 
