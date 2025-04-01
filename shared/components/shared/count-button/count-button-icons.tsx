@@ -3,14 +3,14 @@ import { CountButtonProps } from './count-button';
 import { cn } from '@/shared/lib/utils';
 import {Button} from "@/shared/components";
 
-interface ountButtonIconsProps {
+interface countButtonIconsProps {
     size?: CountButtonProps['size'];
     disabled?: boolean;
     type?: 'plus' | 'minus';
     onClick?: () => void;
 }
 
-export const CountButtonIcons: React.FC<ountButtonIconsProps> = ({
+export const CountButtonIcons: React.FC<countButtonIconsProps> = ({
                                                                size = 'sm',
                                                                disabled,
                                                                type,

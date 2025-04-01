@@ -2,15 +2,25 @@
 
 import {ProductCard, Skeleton} from "@/shared/components";
 import {useEffect, useMemo, useRef} from "react";
-import {ProductWithAllRelations} from "@/@types/prisma";
 import {useIntersection} from "react-use";
 import {useCategoryStore} from "@/shared/stores";
 import {ProductCardSkeleton} from "@/shared/components/shared/product-card";
 import { findCheapestVariant } from "@/shared/lib/utils";
+import {Prisma} from "@prisma/client";
+
+export type ProductsType = Prisma.ProductGetPayload<{
+    include: {
+        variants: {
+            include: {
+                color: true
+            }
+        }
+    },
+}>
 
 interface ProductGroupListProps {
     title?: string
-    products: ProductWithAllRelations[]
+    products: ProductsType[]
     categoryLink: string
     categoryId: number;
 }

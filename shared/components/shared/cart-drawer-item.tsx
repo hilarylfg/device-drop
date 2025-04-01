@@ -33,7 +33,7 @@ export const CartDrawerItem: React.FC<Props> = ({
                 'cart-drawer__item', {'cart-drawer__item--disabled': disabled},
                 className,
             )}>
-            <img className={cn('cart-drawer__item__image', className)} src={imageUrl} alt=""/>;
+            <img className={cn('cart-drawer__item__image', className)} src={`/products/${imageUrl}`} alt=""/>
 
             <div className="flex-1">
                 <div>
@@ -49,7 +49,7 @@ export const CartDrawerItem: React.FC<Props> = ({
                     <CountButton onClick={onClickCountButton} value={quantity} />
 
                     <div className="flex items-center gap-3">
-                        <h2 className={cn('font-bold', className)}>{price} ₽</h2>;
+                        <h2 className={cn('font-bold', className)}>{price} ₽</h2>
                         <Trash2Icon
                             onClick={onClickRemove}
                             className="text-gray-400 cursor-pointer hover:text-gray-600"

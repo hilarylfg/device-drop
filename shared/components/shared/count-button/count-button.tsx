@@ -1,6 +1,6 @@
 import { cn } from '@/shared/lib/utils';
 import React from 'react';
-import { CountIconButton } from './count-button-icons';
+import {CountButtonIcons} from "@/shared/components";
 
 export interface CountButtonProps {
     value?: number;
@@ -17,7 +17,7 @@ export const CountButton: React.FC<CountButtonProps> = ({
                                                         }) => {
     return (
         <div className={cn('inline-flex items-center justify-between gap-3', className)}>
-            <CountIconButton
+            <CountButtonIcons
                 onClick={() => onClick?.('minus')}
                 disabled={value === 1}
                 size={size}
@@ -26,7 +26,7 @@ export const CountButton: React.FC<CountButtonProps> = ({
 
             <b className={size === 'sm' ? 'text-sm' : 'text-md'}>{value}</b>
 
-            <CountIconButton onClick={() => onClick?.('plus')} size={size} type="plus" />
+            <CountButtonIcons onClick={() => onClick?.('plus')} size={size} type="plus" />
         </div>
     );
 };

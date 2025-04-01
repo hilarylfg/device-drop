@@ -21,7 +21,11 @@ export type CategoriesWithAllRelations = Prisma.CategoryGetPayload<{
     include: {
         products: {
             include: {
-                variants: true,
+                variants: {
+                    include: {
+                        color: true
+                    }
+                }
             },
         },
     },

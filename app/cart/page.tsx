@@ -5,9 +5,6 @@ export default function Cart() {
         <Container>
             <main className="cart-page">
                 <CartDrawer/>
-                <div>
-
-                </div>
             </main>
         </Container>
     );

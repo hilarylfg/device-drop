@@ -1,4 +1,9 @@
 .cart-drawer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
     &__not-found {
         display: flex;
         flex-direction: column;
