@@ -1,0 +1,39 @@
+.cart-drawer__item {
+    background: var(--color-input-background);
+    padding: 20px;
+    border-radius: 20px;
+    display: flex;
+    gap: 20px;
+    width: 860px;
+
+    &__hr {
+        margin: 4px 0;
+        border: 0;
+        height: 1px;
+        background: var(--color-hr-gray);
+    }
+
+    &__info {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        &__buttons {
+            margin-top: 8px;
+
+            &__trash {
+                cursor: pointer;
+            }
+        }
+        
+        &__count-buttons {
+            display: flex;
+            align-items: center;
+        }
+    }
+
+    img {
+        max-height: 80px;
+    }
+}

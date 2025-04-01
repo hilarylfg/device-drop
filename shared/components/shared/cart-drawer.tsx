@@ -42,7 +42,7 @@ export function CartDrawer() {
                 <div className="cart-drawer">
                     <div className="cart-drawer__items">
                         {items.map((item) => (
-                            <div key={item.id} className="mb-2">
+                            <div key={item.id}>
                                 <CartDrawerItem
                                     id={item.id}
                                     imageUrl={item.imageUrl}
@@ -58,7 +58,7 @@ export function CartDrawer() {
                             </div>
                         ))}
                     </div>
-                    <div className="w-full">
+                    <div className="cart-drawer__price-block">
                         <div className="flex mb-4">
                                 <span className="flex flex-1 text-lg text-neutral-500">
                                   Итого

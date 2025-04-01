@@ -106,9 +106,12 @@ button {
   color: inherit;
 }
 
-body,
-body[data-scroll-locked] {
+html {
   scrollbar-gutter: stable;
+}
+
+html, body {
+  --removed-body-scroll-bar-size: 0px !important;
 }
 
 /**

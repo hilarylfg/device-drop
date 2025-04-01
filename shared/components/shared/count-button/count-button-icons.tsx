@@ -21,14 +21,12 @@ export const CountButtonIcons: React.FC<countButtonIconsProps> = ({
             disabled={disabled}
             onClick={onClick}
             type="button"
-            className={cn(
-                'p-0 hover:bg-primary hover:text-white disabled:bg-white disabled:border-gray-400 disabled:text-gray-400',
-                size === 'sm' ? 'w-[30px] h-[30px] rounded-[10px]' : 'w-[38px] h-[38px] rounded-md',
+            className={cn(size === 'sm' ? 'count-button-small' : 'count-button-large',
             )}>
             {type === 'plus' ? (
-                <Plus className={size === 'sm' ? 'h-4' : 'h-5'} />
+                <Plus size={type === "plus" ? 16 : 20}/>
             ) : (
-                <Minus className={size === 'sm' ? 'h-4' : 'h-5'} />
+                <Minus size={type === "minus" ? 16 : 20}/>
             )}
         </Button>
     );

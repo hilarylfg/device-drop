@@ -16,7 +16,7 @@ export const CountButton: React.FC<CountButtonProps> = ({
                                                             size = 'sm',
                                                         }) => {
     return (
-        <div className={cn('inline-flex items-center justify-between gap-3', className)}>
+        <div className={cn('count-button__group', className)}>
             <CountButtonIcons
                 onClick={() => onClick?.('minus')}
                 disabled={value === 1}
