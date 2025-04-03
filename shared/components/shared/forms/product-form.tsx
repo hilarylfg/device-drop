@@ -5,18 +5,43 @@ import {ProductWithAllRelations} from "@/@types/prisma";
 import {cn, findCheapestVariant} from "@/shared/lib";
 import {Button, PriceBlock, Progress, SimilarProducts} from "@/shared/components";
 import {PackagePlus} from "lucide-react";
+import { addCartItem } from "@/shared/services/cart";
+import toast from "react-hot-toast";
 
 interface ProductFormProps {
     product: ProductWithAllRelations;
+    onSubmit?: () => void
 }
 
-export function ProductForm({product}: ProductFormProps) {
+export function ProductForm({product, onSubmit: _onSubmit}: ProductFormProps) {
     const cheapestVariant = findCheapestVariant(product.variants);
     const [selectedVariant, setSelectedVariant] = useState(cheapestVariant);
 
     const displayPrice = selectedVariant.salePrice ?? selectedVariant.price;
     const hasDiscount = selectedVariant.salePrice !== null && selectedVariant.salePrice < selectedVariant.price;
     const originalPrice = hasDiscount ? selectedVariant.price : undefined;
+
+    const [isLoading, setIsLoading] = useState(false);
+
+    const onSubmit = async (itemId: number) => {
+        try {
+            setIsLoading(true);
+            await addCartItem({productVariantId: itemId,});
+            toast.success(product.name + ' добавлена в корзину');
+            _onSubmit?.();
+        } catch (err) {
+            toast.error('Не удалось добавить товар в корзину');
+            console.error(err);
+        } finally {
+            setIsLoading(false)
+        }
+    }
+
+    const handleClickAdd = () => {
+        if (product.id) {
+            onSubmit(selectedVariant.id);
+        }
+    };
 
     return (
         <div className="product-page">
@@ -77,7 +102,7 @@ export function ProductForm({product}: ProductFormProps) {
                             </p>
                             <Progress className="product-page__price__progress" value={selectedVariant.stock}/>
                         </div>
-                        <Button className="product-page__price__button" disabled={selectedVariant.stock < 1}>
+                        <Button className="product-page__price__button" disabled={selectedVariant.stock < 1} loading={isLoading} onClick={handleClickAdd}>
                             <PackagePlus/>
                             Добавить
                         </Button>

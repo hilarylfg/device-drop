@@ -3,6 +3,12 @@
     display: flex;
     gap: 20px;
 
+    &__items {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
     &__price-block {
         background: var(--color-input-background);
         height: fit-content;

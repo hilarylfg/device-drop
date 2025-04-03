@@ -1,6 +1,6 @@
 "use client";
 
-import {Heart, PackagePlus} from "lucide-react";
+import {ArrowRight, Heart} from "lucide-react";
 import {cn} from "@/shared/lib/utils";
 import {useState} from "react";
 import {Button, PriceBlock, Skeleton} from "@/shared/components";
@@ -49,7 +49,7 @@ export function ProductCard({price, originalPrice, description, name, imageUrl, 
             </Link>
             <div className="product-card__footer">
                 <PriceBlock className="product-card__footer__price" price={price} originalPrice={originalPrice}/>
-                <Button><PackagePlus/>Добавить</Button>
+                <Link className="product-card__href" href={`/product/${id}`}><Button>Подробнее <ArrowRight/> </Button></Link>
             </div>
         </div>
     )

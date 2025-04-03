@@ -6,6 +6,16 @@
     gap: 20px;
     width: 860px;
 
+    &__block {
+        width: 420px;
+        display: flex;
+        align-items: center;
+
+        &__content {
+            width: 280px;
+        }
+    }
+
     &__hr {
         margin: 4px 0;
         border: 0;
@@ -14,7 +24,7 @@
     }
 
     &__info {
-        width: 100%;
+        width: 78%;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -33,7 +43,16 @@
         }
     }
 
-    img {
-        max-height: 80px;
+    &__image {
+        &__wrapper {
+            width: 160px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            img {
+                max-height: 80px;
+            }
+        }
     }
 }

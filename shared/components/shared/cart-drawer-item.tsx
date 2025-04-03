@@ -33,27 +33,31 @@ export const CartDrawerItem: React.FC<Props> = ({
                 'cart-drawer__item', {'cart-drawer__item--disabled': disabled},
                 className,
             )}>
-            <img className={cn('cart-drawer__item__image', className)} src={`/products/${imageUrl}`} alt=""/>
+            <div className='cart-drawer__item__image__wrapper'>
+                <img className={cn('cart-drawer__item__image', className)} src={`/products/${imageUrl}`} alt=""/>
+            </div>
 
             <div className="cart-drawer__item__info">
-                <div>
-                    <div className={cn('flex items-center justify-between', className)}>
-                        <h2 className="text-lg font-bold flex-1 leading-6">{name}</h2>
+                <div className="cart-drawer__item__block">
+                    <div className="cart-drawer__item__block__content">
+                        <div style={{width: 'fit-content'}}>
+                            <h2 className="cart-drawer__item__info__title">{name}</h2>
+                            {details && <p className="text-xs text-gray-400 w-[90%]">{details}</p>}
+                            <hr className="cart-drawer__item__hr"/>
+                            <div className="cart-drawer__item__info__buttons">
+                                <Trash2Icon
+                                    onClick={onClickRemove}
+                                    size={20}
+                                    className="cart-drawer__item__info__buttons__trash"
+                                />
+                            </div>
+                        </div>
                     </div>
-                    {details && <p className="text-xs text-gray-400 w-[90%]">{details}</p>}
-                    <hr className="cart-drawer__item__hr"/>
-                    <div className="cart-drawer__item__info__buttons">
-                        <Trash2Icon
-                            onClick={onClickRemove}
-                            size={20}
-                            className="cart-drawer__item__info__buttons__trash"
-                        />
-                    </div>
+                    <h2 className={cn('font-bold', className)}>{price} ₽</h2>
                 </div>
 
-                <h2 className={cn('font-bold', className)}>{price} ₽</h2>
-
-                <CountButton className="cart-drawer__item__info__count-buttons" onClick={onClickCountButton} value={quantity}/>
+                <CountButton className="cart-drawer__item__info__count-buttons" onClick={onClickCountButton}
+                             value={quantity}/>
             </div>
         </div>
     );
