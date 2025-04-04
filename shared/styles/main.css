@@ -790,133 +790,10 @@ button[aria-label] {
   align-items: center;
   justify-content: center;
 }
-.verify-page .truckWrapper {
-  width: 600px;
-  height: 300px;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  align-items: center;
-  justify-content: flex-end;
-  overflow-x: hidden;
-}
-.verify-page .truckBody {
-  width: 390px;
-  height: fit-content;
-  margin-bottom: 18px;
-  animation: motion 1s linear infinite;
-}
-.verify-page .truckBody .trucksvg.cab {
-  fill: #DFDFDF;
-  stroke: #282828;
-}
-.verify-page .truckBody .trucksvg.cargo-area {
-  fill: #F83D3D;
-  stroke: #282828;
-}
-.verify-page .truckBody .trucksvg.window {
-  fill: #7D7C7C;
-  stroke: #282828;
-}
-.verify-page .truckBody .trucksvg.wheel-hub {
-  fill: #282828;
-  stroke: #282828;
-}
-.verify-page .truckBody .trucksvg.headlight {
-  fill: #FFFCAB;
-  stroke: #282828;
-}
-.verify-page .truckBody .trucksvg.exhaust {
-  fill: #282828;
-  stroke: #282828;
-}
-.verify-page .truckBody .trucksvg.cab-detail {
-  fill: #DFDFDF;
-  stroke: #282828;
-}
-.verify-page .truckTires {
-  width: 390px;
-  height: fit-content;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 30px 0 45px;
-  position: absolute;
-  bottom: 0;
-}
-.verify-page .truckTires .tiresvg {
-  width: 60px;
-}
-.verify-page .truckTires .tiresvg.tire-outer {
-  color: #282828;
-  stroke: #282828;
-}
-.verify-page .truckTires .tiresvg.tire-inner {
-  color: #DFDFDF;
-}
-.verify-page .road {
-  width: 100%;
-  height: 1.5px;
-  background-color: #282828;
-  position: relative;
-  bottom: 0;
-  align-self: flex-end;
-  border-radius: 3px;
-}
-.verify-page .road::before {
-  content: "";
-  position: absolute;
-  width: 60px;
-  height: 100%;
-  background-color: #282828;
-  right: -150%;
-  border-radius: 9px;
-  animation: roadAnimation 1.4s linear infinite;
-  border-left: 30px solid white;
-}
-.verify-page .road::after {
-  content: "";
-  position: absolute;
-  width: 30px;
-  height: 100%;
-  background-color: #282828;
-  right: -195%;
-  border-radius: 9px;
-  animation: roadAnimation 1.4s linear infinite;
-  border-left: 12px solid white;
-}
-.verify-page .lampPost {
-  position: absolute;
-  bottom: 0;
-  right: -270%;
-  height: 270px;
-  animation: roadAnimation 3.8s linear infinite;
-}
 
-@keyframes motion {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(9px);
-  }
-  100% {
-    transform: translateY(0);
-  }
-}
-@keyframes roadAnimation {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-2450px);
-  }
-}
 .cart-page {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   min-height: 69vh;
 }
 
@@ -1734,10 +1611,22 @@ button[aria-label] {
   display: flex;
   gap: 20px;
 }
+.cart-drawer__loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 69vh;
+}
+.cart-drawer__length-title {
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
 .cart-drawer__items {
   display: flex;
   flex-direction: column;
-  gap: 15 px;
+  gap: 15px;
 }
 .cart-drawer__price-block {
   background: var(--color-input-background);
@@ -1824,6 +1713,140 @@ button[aria-label] {
 }
 .count-button-large__icon {
   width: 20px;
+}
+
+.truck-loader {
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.truck-loader__title {
+  font-size: 3.125rem;
+}
+.truck-loader .truckWrapper {
+  width: 600px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  align-items: center;
+  justify-content: flex-end;
+  overflow-x: hidden;
+}
+.truck-loader .truckBody {
+  width: 390px;
+  height: fit-content;
+  margin-bottom: 18px;
+  animation: motion 1s linear infinite;
+}
+.truck-loader .truckBody .trucksvg.cab {
+  fill: #DFDFDF;
+  stroke: #282828;
+}
+.truck-loader .truckBody .trucksvg.cargo-area {
+  fill: #F83D3D;
+  stroke: #282828;
+}
+.truck-loader .truckBody .trucksvg.window {
+  fill: #7D7C7C;
+  stroke: #282828;
+}
+.truck-loader .truckBody .trucksvg.wheel-hub {
+  fill: #282828;
+  stroke: #282828;
+}
+.truck-loader .truckBody .trucksvg.headlight {
+  fill: #FFFCAB;
+  stroke: #282828;
+}
+.truck-loader .truckBody .trucksvg.exhaust {
+  fill: #282828;
+  stroke: #282828;
+}
+.truck-loader .truckBody .trucksvg.cab-detail {
+  fill: #DFDFDF;
+  stroke: #282828;
+}
+.truck-loader .truckTires {
+  width: 390px;
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30px 0 45px;
+  position: absolute;
+  bottom: 0;
+}
+.truck-loader .truckTires .tiresvg {
+  width: 60px;
+}
+.truck-loader .truckTires .tiresvg.tire-outer {
+  color: #282828;
+  stroke: #282828;
+}
+.truck-loader .truckTires .tiresvg.tire-inner {
+  color: #DFDFDF;
+}
+.truck-loader .road {
+  width: 100%;
+  height: 1.5px;
+  background-color: #282828;
+  position: relative;
+  bottom: 0;
+  align-self: flex-end;
+  border-radius: 3px;
+}
+.truck-loader .road::before {
+  content: "";
+  position: absolute;
+  width: 60px;
+  height: 100%;
+  background-color: #282828;
+  right: -150%;
+  border-radius: 9px;
+  animation: roadAnimation 1.4s linear infinite;
+  border-left: 30px solid white;
+}
+.truck-loader .road::after {
+  content: "";
+  position: absolute;
+  width: 30px;
+  height: 100%;
+  background-color: #282828;
+  right: -195%;
+  border-radius: 9px;
+  animation: roadAnimation 1.4s linear infinite;
+  border-left: 12px solid white;
+}
+.truck-loader .lampPost {
+  position: absolute;
+  bottom: 0;
+  right: -270%;
+  height: 270px;
+  animation: roadAnimation 3.8s linear infinite;
+}
+
+@keyframes motion {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(9px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+@keyframes roadAnimation {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-2450px);
+  }
 }
 
 /*# sourceMappingURL=main.css.map */

@@ -1,7 +1,23 @@
+@use '../helpers/index' as *;
+
 .cart-drawer {
     width: 100%;
     display: flex;
     gap: 20px;
+
+    &__loader {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 69vh;
+    }
+
+    &__length-title {
+        margin-top: 30px;
+        display: flex;
+        align-items: center;
+        gap: rem(10);
+    }
 
     &__items {
         display: flex;
