@@ -1,11 +1,9 @@
-import {CartDrawer, Container} from "@/shared/components";
+import {CartDrawer} from "@/shared/components";
 
 export default function Cart() {
     return (
-        <Container>
-            <main className="cart-page">
-                <CartDrawer/>
-            </main>
-        </Container>
+        <main className="cart-page">
+            <CartDrawer/>
+        </main>
     );
 }

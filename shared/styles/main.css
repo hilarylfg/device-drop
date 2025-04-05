@@ -108,6 +108,7 @@ html {
 }
 
 html, body {
+  height: 100%;
   --removed-body-scroll-bar-size: 0px !important;
 }
 
@@ -120,11 +121,6 @@ html,
 }
 
 body {
-  /**
-    Пригодится в большинстве ситуаций
-    (когда, например, нужно будет "прижать" футер к низу сайта)
-   */
-  min-height: 100%;
   /**
     Унифицированный интерлиньяж
    */
@@ -780,7 +776,6 @@ button[aria-label] {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 69vh;
 }
 .verify-page__loader {
   width: fit-content;
@@ -794,7 +789,7 @@ button[aria-label] {
 .cart-page {
   display: flex;
   flex-direction: column;
-  min-height: 69vh;
+  flex-grow: 1;
 }
 
 .logo__block {
@@ -1615,10 +1610,10 @@ button[aria-label] {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 69vh;
+  margin: auto 0;
 }
 .cart-drawer__length-title {
-  margin-top: 30px;
+  margin: 30px 0;
   display: flex;
   align-items: center;
   gap: 0.625rem;
@@ -1637,6 +1632,7 @@ button[aria-label] {
 }
 .cart-drawer__not-found {
   display: flex;
+  margin: auto 0;
   flex-direction: column;
   align-items: center;
   justify-content: center;
