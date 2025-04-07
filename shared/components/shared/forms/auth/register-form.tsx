@@ -1,18 +1,18 @@
 import React from 'react';
-import { FormProvider, useForm } from 'react-hook-form';
-import { Button } from '@/shared/components/ui';
-import { TFormRegisterValues, formRegisterSchema } from './schemas';
-import { zodResolver } from '@hookform/resolvers/zod';
+import {FormProvider, useForm} from 'react-hook-form';
+import {Button} from '@/shared/components/ui';
+import {TFormRegisterValues, formRegisterSchema} from './schemas';
+import {zodResolver} from '@hookform/resolvers/zod';
 import toast from 'react-hot-toast';
-import { FormInput } from '@/shared/components';
-import { CircleCheck, CircleAlert } from 'lucide-react';
-import { registerUser } from '@/app/actions';
+import {FormInput} from '@/shared/components';
+import {CircleCheck, CircleAlert} from 'lucide-react';
+import {registerUser} from "@/shared/lib";
 
 interface Props {
     onSuccess?: () => void;
 }
 
-export function RegisterForm({ onSuccess }: Props) {
+export function RegisterForm({onSuccess}: Props) {
     const form = useForm<TFormRegisterValues>({
         resolver: zodResolver(formRegisterSchema),
         defaultValues: {
@@ -40,7 +40,7 @@ export function RegisterForm({ onSuccess }: Props) {
         } catch (e) {
             const errorMessage = e instanceof Error ? e.message : 'Что-то пошло не так';
             toast.error(errorMessage, {
-                icon: <CircleAlert className="text-red-500" />,
+                icon: <CircleAlert className="text-red-500"/>,
             });
         }
     };

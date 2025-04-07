@@ -6,6 +6,7 @@ import {signIn} from 'next-auth/react';
 import toast from 'react-hot-toast';
 import {CircleAlert} from 'lucide-react';
 import {TruckLoader} from "@/shared/components";
+import {verifyCodeLogic} from "@/shared/lib";
 
 export default function VerifyPage() {
     const router = useRouter();
@@ -20,16 +21,7 @@ export default function VerifyPage() {
 
     const verifyAndSignIn = async (code: string) => {
         try {
-            const response = await fetch(`/api/auth/verify?code=${code}`, {
-                method: 'GET',
-            });
-
-            if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(errorData.error || 'Ошибка верификации');
-            }
-
-            const result = await response.json();
+            const result = await verifyCodeLogic(code)
 
             if (result.success) {
                 const signInResult = await signIn('credentials', {

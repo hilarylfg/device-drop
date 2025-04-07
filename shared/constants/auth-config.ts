@@ -33,7 +33,7 @@ export const authConfig: AuthOptions = {
             credentials: {
                 email: { label: 'Email', type: 'email' },
                 password: { label: 'Password', type: 'password' },
-                authToken: { label: 'Auth Token', type: 'text', optional: true }, // Добавляем authToken как опциональный
+                authToken: { label: 'Auth Token', type: 'text', optional: true },
             },
             async authorize(credentials) {
                 if (credentials?.authToken) {

@@ -8,6 +8,7 @@ import React, { useEffect } from "react";
 import toast from "react-hot-toast";
 import { CircleAlert, CircleCheck } from "lucide-react";
 import {signIn} from "next-auth/react";
+import {verifyCodeLogic} from "@/shared/lib";
 
 export function VerifyForm({ onClose }: { onClose: () => void }) {
     const form = useForm<TFormVerifyValues>({
@@ -27,20 +28,7 @@ export function VerifyForm({ onClose }: { onClose: () => void }) {
         setIsLoading(true);
         setVerificationStatus('idle');
         try {
-            const response = await fetch('/api/auth/verify', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ code: data.code }),
-            });
-
-            if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(errorData.error || 'Ошибка верификации');
-            }
-
-            const result = await response.json();
+            const result = await verifyCodeLogic(data.code)
 
             await signIn('credentials', {
                 authToken: result.authToken,

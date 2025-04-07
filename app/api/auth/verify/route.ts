@@ -1,5 +1,5 @@
+import { verifyCodeLogic } from '@/shared/lib';
 import { NextRequest, NextResponse } from 'next/server';
-import { verifyCodeLogic } from '@/app/actions';
 
 export async function GET(req: NextRequest) {
     try {
