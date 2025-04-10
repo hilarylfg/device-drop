@@ -108,8 +108,12 @@ html {
 }
 
 html, body {
-  height: 100%;
+  min-height: 100%;
   --removed-body-scroll-bar-size: 0px !important;
+}
+
+body {
+  min-height: 100vh;
 }
 
 /**
