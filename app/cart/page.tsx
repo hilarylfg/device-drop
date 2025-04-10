@@ -1,12 +1,9 @@
-import { CartDrawer } from "@/shared/components";
-import { Suspense } from "react";
+import {CartDrawer} from "@/shared/components";
 
 export default function Cart() {
     return (
         <main className="cart-page">
-            <Suspense fallback={<div>Loading cart...</div>}>
-                <CartDrawer />
-            </Suspense>
+            <CartDrawer/>
         </main>
     );
 }
