@@ -29,6 +29,13 @@ export function LoginForm({onClose}: Props) {
                 redirect: false,
             });
 
+            if (resp?.status === 401) {
+                toast.error('Неправильный логин или пароль' , {
+                    icon: <CircleAlert/>,
+                });
+                return;
+            }
+
             if (!resp?.ok) {
                 throw Error();
             }
@@ -40,7 +47,7 @@ export function LoginForm({onClose}: Props) {
             onClose?.();
         } catch (error) {
             console.error('Error [LOGIN]', error);
-            toast.error('Не удалось войти в аккаунт', {
+            toast.error("Не удалось войти в аккаунт", {
                 icon: <CircleAlert/>,
             });
         }

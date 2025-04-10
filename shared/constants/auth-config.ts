@@ -2,8 +2,6 @@ import NextAuth, { AuthOptions } from 'next-auth';
 import GitHubProvider from 'next-auth/providers/github';
 import GoogleProvider from 'next-auth/providers/google';
 import CredentialsProvider from 'next-auth/providers/credentials';
-import { prisma } from '@/prisma/prisma-client';
-import { compare, hashSync } from "bcryptjs";
 import { UserRole } from "@prisma/client";
 
 const BACKEND_URL = process.env.BACKEND_URL || 'http://localhost:5295';
@@ -61,29 +59,34 @@ export const authConfig: AuthOptions = {
                     }
                 }
 
-                if (!credentials?.email || !credentials?.password) {
-                    return null;
+                if (credentials?.email && credentials?.password) {
+                    try {
+                        const response = await fetch(`${BACKEND_URL}/api/auth/login`, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                email: credentials.email,
+                                password: credentials.password,
+                            }),
+                        });
+                        if (!response.ok) {
+                            console.error('Login failed:', await response.text());
+                            return null;
+                        }
+                        const userData = await response.json();
+                        return {
+                            id: userData.id.toString(),
+                            email: userData.email,
+                            name: userData.firstName,
+                            role: userData.role,
+                        };
+                    } catch (err) {
+                        console.error('Error during login:', err);
+                        return null;
+                    }
                 }
 
-                const findUser = await prisma.user.findFirst({
-                    where: { email: credentials.email },
-                });
-
-                if (!findUser || !findUser.verified) {
-                    return null;
-                }
-
-                const isPasswordValid = await compare(credentials.password, findUser.password);
-                if (!isPasswordValid) {
-                    return null;
-                }
-
-                return {
-                    id: findUser.id.toString(),
-                    email: findUser.email,
-                    name: findUser.firstName,
-                    role: findUser.role,
-                };
+                return null;
             },
         }),
     ],
@@ -93,54 +96,30 @@ export const authConfig: AuthOptions = {
     },
     callbacks: {
         async signIn({ user, account }) {
-            if (account?.provider === 'credentials' && typeof account.authToken === 'string') {
-                return true;
-            }
-
-            try {
-                if (account?.provider === 'credentials') {
+            if (account?.provider === 'google' || account?.provider === 'github') {
+                try {
+                    const response = await fetch(`${BACKEND_URL}/api/auth/oauth`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            provider: account.provider,
+                            providerId: account.providerAccountId,
+                            email: user.email,
+                            name: user.name,
+                            image: user.image,
+                        }),
+                    });
+                    if (!response.ok) {
+                        console.error('Failed to sync user with backend:', await response.text());
+                        return false;
+                    }
                     return true;
-                }
-
-                if (!user.email) {
+                } catch (error) {
+                    console.error('Error during OAuth signIn:', error);
                     return false;
                 }
-
-                const findUser = await prisma.user.findFirst({
-                    where: {
-                        OR: [
-                            { provider: account?.provider, providerId: account?.providerAccountId },
-                            { email: user.email },
-                        ],
-                    },
-                });
-
-                if (findUser) {
-                    await prisma.user.update({
-                        where: { id: findUser.id },
-                        data: {
-                            provider: account?.provider,
-                            providerId: account?.providerAccountId,
-                        },
-                    });
-                    return true;
-                }
-
-                await prisma.user.create({
-                    data: {
-                        email: user.email,
-                        firstName: user.name || 'User #' + user.id,
-                        password: hashSync(user.id.toString(), 10),
-                        verified: new Date(),
-                        provider: account?.provider,
-                        providerId: account?.providerAccountId,
-                    },
-                });
-                return true;
-            } catch (error) {
-                console.error('Error [SIGNIN]', error);
-                return false;
             }
+            return true;
         },
         async jwt({ token, user }) {
             if (user) {
