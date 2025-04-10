@@ -40,6 +40,19 @@
         align-items: center;
         justify-content: center;
 
+        button {
+            svg {
+                margin-right: 8px;
+            }
+
+            &:hover {
+                svg {
+                    transition: all var(--transition-duration) ease;
+                    stroke: var(--color-light);
+                }
+            }
+        }
+
         svg {
             color: var(--color-accent);
         }

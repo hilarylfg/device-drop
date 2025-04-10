@@ -9,6 +9,7 @@ interface Props {
     details?: string;
     name: string;
     price: number;
+    isButtonLoading?: boolean;
     quantity: number;
     disabled?: boolean;
     onClickCountButton?: (type: 'plus' | 'minus') => void;
@@ -21,6 +22,7 @@ export const CartDrawerItem: React.FC<Props> = ({
                                                     name,
                                                     price,
                                                     quantity,
+                                                    isButtonLoading,
                                                     details,
                                                     disabled,
                                                     onClickCountButton,
@@ -42,7 +44,7 @@ export const CartDrawerItem: React.FC<Props> = ({
                     <div className="cart-drawer__item__block__content">
                         <div style={{width: 'fit-content'}}>
                             <h2 className="cart-drawer__item__info__title">{name}</h2>
-                            {details && <p className="text-xs text-gray-400 w-[90%]">{details}</p>}
+                            {details && <p className="">{details}</p>}
                             <hr className="cart-drawer__item__hr"/>
                             <div className="cart-drawer__item__info__buttons">
                                 <Trash2Icon
@@ -53,11 +55,11 @@ export const CartDrawerItem: React.FC<Props> = ({
                             </div>
                         </div>
                     </div>
-                    <h2 className={cn('font-bold', className)}>{price} ₽</h2>
+                    <h2 className={cn('', className)}>{price} ₽</h2>
                 </div>
 
                 <CountButton className="cart-drawer__item__info__count-buttons" onClick={onClickCountButton}
-                             value={quantity}/>
+                             value={quantity} loading={isButtonLoading}/>
             </div>
         </div>
     );

@@ -1112,6 +1112,10 @@ button[aria-label] {
   width: 19.375rem;
   display: flex;
   flex-direction: column;
+  transition: all var(--transition-duration) ease;
+}
+.product-card:hover .product-card__image {
+  background: rgba(2, 123, 255, 0.1);
 }
 .product-card--skeleton {
   height: 28.125rem;
@@ -1637,6 +1641,13 @@ button[aria-label] {
   align-items: center;
   justify-content: center;
 }
+.cart-drawer__not-found button svg {
+  margin-right: 8px;
+}
+.cart-drawer__not-found button:hover svg {
+  transition: all var(--transition-duration) ease;
+  stroke: var(--color-light);
+}
 .cart-drawer__not-found svg {
   color: var(--color-accent);
 }
@@ -1718,6 +1729,7 @@ button[aria-label] {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin: auto;
 }
 .truck-loader__title {
   font-size: 3.125rem;

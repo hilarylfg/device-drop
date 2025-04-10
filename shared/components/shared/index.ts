@@ -25,6 +25,7 @@ export {CartDrawerItem} from "./cart-drawer-item";
 export {CountButton} from "./count-button/count-button";
 export {CountButtonIcons} from "./count-button/count-button-icons";
 export {TruckLoader} from "./truck-loader";
+export {VerifyHandler} from "./verify-handler";
 export {GoogleIcon} from "./icons";
 export {GithubIcon} from "./icons";
 

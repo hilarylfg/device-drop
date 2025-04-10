@@ -5,7 +5,8 @@ import CredentialsProvider from 'next-auth/providers/credentials';
 import { prisma } from '@/prisma/prisma-client';
 import { compare, hashSync } from "bcryptjs";
 import { UserRole } from "@prisma/client";
-import { verify } from 'jsonwebtoken';
+
+const BACKEND_URL = process.env.BACKEND_URL || 'http://localhost:5295';
 
 const JWT_SECRET = process.env.NEXTAUTH_SECRET || 'your-secret-key';
 
@@ -38,26 +39,24 @@ export const authConfig: AuthOptions = {
             async authorize(credentials) {
                 if (credentials?.authToken) {
                     try {
-                        const decoded = verify(credentials.authToken, JWT_SECRET);
-                        if (typeof decoded !== 'object' || !decoded.id) {
-                            console.error('Invalid auth token structure');
-                            return null;
-                        }
-                        const user = await prisma.user.findUnique({
-                            where: { id: Number(decoded.id) },
+                        const response = await fetch(`${BACKEND_URL}/api/auth/verify-token`, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ authToken: credentials.authToken }),
                         });
-                        if (!user || !user.verified) {
-                            console.error('User not found or not verified');
+                        if (!response.ok) {
+                            console.error('Token verification failed:', await response.text());
                             return null;
                         }
+                        const userData = await response.json();
                         return {
-                            id: decoded.id,
-                            email: decoded.email,
-                            name: decoded.firstName,
-                            role: decoded.role,
+                            id: userData.id.toString(),
+                            email: userData.email,
+                            name: userData.firstName,
+                            role: userData.role,
                         };
                     } catch (err) {
-                        console.error('Invalid auth token in authorize', err);
+                        console.error('Error verifying auth token:', err);
                         return null;
                     }
                 }

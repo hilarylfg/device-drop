@@ -8,8 +8,9 @@ import {Button, CartDrawerItem, Container, getDeclension, TruckLoader} from "@/s
 import {useState} from "react";
 
 export function CartDrawer() {
-    const {totalAmount, updateItemQuantity, items, removeCartItem, loading} = useCart();
+    const {totalAmount, updateItemQuantity, items, removeCartItem, loading, loadingCart} = useCart();
     const [redirecting, setRedirecting] = useState(false);
+    const isButtonLoading = redirecting || loading;
 
     const onClickCountButton = (id: number, quantity: number, type: 'plus' | 'minus') => {
         const newQuantity = type === 'plus' ? quantity + 1 : quantity - 1;
@@ -19,13 +20,13 @@ export function CartDrawer() {
 
     return (
         <>
-            {loading && (
+            {loadingCart && (
                 <div className="cart-drawer__loader">
                     <TruckLoader title="Везем вашу корзину..."/>
                 </div>
             )}
 
-            {!loading && totalAmount > 0 && (
+            {!loadingCart && totalAmount > 0 && (
                 <Container>
                     <h1 className="cart-drawer__length-title">
                         В корзине <b
@@ -34,7 +35,7 @@ export function CartDrawer() {
                 </Container>
             )}
 
-            {!loading && !totalAmount && (
+            {!loadingCart && !totalAmount && (
                 <div className="cart-drawer__not-found">
                     <PackageOpen size={120}/>
                     <h1>Корзина пустая</h1>
@@ -46,7 +47,7 @@ export function CartDrawer() {
                 </div>
             )}
 
-            {!loading && totalAmount > 0 && (
+            {!loadingCart && totalAmount > 0 && (
                 <Container>
                     <div className="cart-drawer">
                         <div className="cart-drawer__items">
@@ -58,6 +59,7 @@ export function CartDrawer() {
                                         disabled={item.disabled}
                                         name={item.name}
                                         price={item.price}
+                                        isButtonLoading={isButtonLoading}
                                         quantity={item.quantity}
                                         onClickCountButton={(type) =>
                                             onClickCountButton(item.id, item.quantity, type)
@@ -68,24 +70,22 @@ export function CartDrawer() {
                             ))}
                         </div>
                         <div className="cart-drawer__price-block">
-                            <div className="flex mb-4">
-                            <span className="flex flex-1 text-lg text-neutral-500">
+                            <div className="">
+                            <h2 className="">
                                 Итого
-                                <div
-                                    className="flex-1 border-b border-dashed border-b-neutral-200 relative -top-1 mx-2"/>
-                            </span>
-                                <span className="font-bold text-lg">{totalAmount} ₽</span>
-                                <Link href="/checkout">
-                                    <Button
-                                        onClick={() => setRedirecting(true)}
-                                        loading={redirecting}
-                                        type="submit"
-                                        className="w-full h-12 text-base">
-                                        Оформить заказ
-                                        <ArrowRight className="w-5 ml-2"/>
-                                    </Button>
-                                </Link>
+                            </h2>
+                                <h1 className="">{totalAmount} ₽</h1>
                             </div>
+                            <Link href="/checkout">
+                                <Button
+                                    onClick={() => setRedirecting(true)}
+                                    loading={isButtonLoading}
+                                    type="submit"
+                                    className="">
+                                    Оформить заказ
+                                    <ArrowRight/>
+                                </Button>
+                            </Link>
                         </div>
                     </div>
                 </Container>

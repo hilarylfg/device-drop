@@ -7,6 +7,7 @@ interface countButtonIconsProps {
     size?: CountButtonProps['size'];
     disabled?: boolean;
     type?: 'plus' | 'minus';
+    loading?: boolean
     onClick?: () => void;
 }
 
@@ -14,11 +15,12 @@ export const CountButtonIcons: React.FC<countButtonIconsProps> = ({
                                                                size = 'sm',
                                                                disabled,
                                                                type,
+                                                               loading,
                                                                onClick,
                                                            }) => {
     return (
         <Button
-            disabled={disabled}
+            disabled={disabled || loading}
             onClick={onClick}
             type="button"
             className={cn(size === 'sm' ? 'count-button-small' : 'count-button-large',
