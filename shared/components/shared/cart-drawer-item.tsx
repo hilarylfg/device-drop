@@ -3,7 +3,7 @@ import React from 'react';
 import {Trash2Icon} from 'lucide-react';
 import {CountButton} from "@/shared/components";
 
-interface Props {
+export interface CartItemProps {
     id: number;
     imageUrl: string;
     details?: string;
@@ -17,7 +17,7 @@ interface Props {
     className?: string;
 }
 
-export const CartDrawerItem: React.FC<Props> = ({
+export function CartDrawerItem({
                                                     imageUrl,
                                                     name,
                                                     price,
@@ -28,39 +28,36 @@ export const CartDrawerItem: React.FC<Props> = ({
                                                     onClickCountButton,
                                                     onClickRemove,
                                                     className,
-                                                }) => {
+                                                } : CartItemProps) {
     return (
-        <div
-            className={cn(
-                'cart-drawer__item', {'cart-drawer__item--disabled': disabled},
-                className,
-            )}>
-            <div className='cart-drawer__item__image__wrapper'>
-                <img className={cn('cart-drawer__item__image', className)} src={`/products/${imageUrl}`} alt=""/>
+        <div className={cn(
+            'cart-drawer-item', {'cart-drawer-item--disabled': disabled},
+            className,
+        )}>
+            <div className="cart-drawer-item__image__wrapper">
+                <img className="cart-drawer-item__image" src={`/products/${imageUrl}`} alt={name}/>
             </div>
 
-            <div className="cart-drawer__item__info">
-                <div className="cart-drawer__item__block">
-                    <div className="cart-drawer__item__block__content">
-                        <div style={{width: 'fit-content'}}>
-                            <h2 className="cart-drawer__item__info__title">{name}</h2>
-                            {details && <p className="">{details}</p>}
-                            <hr className="cart-drawer__item__hr"/>
-                            <div className="cart-drawer__item__info__buttons">
-                                <Trash2Icon
-                                    onClick={onClickRemove}
-                                    size={20}
-                                    className="cart-drawer__item__info__buttons__trash"
-                                />
-                            </div>
-                        </div>
-                    </div>
-                    <h2 className={cn('', className)}>{price} ₽</h2>
+            <div className="cart-drawer-item__info">
+                <div>
+                    <h2 className="cart-drawer-item__title">{name}</h2>
+                    {details && <p className="cart-drawer-item__details">{details}</p>}
                 </div>
 
-                <CountButton className="cart-drawer__item__info__count-buttons" onClick={onClickCountButton}
-                             value={quantity} loading={isButtonLoading}/>
+                <hr className="cart-drawer-item__hr"/>
+
+                <div className="cart-drawer-item__actions">
+                    <CountButton onClick={onClickCountButton} value={quantity} loading={isButtonLoading}/>
+                    <div className="cart-drawer-item__price-block">
+                        <h3 className="cart-drawer-item__price">{price.toLocaleString("ru-RU") + " ₽"}</h3>
+                        <Trash2Icon
+                            onClick={onClickRemove}
+                            className="cart-drawer-item__remove-icon"
+                            size={16}
+                        />
+                    </div>
+                </div>
             </div>
         </div>
     );
-};
+}

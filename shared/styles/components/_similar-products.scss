@@ -12,8 +12,7 @@
 
     &__list {
         display: flex;
-        justify-content: space-between;
-        gap: rem(40);
+        gap: 40px;
 
         .product-card {
             .price-block__discount-wrapper {

@@ -1,58 +1,74 @@
-.cart-drawer__item {
-    background: var(--color-input-background);
-    padding: 20px;
-    border-radius: 20px;
+.cart-drawer-item {
     display: flex;
-    gap: 20px;
-    width: 860px;
+    background-color: var(--color-light);
+    padding: 20px;
+    gap: 24px;
 
-    &__block {
-        width: 420px;
+    &__info {
+        flex-grow: 1;
+    }
+
+    &__actions {
         display: flex;
         align-items: center;
+        justify-content: space-between;
+    }
 
-        &__content {
-            width: 280px;
+    &__image {
+        max-height: 80px;
+
+        &__wrapper {
+            display: flex;
+            width: 80px;
+            height: 80px;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--color-light);
         }
     }
 
     &__hr {
-        margin: 4px 0;
+        margin: 6px 0;
         border: 0;
         height: 1px;
-        background: var(--color-hr-gray);
+        background-color: var(--color-hr-gray);
     }
 
-    &__info {
-        width: 78%;
+    &--disabled {
+        opacity: 0.5;
+        pointer-events: none;
+    }
+
+    &__title {
+        font-size: 18px;
+        font-weight: 700;
+        flex: 1;
+        line-height: 1.5rem;
+    }
+
+    &__details {
+        font-size: 12px;
+        color: var(--color-dark-40);
+        width: 90%;
+    }
+
+    &__price-block {
         display: flex;
         align-items: center;
-        justify-content: space-between;
-
-        &__buttons {
-            margin-top: 8px;
-
-            &__trash {
-                cursor: pointer;
-            }
-        }
-        
-        &__count-buttons {
-            display: flex;
-            align-items: center;
-        }
+        gap: 12px;
     }
 
-    &__image {
-        &__wrapper {
-            width: 160px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+    &__price {
+        font-weight: 600;
+    }
 
-            img {
-                max-height: 80px;
-            }
+    &__remove-icon {
+        color: var(--color-dark-40);
+        transition: all var(--transition-duration) ease;
+        cursor: pointer;
+
+        &:hover {
+            color: var(--color-dark-20);
         }
     }
 }

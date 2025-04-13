@@ -1,0 +1,27 @@
+@use '../helpers/index' as *;
+
+.white-block {
+    background-color: var(--color-input-background);
+    border-radius: 1.5rem;
+
+    &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1.25rem 1.75rem;
+        border-bottom: 1px solid;
+        border-color: #f3f4f6;
+    }
+
+    &__title {
+        font-weight: 700;
+    }
+
+    &__content {
+        padding: 1rem 1.25rem;
+    }
+
+    input {
+        background-color: var(--color-light);
+    }
+}

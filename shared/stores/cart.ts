@@ -4,7 +4,6 @@ import { CreateCartItemValues } from '../services/dto/cart.dto';
 import { CartStateItem, getCartDetails } from "@/shared/lib";
 
 export interface CartState {
-    loadingCart: boolean;
     loading: boolean;
     error: boolean;
     totalAmount: number;
@@ -19,20 +18,19 @@ export interface CartState {
 export const useCartStore = create<CartState>((set) => ({
     items: [],
     error: false,
-    loadingCart: false,
-    loading: false,
+    loading: true,
     totalAmount: 0,
 
     fetchCartItems: async () => {
         try {
-            set({ loadingCart: true, error: false });
+            set({ loading: true, error: false });
             const data = await Api.cart.getCart();
             set(getCartDetails(data));
         } catch (error) {
             console.error(error);
             set({ error: true });
         } finally {
-            set({ loadingCart: false });
+            set({ loading: false });
         }
     },
 
@@ -52,11 +50,9 @@ export const useCartStore = create<CartState>((set) => ({
     removeCartItem: async (id: number) => {
         try {
             set((state) => ({
-                loadingAction: true,
+                loading: true,
                 error: false,
-                items: state.items.map((item) =>
-                    item.id === id ? { ...item, disabled: true } : item
-                ),
+                items: state.items.map((item) => (item.id === id ? { ...item, disabled: true } : item)),
             }));
             const data = await Api.cart.removeCartItem(id);
             set(getCartDetails(data));
@@ -65,7 +61,7 @@ export const useCartStore = create<CartState>((set) => ({
             set({ error: true });
         } finally {
             set((state) => ({
-                loadingAction: false,
+                loading: false,
                 items: state.items.map((item) => ({ ...item, disabled: false })),
             }));
         }

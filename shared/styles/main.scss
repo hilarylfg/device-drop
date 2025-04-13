@@ -13,12 +13,14 @@
 @use 'ui/dialog';
 @use 'ui/toaster';
 @use 'ui/input-otp';
+@use 'ui/sheet';
 
 @use 'pages/not-found';
 @use 'pages/home';
 @use 'pages/work';
 @use 'pages/verify';
 @use 'pages/cart';
+@use 'pages/checkout';
 
 @use 'components/logo';
 @use 'components/search-input';
@@ -43,3 +45,8 @@
 @use 'components/cart-drawer-item';
 @use 'components/count-button';
 @use 'components/truck-loader';
+@use 'components/white-block';
+@use 'components/checkout/checkout-master';
+@use 'components/checkout/checkout-item';
+@use 'components/checkout/checkout-item-details';
+@use 'components/checkout/checkout-sidebar';

@@ -26,8 +26,11 @@ export {CountButton} from "./count-button/count-button";
 export {CountButtonIcons} from "./count-button/count-button-icons";
 export {TruckLoader} from "./truck-loader";
 export {VerifyHandler} from "./verify-handler";
+export {AddressInput} from "./address-input";
+export {WhiteBlock} from "./white-block";
 export {GoogleIcon} from "./icons";
 export {GithubIcon} from "./icons";
 
 export * from "./forms";
 export * from "./filters";
+export * from "./checkout";

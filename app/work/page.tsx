@@ -9,7 +9,7 @@ export default function Work() {
             <Image className="work-page__image" src="/efectio-team-building-games.jpg" alt="" width={900} height={473}/>
             <Container>
                 <p className="work-page__link-span">
-                    <a className="work-page__link" href="/">
+                    <a className="work-page__link" href="/public">
                         Главная
                     </a>
                     {" "}/{" "}

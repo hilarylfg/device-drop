@@ -1,9 +1,12 @@
+@use '../helpers/index' as *;
+
 .count-button {
     &__group {
         display: flex;
         align-items: center;
 
         b {
+            font-size: rem(14);
             margin-inline: 5px;
         }
     }

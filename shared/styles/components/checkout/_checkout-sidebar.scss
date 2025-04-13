@@ -1,0 +1,60 @@
+.checkout-sidebar {
+    &__block {
+        padding: 1.5rem;
+        position: sticky;
+        top: 1rem;
+    }
+
+    &__total {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+
+        &-label {
+            font-size: 1.25rem;
+        }
+
+        &-price {
+            height: 2.75rem;
+            font-size: 34px;
+            font-weight: 800;
+        }
+
+        &-skeleton {
+            height: 2.75rem;
+            width: 12rem;
+        }
+    }
+
+    &__item {
+        &-title {
+            display: flex;
+            align-items: center;
+        }
+
+        &-icon {
+            margin-right: 0.5rem;
+            color: #9ca3af;
+        }
+
+        &-value-skeleton {
+            height: 1.5rem;
+            width: 4rem;
+            border-radius: 6px;
+        }
+    }
+
+    &__button {
+        width: 100%;
+        height: 3.5rem;
+        border-radius: 1rem;
+        margin-top: 1.5rem;
+        font-size: 1rem;
+        font-weight: 700;
+
+        &-icon {
+            width: 1.25rem;
+            margin-left: 0.5rem;
+        }
+    }
+}

@@ -1,0 +1,17 @@
+.checkout-item-details {
+    display: flex;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+
+    &__title {
+        display: flex;
+        flex: 1;
+        font-size: 1.125rem;
+        color: #737373;
+    }
+
+    &__value {
+        font-weight: 700;
+        font-size: 1.125rem;
+    }
+}

@@ -1,0 +1,31 @@
+.checkout-cart {
+    &__items {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+    }
+}
+
+.checkout-address {
+    &__form {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+    }
+
+    &__textarea {
+        font-size: 1rem;
+    }
+}
+
+.checkout-personal {
+    &__form {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.25rem;
+    }
+
+    &__input {
+        font-size: 1rem;
+    }
+}
