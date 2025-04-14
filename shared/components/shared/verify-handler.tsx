@@ -6,6 +6,7 @@ import { signIn } from 'next-auth/react';
 import toast from 'react-hot-toast';
 import { CircleAlert } from 'lucide-react';
 import { verifyCodeLogic } from "@/shared/lib";
+import {TruckLoader} from "@/shared/components";
 
 export function VerifyHandler() {
     const router = useRouter();
@@ -56,5 +57,7 @@ export function VerifyHandler() {
         }
     };
 
-    return null;
+    return (
+        <TruckLoader title="Везем проверять ваш код подтверждения..." />
+    );
 }

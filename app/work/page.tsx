@@ -1,4 +1,4 @@
-import {Container, MultiStepJobForm} from "@/shared/components";
+import {Container} from "@/shared/components";
 import Image from "next/image";
 import React from "react";
 import {ChartColumnIncreasing, Gamepad2, Lightbulb, Smile} from "lucide-react";
@@ -49,10 +49,10 @@ export default function Work() {
                         </div>
                     </div>
                 </section>
-                <section className="work-page__section">
-                    <h1>Что мы предлагаем?</h1>
-                </section>
-                <MultiStepJobForm/>
+                {/*<section className="work-page__section">*/}
+                {/*    <h1>Что мы предлагаем?</h1>*/}
+                {/*</section>*/}
+                {/*<MultiStepJobForm/>*/}
             </Container>
         </main>
     );
