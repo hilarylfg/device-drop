@@ -15,6 +15,7 @@ import {
 import { CheckoutFormValues, checkoutFormSchema } from '@/shared/constants';
 import { Api } from '@/shared/services/api-client';
 import {useCart} from "@/shared/hooks";
+import {createOrder} from "@/shared/lib";
 
 export default function CheckoutPage() {
     const [submitting, setSubmitting] = useState(false);
@@ -49,15 +50,7 @@ export default function CheckoutPage() {
     const onSubmit = async (data: CheckoutFormValues) => {
         try {
             setSubmitting(true);
-            const url = await createOrder(data);
-
-            toast.error('Заказ успешно оформлен! 📝 Переход на оплату... ', {
-                icon: '✅',
-            });
-
-            if (url) {
-                location.href = url;
-            }
+            await createOrder(data);
         } catch (err) {
             console.log(err);
             setSubmitting(false);
