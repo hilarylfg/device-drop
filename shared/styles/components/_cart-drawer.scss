@@ -16,6 +16,22 @@
         }
     }
 
+    &__not-found {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+
+        svg {
+            color: var(--color-accent);
+        }
+
+        &__close {
+            border: none;
+        }
+    }
+
     &__title {
         &-count {
             font-weight: 700;

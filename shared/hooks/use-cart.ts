@@ -16,7 +16,7 @@ export const useCart = (): ReturnProps => {
     const cartState = useCartStore((state) => state);
 
     React.useEffect(() => {
-        cartState.fetchCartItems();
+        void cartState.fetchCartItems();
     }, []);
 
     return cartState;

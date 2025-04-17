@@ -18,7 +18,7 @@ import {ReactNode, useState} from "react";
 import {cn} from "@/shared/lib";
 
 export function CartDrawer({children}: { children: ReactNode }) {
-    const {totalAmount, updateItemQuantity, items, removeCartItem, loading} = useCart();
+    const { items, loading, updateItemQuantity, removeCartItem, totalAmount } = useCart()
     const [redirecting, setRedirecting] = useState(false);
     const isButtonLoading = redirecting || loading;
 
@@ -38,8 +38,8 @@ export function CartDrawer({children}: { children: ReactNode }) {
                     </SheetTitle>
                 </SheetHeader>
 
-                <div className={cn('cart-drawer__container', totalAmount <= 0 && 'cart-drawer__container--empty')}>
-                    {!totalAmount && (
+                <div className={cn('cart-drawer__container', items.length <= 0 && 'cart-drawer__container--empty')}>
+                    {items.length === 0 && (
                         <div className="cart-drawer__not-found">
                             <PackageOpen size={120}/>
                             <h1>Корзина пустая</h1>
@@ -53,7 +53,7 @@ export function CartDrawer({children}: { children: ReactNode }) {
                         </div>
                     )}
 
-                    {totalAmount > 0 && (
+                    {items.length > 0 && (
                         <>
                             <div className="cart-drawer__items">
                                 {items.map((item) => (
@@ -81,7 +81,7 @@ export function CartDrawer({children}: { children: ReactNode }) {
                                           Итого
                                           <div className="cart-drawer__total-line"/>
                                         </span>
-                                        <span className="cart-drawer__total-price">{totalAmount .toLocaleString("ru-RU") + " ₽"}</span>
+                                        <span className="cart-drawer__total-price">{totalAmount.toLocaleString("ru-RU") + " ₽"}</span>
                                     </div>
 
                                     <Link href="/checkout">

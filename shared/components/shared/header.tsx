@@ -1,7 +1,16 @@
 "use client";
 
-import {AuthModal, Button, CartDrawer, Container, Logo, Navbar, ProfileButton, SearchInput} from "@/shared/components";
-import { Heart, ShoppingCart } from "lucide-react";
+import {
+    AuthModal,
+    Button,
+    CartButton,
+    Container,
+    Logo,
+    Navbar,
+    ProfileButton,
+    SearchInput
+} from "@/shared/components";
+import { Heart } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -25,11 +34,7 @@ export function Header() {
                                 <Heart size={20} />
                             </Button>
                         </Link>
-                        <CartDrawer>
-                            <Button className="button-block__button">
-                                <ShoppingCart size={20} />
-                            </Button>
-                        </CartDrawer>
+                        <CartButton />
                     </div>
                 </header>
             </Container>

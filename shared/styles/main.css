@@ -1773,6 +1773,19 @@ button[aria-label] {
 .cart-drawer__container--empty {
   justify-content: center;
 }
+.cart-drawer__not-found {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.cart-drawer__not-found svg {
+  color: var(--color-accent);
+}
+.cart-drawer__not-found__close {
+  border: none;
+}
 .cart-drawer__title-count {
   font-weight: 700;
 }

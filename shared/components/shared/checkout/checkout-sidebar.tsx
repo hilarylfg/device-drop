@@ -21,7 +21,7 @@ export const CheckoutSidebar: React.FC<Props> = ({ totalAmount, loading, classNa
                 {loading ? (
                     <Skeleton className="checkout-sidebar__total-skeleton" />
                 ) : (
-                    <span className="checkout-sidebar__total-price">{totalPrice} ₽</span>
+                    <span className="checkout-sidebar__total-price">{totalPrice.toLocaleString("ru-RU") + " ₽"}</span>
                 )}
             </div>
 
@@ -32,7 +32,7 @@ export const CheckoutSidebar: React.FC<Props> = ({ totalAmount, loading, classNa
                         Стоимость корзины:
                     </div>
                 }
-                value={loading ? <Skeleton className="checkout-sidebar__item-value-skeleton" /> : `${totalAmount} ₽`}
+                value={loading ? <Skeleton className="checkout-sidebar__item-value-skeleton" /> : `${totalAmount.toLocaleString("ru-RU") + " ₽"}`}
             />
             <CheckoutItemDetails
                 title={
@@ -41,7 +41,7 @@ export const CheckoutSidebar: React.FC<Props> = ({ totalAmount, loading, classNa
                         Доставка:
                     </div>
                 }
-                value={loading ? <Skeleton className="checkout-sidebar__item-value-skeleton" /> : `${DELIVERY_PRICE} ₽`}
+                value={loading ? <Skeleton className="checkout-sidebar__item-value-skeleton" /> : `${DELIVERY_PRICE.toLocaleString("ru-RU") + " ₽"}`}
             />
 
             <Button
