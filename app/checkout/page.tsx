@@ -32,6 +32,7 @@ export default function CheckoutPage() {
             address: '',
             comment: '',
         },
+        mode: 'onBlur',
     });
 
     useEffect(() => {

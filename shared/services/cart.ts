@@ -1,18 +1,18 @@
-import { axiosInstance } from './instance';
 import { CartDTO, CreateCartItemValues } from './dto/cart.dto';
+import {api} from "@/shared/services/instance";
 
 export const getCart = async (): Promise<CartDTO> => {
-  return (await axiosInstance.get<CartDTO>('/cart', { withCredentials: true })).data;
+  return await api.get<CartDTO>('/cart');
 };
 
 export const updateItemQuantity = async (itemId: number, quantity: number): Promise<CartDTO> => {
-  return (await axiosInstance.patch<CartDTO>('/cart/' + itemId, { quantity }, { withCredentials: true })).data;
+  return await api.patch<CartDTO>('/cart/' + itemId, { quantity });
 };
 
 export const removeCartItem = async (id: number): Promise<CartDTO> => {
-  return (await axiosInstance.delete<CartDTO>('/cart/' + id, { withCredentials: true })).data;
+  return await api.delete<CartDTO>('/cart/' + id );
 };
 
 export const addCartItem = async (values: CreateCartItemValues): Promise<CartDTO> => {
-  return (await axiosInstance.post<CartDTO>('/cart', values, { withCredentials: true })).data;
+  return await api.post<CartDTO>('/cart', values);
 };

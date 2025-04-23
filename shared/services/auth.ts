@@ -1,8 +1,6 @@
-import { User } from '@prisma/client';
-import { axiosInstance } from './instance';
+import {User} from '@prisma/client';
+import {api} from './instance';
 
 export const getMe = async () => {
-  const { data } = await axiosInstance.get<User>('/auth/me', { withCredentials: true });
-
-  return data;
+  return await api.get<User>('/auth/me');
 };
