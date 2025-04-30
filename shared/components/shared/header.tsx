@@ -1,7 +1,6 @@
 "use client";
 
 import {
-    AuthModal,
     Button,
     CartButton,
     Container,
@@ -12,10 +11,10 @@ import {
 } from "@/shared/components";
 import { Heart } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
+import {useAuthModal} from "@/shared/hooks";
 
 export function Header() {
-    const [openAuthModal, setOpenAuthModal] = useState(false);
+    const { openAuthModal } = useAuthModal();
 
     return (
         <>
@@ -27,8 +26,7 @@ export function Header() {
                     </Link>
                     <SearchInput />
                     <div className="button-block">
-                        <AuthModal open={openAuthModal} onClose={() => setOpenAuthModal(false)} />
-                        <ProfileButton onClickSignIn={() => setOpenAuthModal(true)} />
+                        <ProfileButton onClickSignIn={openAuthModal} />
                         <Link href="/favorites">
                             <Button className="button-block__button">
                                 <Heart size={20} />

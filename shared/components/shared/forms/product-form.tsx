@@ -5,8 +5,8 @@ import {ProductWithAllRelations} from "@/@types/prisma";
 import {cn, findCheapestVariant} from "@/shared/lib";
 import {Button, PriceBlock, Progress, SimilarProducts} from "@/shared/components";
 import {PackagePlus} from "lucide-react";
-import { addCartItem } from "@/shared/services/cart";
 import toast from "react-hot-toast";
+import {useCartStore} from "@/shared/stores";
 
 interface ProductFormProps {
     product: ProductWithAllRelations;
@@ -22,11 +22,12 @@ export function ProductForm({product, onSubmit: _onSubmit}: ProductFormProps) {
     const originalPrice = hasDiscount ? selectedVariant.price : undefined;
 
     const [isLoading, setIsLoading] = useState(false);
+    const addCartItem = useCartStore((state) => state.addCartItem);
 
     const onSubmit = async (itemId: number) => {
         try {
             setIsLoading(true);
-            await addCartItem({productVariantId: itemId,});
+            await addCartItem({productVariantId: itemId});
             toast.success(product.name + ' добавлена в корзину');
             _onSubmit?.();
         } catch (err) {

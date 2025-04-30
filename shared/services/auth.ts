@@ -6,13 +6,13 @@ interface RegisterResponse {
 }
 
 export const getMe = async () => {
-  return await api.get<User>('/auth/me');
+  return await api.get<User>('auth/me');
 };
 
 export const register = async (firstName: string, email: string, password: string) => {
-  return api.post<RegisterResponse>('/auth/register', { body: { firstName, email, password } });
+  return api.post<RegisterResponse>('auth/register', { body: { firstName, email, password } });
 };
 
 export const verifyCode = async (code: string) => {
-  return api.post('/auth/verify', { code });
+  return api.post('auth/verify', { code });
 }

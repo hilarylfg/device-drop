@@ -1084,6 +1084,19 @@ button[aria-label] {
 .header .button-block__button svg.lucide-circle-user, .header .button-block__button svg.lucide-log-in {
   margin-right: 0.3125rem;
 }
+.header .button-block__button--active {
+  display: flex;
+  align-items: center;
+  background: var(--color-accent);
+  color: var(--color-light);
+}
+.header .button-block__button--active svg {
+  margin-right: 0.3125rem;
+}
+.header .button-block__button--active:hover {
+  background: var(--color-light);
+  color: var(--color-accent);
+}
 .header a.logo-link {
   transition: all 200ms ease;
 }

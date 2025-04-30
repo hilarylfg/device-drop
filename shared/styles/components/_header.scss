@@ -15,6 +15,22 @@
             svg.lucide-circle-user, svg.lucide-log-in {
                 margin-right: rem(5);
             }
+
+            &--active {
+                display: flex;
+                align-items: center;
+                background: var(--color-accent);
+                color: var(--color-light);
+
+                svg {
+                    margin-right: rem(5);
+                }
+
+                &:hover {
+                    background:var(--color-light) ;
+                    color: var(--color-accent);
+                }
+            }
         }
     }
 

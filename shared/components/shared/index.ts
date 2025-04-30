@@ -15,7 +15,7 @@ export {Footer} from "./footer";
 export {CategoryNavbar} from "./category-navbar";
 export {TitleLengthProducts, getDeclension} from "./title-length-products";
 export {ProfileButton} from "./profile-button";
-export {Providers} from "./providers";
+export {Providers, AuthProvider, AuthModalContext} from "./providers";
 export {ErrorText} from "./error-text";
 export {RequiredSymbol} from "./required-symbol";
 export {ClearButton} from "./clear-button";

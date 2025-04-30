@@ -1,11 +1,11 @@
-import {axiosInstance} from "@/shared/services/instance";
 import {CheckoutFormValues} from "@/shared/constants";
 import toast from "react-hot-toast";
+import {api} from "@/shared/services/instance";
 
 export async function createOrder(data: CheckoutFormValues) {
     try {
-        const response = await axiosInstance.post<{ paymentUrl: string }>('/order/create', data, {withCredentials: true});
-        window.location.href = response.data.paymentUrl;
+        const response = await api.post<{ paymentUrl: string }>('order/create', data);
+        window.location.href = response.paymentUrl;
         toast.error('Заказ успешно оформлен! 📝 Переход на оплату... ', {
             icon: '✅',
         });
