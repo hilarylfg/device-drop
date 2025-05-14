@@ -849,7 +849,23 @@ button[aria-label] {
 .catalog-block__list {
   display: flex;
   flex-direction: column;
+  min-height: 100%;
   gap: 3.75rem;
+}
+.catalog-block__list__not-found {
+  position: sticky;
+  top: 300px;
+  width: 1014px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  margin-top: 7.5rem;
+}
+.catalog-block__list__not-found svg {
+  fill: none;
+  stroke: var(--color-accent);
 }
 
 .work-page {
@@ -1217,27 +1233,36 @@ button[aria-label] {
   border: 1px solid var(--color-hr-gray);
 }
 
+.price-filter__inputs {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+.price-filter__inputs input {
+  border: 2px solid var(--color-hr-gray);
+  transition: all var(--transition-duration) ease;
+}
+.price-filter__inputs input:hover {
+  border: 2px solid var(--color-accent);
+}
+
 .group-filter {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 15px;
   padding: 1.5625rem 0;
   border-bottom: 0.0625rem solid var(--color-hr-gray);
 }
 .group-filter:last-child {
   border: none;
 }
-.group-filter__title {
-  margin-bottom: 0.625rem;
-}
-.group-filter__slider {
-  margin-top: 1rem;
-}
 .group-filter__checkbox-list {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
 }
-
 .group-filter__show-all {
-  margin-top: 0.5rem;
   border: none;
   background: transparent;
   cursor: pointer;
@@ -1247,7 +1272,6 @@ button[aria-label] {
   padding: 6px 14px;
   height: fit-content;
   border: 2px solid var(--color-hr-gray);
-  margin-bottom: 0.5rem;
   transition: all var(--transition-duration) ease;
 }
 .group-filter__show-all__input:hover {
@@ -1343,6 +1367,21 @@ button[aria-label] {
   width: 17.5rem;
   height: 11.25rem;
 }
+.product-card__image__colors {
+  position: absolute;
+  background: var(--color-placeholder);
+  display: flex;
+  gap: 5px;
+  bottom: 15px;
+  right: 15px;
+  padding: 4px;
+  border-radius: 10px;
+}
+.product-card__image__color {
+  width: 18px;
+  height: 18px;
+  border-radius: 6px;
+}
 .product-card__image__pin-sale {
   font-size: 0.75rem;
   color: var(--color-light);
@@ -1350,7 +1389,7 @@ button[aria-label] {
   bottom: 15px;
   left: 15px;
   background: #ff4444;
-  padding: 3px 6px;
+  padding: 4px 6px;
   border-radius: 10px;
 }
 .product-card__image__favorite {

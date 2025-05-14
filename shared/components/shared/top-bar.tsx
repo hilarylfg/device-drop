@@ -3,27 +3,10 @@
 import {CategoryNavbar, Container, Logo, Popover, PopoverContent, PopoverTrigger} from "@/shared/components";
 import {ArrowUpDown} from "lucide-react";
 import {Suspense, useEffect, useRef, useState} from "react";
-import {Api} from "@/shared/services/api-client";
-import {CategoriesWithAllRelations} from "@/@types/prisma";
 import { Link } from "react-scroll";
+import {Category} from "@prisma/client";
 
-export function TopBar() {
-    const [categories, setCategories] = useState<CategoriesWithAllRelations[]>([]);
-    const [isLoading, setIsLoading] = useState(true);
-
-    useEffect(() => {
-        (async () => {
-            try {
-                setIsLoading(true);
-                const response = await Api.categories.getCategories();
-                setCategories(response);
-            } catch (e) {
-                console.error("Error: ", e);
-            } finally {
-                setIsLoading(false);
-            }
-        })();
-    }, []);
+export function TopBar({categories, isLoading}: { categories?: Category[]; isLoading: boolean }) {
     const headerRef = useRef(null);
     const [isSticky, setIsSticky] = useState(false);
 
@@ -42,7 +25,7 @@ export function TopBar() {
             <Container className="top-bar">
                 <Link to="header" smooth={true} offset={-100} duration={500}><Logo className="logo"/></Link>
                 <Suspense>
-                    <CategoryNavbar className={isSticky ? 'sticky' : ''} items={categories} isLoading={isLoading}/>
+                    <CategoryNavbar className={isSticky ? 'sticky' : ''} items={categories || []} isLoading={isLoading}/>
                 </Suspense>
                 <Popover>
                     <PopoverTrigger asChild>

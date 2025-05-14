@@ -1,42 +1,43 @@
-    "use client";
+import {ProductGroupList} from "@/shared/components";
+import {ProductGroupListSkeleton} from "./product-group-list";
+import {CategoriesWithAllRelations} from "@/@types/prisma";
+import {PackageX} from "lucide-react";
 
-    import {ProductGroupList} from "@/shared/components";
-    import {useEffect, useState} from "react";
-    import {Api} from "@/shared/services/api-client";
-    import {CategoriesWithAllRelations} from "@/@types/prisma";
-    import {ProductGroupListSkeleton} from "./product-group-list";
-
-    export function ProductList() {
-        const [products, setProducts] = useState<CategoriesWithAllRelations[]>([]);
-        const [isLoading, setIsLoading] = useState(true);
-
-        useEffect(() => {
-            (async () => {
-                try {
-                    setIsLoading(true);
-                    const response = await Api.categories.withProducts();
-                    setProducts(response);
-                } catch (e) {
-                    console.error("Error: ", e);
-                } finally {
-                    setIsLoading(false);
-                }
-            })();
-        }, []);
-
+export function ProductList({categories, isLoading}: {
+    categories: CategoriesWithAllRelations[];
+    isLoading: boolean
+}) {
+    if (isLoading) {
         return (
             <div className="catalog-block__list">
-                {isLoading ? <ProductGroupListSkeleton/> : products.map((product) =>
-                    product.products.length > 0 && (
-                            <ProductGroupList
-                                key={product.id}
-                                title={product.name}
-                                categoryLink={product.link}
-                                categoryId={product.id}
-                                products={product.products}
-                            />
-                        ),
-                )}
+                <ProductGroupListSkeleton/>
+                <ProductGroupListSkeleton/>
             </div>
-        )
+        );
     }
+
+    if (categories.length === 0) {
+        return (
+            <div className="catalog-block__list__not-found">
+                <PackageX size={150}/>
+                <h1 className="">Товары не найдены</h1>
+                <p className="">Попробуйте изменить параметры фильтрации</p>
+            </div>
+        );
+    }
+
+    return (
+        <div className="catalog-block__list">
+            {categories.map((category: CategoriesWithAllRelations) =>
+                category.products.length > 0 && (
+                    <ProductGroupList
+                        key={category.id}
+                        title={category.name}
+                        categoryLink={category.link}
+                        categoryId={category.id}
+                        products={category.products}
+                    />
+                ))}
+        </div>
+    )
+}

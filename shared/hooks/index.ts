@@ -1,2 +1,6 @@
 export {useCart} from "./use-cart"
 export {useAuthModal} from "./use-auth-modal"
+export {useFilters, useFilteredProducts} from "./use-filters"
+export {useQueryFilters} from "./use-query-filters"
+export {useColors} from "./use-colors"
+export {useBrands} from "./use-brands"

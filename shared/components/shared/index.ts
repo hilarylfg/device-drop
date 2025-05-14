@@ -29,8 +29,8 @@ export {VerifyHandler} from "./verify-handler";
 export {AddressInput} from "./address-input";
 export {WhiteBlock} from "./white-block";
 export {CartButton} from "./cart-button";
-export {GoogleIcon} from "./icons";
-export {GithubIcon} from "./icons";
+export {CatalogSection} from "./catalog-section";
+export {GoogleIcon, GithubIcon} from "./icons";
 
 export * from "./forms";
 export * from "./filters";

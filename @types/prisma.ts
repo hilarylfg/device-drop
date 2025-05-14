@@ -30,3 +30,10 @@ export type CategoriesWithAllRelations = Prisma.CategoryGetPayload<{
         },
     },
 }>
+
+export interface Color {
+    id: number;
+    hex: string;
+    nameRu: string;
+    nameEn: string;
+}

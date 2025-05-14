@@ -54,7 +54,7 @@ export function CategoryNavbar({items, className, isLoading}: CategoryNavbarProp
 
     return (
         <div className={cn("categories__list", className)}>
-            {isLoading ? <CategoryNavbarSkeleton/> : items.map(({name, link}, index) => (
+            {isLoading ? <CategoryNavbarSkeleton/> : items.length === 0 ? <div className='categories__list__item'>Нет выбранных категорий</div> : items.map(({name, link}, index) => (
                 <a
                     key={index}
                     className={cn({active: activeId === index}, 'categories__list__item')}

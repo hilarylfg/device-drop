@@ -1,18 +1,34 @@
-"use client";
+'use client';
 
-import {CheckboxFilter, Input} from "@/shared/components";
-import {CheckboxFilterProps} from "./checkbox-filter";
 import {ChangeEvent, useState} from "react";
+import {CheckboxFilter, CheckboxFilterProps} from "./checkbox-filter";
+import {Input, Skeleton} from "@/shared/components";
 
 type Item = CheckboxFilterProps;
 
-interface GroupCheckboxFilterProps {
-    title?: string
-    items: Item[]
+interface Props {
+    title: string;
+    items: Item[];
+    defaultItems?: Item[];
     limit?: number;
+    loading?: boolean;
+    searchInputPlaceholder?: string;
+    onClickCheckbox?: (id: string) => void;
+    selected?: Set<string>;
+    name?: string;
 }
 
-export function GroupCheckboxFilter({title, items, limit = 5} : GroupCheckboxFilterProps) {
+export function GroupCheckboxFilter({
+                                        title,
+                                        items,
+                                        defaultItems,
+                                        limit = 5,
+                                        searchInputPlaceholder = 'Поиск...',
+                                        loading,
+                                        onClickCheckbox,
+                                        selected,
+                                        name,
+                                    }: Props) {
     const [showAll, setShowAll] = useState(false);
     const [searchValue, setSearchValue] = useState('');
 
@@ -20,37 +36,55 @@ export function GroupCheckboxFilter({title, items, limit = 5} : GroupCheckboxFil
         setSearchValue(e.target.value);
     };
 
+    if (loading) {
+        return (
+            <div className="group-filter">
+                <p className="group-filter__title">{title}</p>
+                {...Array(limit)
+                    .fill(0)
+                    .map((_, index) =>
+                        <Skeleton key={index} className="group-filter__checkbox-list--skeleton"/>)}
+            </div>
+        );
+    }
+
+    const filteredItems = items.filter((item) =>
+        item.text.toLowerCase().includes(searchValue.toLowerCase())
+    );
+
     const list = showAll
-        ? items.filter((item) => item.text.toLowerCase().includes(searchValue.toLocaleLowerCase()))
-        : (items).slice(0, limit);
+        ? filteredItems
+        : (defaultItems || items).slice(0, limit);
 
     return (
         <div className="group-filter">
-            {title && <h3 className="group-filter__title">{title}</h3>}
+            <h3 className="group-filter__title">{title}</h3>
             {showAll && (
-                <div>
-                    <Input
-                        onChange={onChangeSearchInput}
-                        className="group-filter__show-all__input"
-                        placeholder="Введите цвет"
-                    />
-                </div>
+                <Input
+                    onChange={onChangeSearchInput}
+                    value={searchValue}
+                    placeholder={searchInputPlaceholder}
+                    className="group-filter__show-all__input"
+                />
             )}
             <div className="group-filter__checkbox-list">
-                {list.map((item, index) => (
+                {list.map((item) => (
                     <CheckboxFilter
-                        key={index}
+                        key={item.value}
                         text={item.text}
                         value={item.value}
+                        endAdornment={item.endAdornment}
+                        checked={selected?.has(item.value)}
+                        onCheckedChange={() => onClickCheckbox?.(item.value)}
+                        name={name}
+                        hex={item.hex}
                     />
                 ))}
             </div>
             {items.length > limit && (
-                <div>
-                    <button onClick={() => setShowAll(!showAll)} className="group-filter__show-all">
-                        {showAll ? 'Скрыть' : '+ Показать все'}
-                    </button>
-                </div>
+                <button onClick={() => setShowAll(!showAll)} className="group-filter__show-all">
+                    {showAll ? 'Скрыть' : '+ Показать все'}
+                </button>
             )}
         </div>
     )

@@ -5,17 +5,19 @@ import {cn} from "@/shared/lib/utils";
 import {useState} from "react";
 import {Button, PriceBlock, Skeleton} from "@/shared/components";
 import Link from "next/link";
+import {Color} from "@/@types/prisma";
 
 interface ProductCardProps {
     id?: number;
-    price?: number;
+    price: number;
     originalPrice?: number;
     description: string;
     name: string;
-    imageUrl?: string;
+    imageUrl: string;
+    color?: Color[];
 }
 
-export function ProductCard({price, originalPrice, description, name, imageUrl, id}: ProductCardProps) {
+export function ProductCard({price, originalPrice, description, name, imageUrl, id, color}: ProductCardProps) {
     const [isFavorite, setIsFavorite] = useState(false);
 
     return (
@@ -25,6 +27,17 @@ export function ProductCard({price, originalPrice, description, name, imageUrl, 
                     {originalPrice && price !== undefined &&
                         <div className="product-card__image__pin-sale">
                             -{Math.round(((originalPrice - price) / originalPrice) * 100)}%
+                        </div>
+                    }
+                    {color && color.length > 1 &&
+                        <div className="product-card__image__colors">
+                            {color?.map(({id, hex}) => (
+                                <div
+                                    key={id}
+                                    className='product-card__image__color'
+                                    style={{backgroundColor: hex}}
+                                />
+                            ))}
                         </div>
                     }
                     <Heart

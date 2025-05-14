@@ -14,6 +14,3 @@ export const search = async (query: string): Promise<Product[]> => {
 export const similar = async (id: number): Promise<Product[]> => {
   return await api.get<Product[]>(ApiRoutes.SIMILAR_PRODUCTS + id);
 };
-export const getLengthProduct = async (): Promise<number> => {
-  return await api.get<number>(ApiRoutes.LENGTH_PRODUCT);
-};

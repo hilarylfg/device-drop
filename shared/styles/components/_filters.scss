@@ -21,7 +21,26 @@
     }
 }
 
+.price-filter__inputs {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+
+    input {
+        border: 2px solid var(--color-hr-gray);
+        transition: all var(--transition-duration) ease;
+
+        &:hover {
+            border: 2px solid var(--color-accent);
+        }
+    }
+}
+
 .group-filter {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
     padding: rem(25) 0;
     border-bottom: rem(1) solid var(--color-hr-gray);
 
@@ -29,37 +48,27 @@
         border: none;
     }
 
-    &__title {
-        margin-bottom: rem(10);
-    }
-
-    &__slider {
-        margin-top: rem(16);
-    }
-
     &__checkbox-list {
         display: flex;
         flex-direction: column;
         gap: rem(12);
     }
-}
 
-.group-filter__show-all {
-    margin-top: rem(8);
-    border: none;
-    background: transparent;
-    cursor: pointer;
-    color: var(--color-accent);
+    &__show-all {
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        color: var(--color-accent);
 
-    &__input {
-        padding: 6px 14px;
-        height: fit-content;
-        border: 2px solid var(--color-hr-gray);
-        margin-bottom: rem(8);
-        transition: all var(--transition-duration) ease;
+        &__input {
+            padding: 6px 14px;
+            height: fit-content;
+            border: 2px solid var(--color-hr-gray);
+            transition: all var(--transition-duration) ease;
 
-        &:hover {
-            border: 2px solid var(--color-accent);
+            &:hover {
+                border: 2px solid var(--color-accent);
+            }
         }
     }
 }

@@ -7,6 +7,7 @@ import {useCategoryStore} from "@/shared/stores";
 import {ProductCardSkeleton} from "@/shared/components/shared/product-card";
 import { findCheapestVariant } from "@/shared/lib/utils";
 import {Prisma} from "@prisma/client";
+import {Color} from "@/@types/prisma";
 
 export type ProductsType = Prisma.ProductGetPayload<{
     include: {
@@ -47,6 +48,12 @@ export function ProductGroupList({title, products, categoryLink, categoryId}: Pr
                 price: displayPrice,
                 originalPrice: hasDiscount ? cheapestVariant.price : undefined,
                 description: product.description,
+                color: product.variants.map((variant) => ({
+                    id: variant.color.id,
+                    hex: variant.color.hex,
+                    nameRu: variant.color.nameRu,
+                    nameEn: variant.color.nameEn,
+                } as Color)),
             };
         });
     }, [products]);
@@ -81,6 +88,7 @@ export function ProductGroupList({title, products, categoryLink, categoryId}: Pr
                         price={cardData.price}
                         originalPrice={cardData.originalPrice}
                         description={cardData.description}
+                        color={cardData.color}
                     />
                 ))}
             </div>
